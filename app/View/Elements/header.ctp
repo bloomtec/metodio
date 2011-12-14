@@ -1,4 +1,5 @@
 <div id="header">
+	<a href="/"><img src="/img/logo_header.png" /></a>
 	<ul id='user-menu'>
 		<?php if(!$this -> Session -> read("Auth.User.id")){?>
 			<li>
@@ -9,10 +10,5 @@
 		<?php }else{?>
 			<li> <li><?php echo $this -> Html -> link(__('Log out',true),array("controller"=>"users","action"=>"logout")); ?></li> </li>
 		<?php } ?>
-	</ul>
-	
-	<ul id='main-menu'>
-		<li> </li>
-		<li> </li>
 	</ul>
 </div>

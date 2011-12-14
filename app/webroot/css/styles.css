@@ -22,9 +22,9 @@
 
 /** General Style Info **/
 body {
-	background: #003d4c;
+	background: #fff;
 	color: #000;
-	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-family:'TwCenMT',arial,verdana,helvetica,arial,sans-serif;
 	font-size:90%;
 	margin: 0;
 }
