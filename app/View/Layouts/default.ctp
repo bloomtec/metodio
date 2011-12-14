@@ -35,6 +35,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	</head>
 	<body>
 		<div id="container">
+			<div id="main-menu">
+				
+			</div>
 			<?php echo $this -> element('header');?>
 			<div id="content">
 				<?php echo $this -> Session -> flash();?>

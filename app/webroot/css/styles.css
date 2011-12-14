@@ -29,9 +29,10 @@ body {
 	margin: 0;
 }
 a {
-	color: red;
-	text-decoration: underline;
+	color: #000;
+	text-decoration: none;
 	font-weight: bold;
+	text-transform: capitalize;
 }
 a:hover {
 	color: #367889;
@@ -43,25 +44,23 @@ a img {
 h1, h2, h3, h4 {
 	font-weight: normal;
 	margin-bottom:0.5em;
+	font-family:'TwCenMT',arial, helvetica, arial, sans-serif;
+	color:#000;
 }
 h1 { /*Titulos principales*/
 	background:#fff;
-	color: #003d4c;
 	font-size: 100%;
 }
 h2 { /*Titulos Secundarios*/
 	background:#fff;
-	color: #e32;
-	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
-	font-size: 190%;
+	font-size: 14px	;
+	text-transform: uppercase;
+	font-weight: bold;
 }
 h3 { /*SubTttulos principales*/
-	color: #2c6877;
-	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 	font-size: 165%;
 }
 h4 { /*SubTttulos secundarios*/
-	color: #993;
 	font-weight: normal;
 }
 ul, li {
@@ -75,16 +74,24 @@ p {
 	
 #container {
 	text-align: left;
+	position: relative;
+	padding-left:10%; 
 }
 
 #header{
 	padding: 10px 20px;
+	margin-bottom: 30px;
 }
-#header .logo {
-	
+#header .logo img {
+	margin-left: 25px;
+	margin-top: 35px;
 }
-#header #main-menu{
-	
+#main-menu{
+	width: 10%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 ul#main-menu{
 	
@@ -105,7 +112,22 @@ ul#main-menu ul li{
 #footer {
 	clear: both;
 	padding: 6px 10px;
-	text-align: right;
+	text-align: center;
+	background-color: #000;
+}
+#content h2{
+	margin-left: 15px;
+	padding-left: 70px;
+	background-image: url(/img/users.png);
+	background-position: center left;
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+}
+#footer h4{
+	color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 5px;
 }
 /** Users Module**/
 
@@ -142,8 +164,9 @@ th {
 }
 th a {
 	display: block;
-	padding: 2px 4px;
-	text-decoration: none;
+    font-size: 13px;
+    padding: 2px 4px;
+    text-decoration: none;
 }
 th a.asc:after {
 	content: ' ⇣';
