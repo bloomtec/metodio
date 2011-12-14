@@ -4,6 +4,8 @@
 		<legend><?php echo __('Admin Add Role'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
+		echo $this->Form->input('description');
+		echo $this->Form->input('prueba');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit'));?>
