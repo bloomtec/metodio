@@ -11,6 +11,26 @@
 			<?php echo h($role['Role']['name']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Description'); ?></dt>
+		<dd>
+			<?php echo h($role['Role']['description']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Created'); ?></dt>
+		<dd>
+			<?php echo h($role['Role']['created']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Updated'); ?></dt>
+		<dd>
+			<?php echo h($role['Role']['updated']); ?>
+			&nbsp;
+		</dd>
+		<dt><?php echo __('Prueba'); ?></dt>
+		<dd>
+			<?php echo h($role['Role']['prueba']); ?>
+			&nbsp;
+		</dd>
 	</dl>
 </div>
 <div class="actions">
@@ -33,7 +53,10 @@
 		<th><?php echo __('Role Id'); ?></th>
 		<th><?php echo __('Email'); ?></th>
 		<th><?php echo __('Password'); ?></th>
-		<th><?php echo __('Active'); ?></th>
+		<th><?php echo __('Is Active'); ?></th>
+		<th><?php echo __('Email Verified'); ?></th>
+		<th><?php echo __('Created'); ?></th>
+		<th><?php echo __('Updated'); ?></th>
 		<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
@@ -44,7 +67,10 @@
 			<td><?php echo $user['role_id'];?></td>
 			<td><?php echo $user['email'];?></td>
 			<td><?php echo $user['password'];?></td>
-			<td><?php echo $user['active'];?></td>
+			<td><?php echo $user['is_active'];?></td>
+			<td><?php echo $user['email_verified'];?></td>
+			<td><?php echo $user['created'];?></td>
+			<td><?php echo $user['updated'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'users', 'action' => 'view', $user['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'users', 'action' => 'edit', $user['id'])); ?>

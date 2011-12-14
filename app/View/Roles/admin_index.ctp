@@ -4,6 +4,10 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
+			<th><?php echo $this->Paginator->sort('description');?></th>
+			<th><?php echo $this->Paginator->sort('created');?></th>
+			<th><?php echo $this->Paginator->sort('updated');?></th>
+			<th><?php echo $this->Paginator->sort('prueba');?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
@@ -12,6 +16,10 @@
 	<tr>
 		<td><?php echo h($role['Role']['id']); ?>&nbsp;</td>
 		<td><?php echo h($role['Role']['name']); ?>&nbsp;</td>
+		<td><?php echo h($role['Role']['description']); ?>&nbsp;</td>
+		<td><?php echo h($role['Role']['created']); ?>&nbsp;</td>
+		<td><?php echo h($role['Role']['updated']); ?>&nbsp;</td>
+		<td><?php echo h($role['Role']['prueba']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $role['Role']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $role['Role']['id'])); ?>
