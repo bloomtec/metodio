@@ -1,5 +1,10 @@
 <div class="roles index">
 	<h2><?php echo __('Roles');?></h2>
+	<div class="search">
+		<label>Buscar</label>
+		<input type="text" />
+		<input type="button" class="submit" />
+	</div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
@@ -28,14 +33,25 @@
 	</tr>
 <?php endforeach; ?>
 	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-
+<div class="actions">
+	<ul>
+		<li><?php echo $this->Html->link(__('New Role'), array('action' => 'add')); ?></li>
+		
+		<!--  ELIMINADO DE LA PLANTILLA
+		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		-->
+	</ul>
+</div>
 	<div class="paging">
+<!--INCLUIDO EL MENSAJE DE PAGINADO EN EL DIV PAGING -->		
+	<p>
+		<?php
+		echo $this->Paginator->counter(array(
+		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+		));
+		?>
+	</p>
 	<?php
 		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
 		echo $this->Paginator->numbers(array('separator' => ''));
@@ -43,11 +59,4 @@
 	?>
 	</div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Role'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+

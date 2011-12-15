@@ -31,12 +31,8 @@ body {
 a {
 	color: #000;
 	text-decoration: none;
-	font-weight: bold;
+	font-weight: normal;
 	text-transform: capitalize;
-}
-a:hover {
-	color: #367889;
-	text-decoration:none;
 }
 a img {
 	border:none;
@@ -86,6 +82,13 @@ p {
 	margin-left: 25px;
 	margin-top: 35px;
 }
+.search{
+	width: auto;
+}
+.search input{
+	width: 195px;
+	height: 0px;
+}
 #main-menu{
 	width: 10%;
 	height: 100%;
@@ -109,19 +112,45 @@ ul#main-menu ul li{
 	padding: 10px 20px 40px 20px;
 	overflow: auto;
 }
+.paging{
+	text-align: center;
+}
+.paging p{
+	color: #000000;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.actions{
+	margin-top: 20px;
+}
+.actions li{
+	list-style: none;
+}
+.actions a{
+	background-color: #13498e;
+	color:#fff;
+	padding: 6px;
+	font-size: 13px;
+	font-weight: bold;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
 #footer {
 	clear: both;
 	padding: 6px 10px;
 	text-align: center;
 	background-color: #000;
 }
-#content h2{
-	margin-left: 15px;
-	padding-left: 70px;
-	background-image: url(/img/users.png);
-	background-position: center left;
-	background-repeat: no-repeat;
-	margin-bottom: 20px;
+#content .roles h2{
+	background-image: url("/img/users.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 27px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    padding-left: 70px;
+    padding-top: 15px;
 }
 #footer h4{
 	color: #FFFFFF;
@@ -156,17 +185,25 @@ table {
 	margin-bottom: 10px;
 	width: 100%;
 }
-th {
+th{
 	border:0;
-	border-bottom:2px solid #555;
+	background-color:#13498e;
 	text-align: left;
 	padding:4px;
+	height: 30px;
+	color:#fff;
+	font-weight: bold;
+	font-size: 13px;
+}
+th a{
+	color:#fff;
 }
 th a {
 	display: block;
     font-size: 13px;
     padding: 2px 4px;
     text-decoration: none;
+    font-weight: bold;
 }
 th a.asc:after {
 	content: ' ⇣';
@@ -175,13 +212,20 @@ th a.desc:after {
 	content: ' ⇡';
 }
 table tr td {
-	padding: 6px;
+	padding:0 6px;
 	text-align: left;
-	vertical-align: top;
+	vertical-align: middle;
 	border-bottom:1px solid #ddd;
+	height: 50px;
 }
+
 table tr:nth-child(even) {
-	background: #f9f9f9;
+	background-image: url(/img/trama_tabla_azul.png);
+	background-position: left bottom;
+	background-repeat: repeat-x;
+}
+table tr:hover{
+	background-image: url(/img/trama_tabla_verde.png);
 }
 td.actions {
 	text-align: center;
@@ -191,7 +235,6 @@ table td.actions a {
 	margin: 0px 6px;
 	padding:2px 5px;
 }
-
 
 /** Paging **/
 .paging {
@@ -209,22 +252,9 @@ table td.actions a {
 }
 .paging > span {
 	display: inline-block;
-	border: 1px solid #ccc;
-	border-left: 0;
 }
 .paging > span:hover {
 	background: #efefef;
-}
-.paging .prev {
-	border-left: 1px solid #ccc;
-	-moz-border-radius: 4px 0 0 4px;
-	-webkit-border-radius: 4px 0 0 4px;
-	border-radius: 4px 0 0 4px;
-}
-.paging .next {
-	-moz-border-radius: 0 4px 4px 0;
-	-webkit-border-radius: 0 4px 4px 0;
-	border-radius: 0 4px 4px 0;
 }
 .paging .disabled {
 	color: #ddd;
