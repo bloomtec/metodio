@@ -1,9 +1,9 @@
 <div class="roles index">
 	<h2><?php echo __('Roles');?></h2>
 	<div class="search">
-		<label>Buscar</label>
+		<label>BUSCAR:</label>
 		<input type="text" />
-		<input type="button" class="submit" />
+		<input type="button" class="submit" value="Search" />
 	</div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>

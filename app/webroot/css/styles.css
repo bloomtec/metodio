@@ -83,11 +83,37 @@ p {
 	margin-top: 35px;
 }
 .search{
-	width: auto;
+	float: right;
+	width: 400px;
+	margin-top: 10px;
+}
+.search label{
+	display: inline;
+    font-size: 14px;
+    font-weight: bold;
 }
 .search input{
-	width: 195px;
-	height: 0px;
+    width: 210px;
+    padding-left: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+.search .submit{
+	font-size: 13px;
+    font-weight: bold;
+    height: 30px;
+    padding: 0;
+    width: 100px;
+    background-color: #13498e;
+	color:#fff;
+	padding: 6px;
+	font-size: 13px;
+	font-weight: bold;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+
 }
 #main-menu{
 	width: 10%;
@@ -151,6 +177,7 @@ ul#main-menu ul li{
     margin-left: 15px;
     padding-left: 70px;
     padding-top: 15px;
+    float: left;
 }
 #footer h4{
 	color: #FFFFFF;
@@ -162,13 +189,19 @@ ul#main-menu ul li{
 
 #user-menu{
 	float:right;
+	margin-top: 50px;
 }
 
 #user-menu li{
 	display:inline;
 	position:relative;
+	
 }
-
+#user-menu li a{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+}
 #user-menu div.ajax-login{
 	position:absolute;
 	right: 0;

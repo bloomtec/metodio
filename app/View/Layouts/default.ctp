@@ -36,7 +36,14 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<body>
 		<div id="container">
 			<div id="main-menu">
-				
+				<a href="/"></a>
+				<ul>
+					<li><a href="">USUARIOS</a>
+						<ul>
+							<li><a href="">Agregar</a></li>
+						</ul>
+					</li>
+				</ul>
 			</div>
 			<?php echo $this -> element('header');?>
 			<div id="content">
