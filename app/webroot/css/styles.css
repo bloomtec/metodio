@@ -71,7 +71,7 @@ p {
 #container {
 	text-align: left;
 	position: relative;
-	padding-left:10%; 
+	padding-left:15%; 
 }
 
 #header{
@@ -89,7 +89,7 @@ p {
 }
 .search label{
 	display: inline;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
 }
 .search input{
@@ -102,7 +102,7 @@ p {
 .search .submit{
 	font-size: 13px;
     font-weight: bold;
-    height: 30px;
+    height: 27px;
     padding: 0;
     width: 100px;
     background-color: #13498e;
@@ -113,14 +113,23 @@ p {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-
+	border: none;
 }
 #main-menu{
-	width: 10%;
+	width: 15%;
 	height: 100%;
 	position: absolute;
 	left: 0;
 	top: 0;
+	background-image: url(/img/trama_menu.png);
+	background-position: bottom right;
+	background-repeat: repeat-y;
+}
+#main-menu .logo{
+	width: 100%;
+}
+#main-menu .logo img{
+	text-align: center;
 }
 ul#main-menu{
 	
@@ -267,8 +276,28 @@ td.actions {
 table td.actions a {
 	margin: 0px 6px;
 	padding:2px 5px;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center center;
+	text-indent: 999em;
+	padding: 7px 0;
+	margin: 0;
+	width: 30px;
+	overflow: hidden;
+	display: block;
+	float: left;
+	
 }
-
+.actions .view{
+	background-image: url(/img/view.png);
+	
+}
+.actions .edit{
+	background-image: url(/img/edit.png);
+}
+.actions .delete{
+	background-image: url(/img/delete.png);
+}
 /** Paging **/
 .paging {
 	background:#fff;

@@ -26,9 +26,9 @@
 		<td><?php echo h($role['Role']['updated']); ?>&nbsp;</td>
 		<td><?php echo h($role['Role']['prueba']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $role['Role']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $role['Role']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $role['Role']['id']), null, __('Are you sure you want to delete # %s?', $role['Role']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $role['Role']['id']),array("class"=>"view")); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $role['Role']['id']),array("class"=>"edit")); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $role['Role']['id']),array("class"=>"delete"), null, __('Are you sure you want to delete # %s?', $role['Role']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

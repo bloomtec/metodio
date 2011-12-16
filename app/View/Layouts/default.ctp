@@ -36,7 +36,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<body>
 		<div id="container">
 			<div id="main-menu">
-				<a href="/"></a>
+				<a class="logo" href="/"><img src="/img/logo_menu.png" /></a>
 				<ul>
 					<li><a href="">USUARIOS</a>
 						<ul>
