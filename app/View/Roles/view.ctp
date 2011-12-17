@@ -1,49 +1,68 @@
 <div class="roles view">
-<h2><?php  echo __('Role');?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($role['Role']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($role['Role']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Description'); ?></dt>
-		<dd>
-			<?php echo h($role['Role']['description']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($role['Role']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($role['Role']['updated']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Prueba'); ?></dt>
-		<dd>
-			<?php echo h($role['Role']['prueba']); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Role'), array('action' => 'edit', $role['Role']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Role'), array('action' => 'delete', $role['Role']['id']), null, __('Are you sure you want to delete # %s?', $role['Role']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Roles'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Role'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<fieldset>
+	<h2><?php  echo __('Role');?></h2>
+		<!--
+		<dl>
+			<dt><?php echo __('Id'); ?></dt>
+			<dd>
+				<?php echo h($role['Role']['id']); ?>
+				&nbsp;
+			</dd>
+			<dt><?php echo __('Name'); ?></dt>
+			<dd>
+				<?php echo h($role['Role']['name']); ?>
+				&nbsp;
+			</dd>
+			<dt><?php echo __('Description'); ?></dt>
+			<dd>
+				<?php echo h($role['Role']['description']); ?>
+				&nbsp;
+			</dd>
+			<dt><?php echo __('Created'); ?></dt>
+			<dd>
+				<?php echo h($role['Role']['created']); ?>
+				&nbsp;
+			</dd>
+			<dt><?php echo __('Updated'); ?></dt>
+			<dd>
+				<?php echo h($role['Role']['updated']); ?>
+				&nbsp;
+			</dd>
+			<dt><?php echo __('Prueba'); ?></dt>
+			<dd>
+				<?php echo h($role['Role']['prueba']); ?>
+				&nbsp;
+			</dd>
+		</dl>
+		-->
+		<div style=" clear: both"></div>
+		<label>Nombre de usuario:</label>
+		<h3>Algo</h3>
+		<label>Rol:</label>
+		<h3>Algo</h3>
+		<label>E-mail:</label>
+		<h3>Algo</h3>
+		<label>Activo:</label>
+		<input type="checkbox" checked="checked" disabled="true" class="checkbox"/>
+	</div>
+	<div style="clear: both"></div>
+	<div class="actions">
+		<!--
+		<h3><?php echo __('Actions'); ?></h3>
+		-->
+		<ul>
+			<li><?php echo $this->Html->link(__('Edit Role'), array('action' => 'edit', $role['Role']['id'])); ?> </li>
+		<!--	<li><?php echo $this->Form->postLink(__('Delete Role'), array('action' => 'delete', $role['Role']['id']), null, __('Are you sure you want to delete # %s?', $role['Role']['id'])); ?> </li>
+			<li><?php echo $this->Html->link(__('List Roles'), array('action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New Role'), array('action' => 'add')); ?> </li>
+			<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
+			<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		-->
+		</ul>
+		<div style="clear: both"></div>
+	</div>
+</fieldset>
+<!--
 <div class="related">
 	<h3><?php echo __('Related Users');?></h3>
 	<?php if (!empty($role['User'])):?>
@@ -87,3 +106,4 @@
 		</ul>
 	</div>
 </div>
+-->

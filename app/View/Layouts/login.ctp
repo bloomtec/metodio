@@ -32,12 +32,14 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->css('cake.generic');
 
 		echo $scripts_for_layout;
+		
+		echo $this -> Html -> css('styles');
 	?>
 </head>
 <body>
-	<div id="container">
+	<div id="container" class="login">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+			<img src="/img/logo_header.png" />
 		</div>
 		<div id="content">
 
@@ -50,7 +52,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		</div>
 		<div id="footer">
-			<!-- footer content -->
+			<?php echo $this -> element('footer');?>
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
