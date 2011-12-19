@@ -38,7 +38,9 @@ class AppController extends Controller {
 	public $cacheAction = true;
 	
 	public $components = array(
+		'Acl',
 	    'Auth'=> array(
+	    	//'authorize' => 'actions',
 	        'authenticate' => array(
 	            'Form' => array(
 	                'fields' => array(

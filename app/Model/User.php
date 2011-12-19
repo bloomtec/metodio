@@ -8,6 +8,13 @@ App::uses('AuthComponent', 'Controller/Component');
  */
 class User extends AppModel {
 /**
+ * Behaviours to use
+ *
+ * @var array
+ */	
+	public $actsAs = array('Acl' => array('type' => 'requester'));
+	
+/**
  * Display field
  *
  * @var string
@@ -94,5 +101,23 @@ class User extends AppModel {
 	        $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
 	    }
 	    return true;
+	}
+
+/**
+ * parentNode method
+ */
+	function parentNode() {
+	    if (!$this->id && empty($this->data)) {
+	        return null;
+	    }
+	    $data = $this->data;
+	    if (empty($this->data)) {
+	        $data = $this->read();
+	    }
+	    if (!$data['User']['role_id']) {
+	        return null;
+	    } else {
+	        return array('Role' => array('id' => $data['User']['role_id']));
+	    }
 	}
 }

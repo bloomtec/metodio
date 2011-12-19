@@ -304,6 +304,28 @@ class UsersController extends AppController {
 	 */
 	public function admin_login() {
 		$this -> layout = "ez/login";
+		if ($this -> request -> is('ajax')) {
+			if ($this -> Auth -> login()) {
+				$this -> User -> recursive = -1;
+				$user = $this -> User -> read(null, $this -> Auth -> user('id'));
+				$user['success'] = true;
+				echo json_encode($user);
+			} else {
+				$response['message'] = __('Username or password is incorrect', true);
+				$response['success'] = false;
+				$this -> capchaFuncionality();
+				echo json_encode($response);
+			}
+			$this -> autoRender = false;
+			exit(0);
+		} elseif ($this -> request -> is('post')) {
+			if ($this -> Auth -> login()) {
+				return $this -> redirect($this -> Auth -> redirect());
+			} else {
+				$this -> capchaFuncionality();
+				$this -> Session -> setFlash(__('Username or password is incorrect'), 'default', array(), 'auth');
+			}
+		}
 	}
 
 	/**
