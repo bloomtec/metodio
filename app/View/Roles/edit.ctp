@@ -2,9 +2,6 @@
 <?php echo $this->Form->create('Role');?>
 
 	<fieldset>
-		<!-- CAMBIO PARA METODIO
-		<legend><?php echo __('Edit Role'); ?></legend>
-		-->
 		<h2><?php  echo __('Role');?></h2>
 	<?php
 		echo $this->Form->input('id');

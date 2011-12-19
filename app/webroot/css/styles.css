@@ -280,7 +280,7 @@ p {
 .actions li{
 	list-style: none;
 }
-.actions a{
+.actions a, a.cancelar{
 	background-color: #13498e;
 	color:#fff;
 	padding: 6px;
@@ -291,7 +291,10 @@ p {
 	border-radius: 3px;
 	float: left;
 }
-div.actions a:hover{
+div.actions a, a.cancelar{
+	margin-right: 1em;
+}
+div.actions a:hover,  a.cancelar:hover{
 	background-color: #1E72D8; 	
 }
 #footer {
@@ -566,8 +569,12 @@ form .required label:after {
 }
 form div.submit {
 	border: 0;
-	clear: both;
-	margin-top: 10px;
+	clear: none;
+	float:left;
+	margin:0;
+	padding:0;
+	font-weight: normal;
+	text-shadow:none;
 }
 label {
 	display: block;
@@ -629,6 +636,7 @@ form .submit input[type=submit] {
 	border-radius: 3px;
 	float: left;
 	border:none;
+	text-shadow: none;
 }
 form .submit input[type=submit]:hover {
 	background: #1E72D8;

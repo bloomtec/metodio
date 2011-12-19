@@ -28,7 +28,7 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $role['Role']['id']),array("class"=>"view")); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $role['Role']['id']),array("class"=>"edit")); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $role['Role']['id']),array("class"=>"delete"), null, __('Are you sure you want to delete # %s?', $role['Role']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $role['Role']['id']),array("class"=>"delete"), __('Are you sure you want to delete # %s?', $role['Role']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -36,15 +36,9 @@
 <div class="actions">
 	<ul>
 		<li><?php echo $this->Html->link(__('New Role'), array('action' => 'add')); ?></li>
-		
-		<!--  ELIMINADO DE LA PLANTILLA
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		-->
 	</ul>
 </div>
-	<div class="paging">
-<!--INCLUIDO EL MENSAJE DE PAGINADO EN EL DIV PAGING -->		
+	<div class="paging">	
 	<p>
 		<?php
 		echo $this->Paginator->counter(array(
