@@ -65,7 +65,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'bloomweb',
 		'password' => 'rr40r900343',
-		'database' => 'bloomweb_ez2',
+		'database' => 'bloomweb_metodio',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

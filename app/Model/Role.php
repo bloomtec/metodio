@@ -7,6 +7,12 @@ App::uses('AppModel', 'Model');
  */
 class Role extends AppModel {
 /**
+ * Behaviours to use
+ *
+ * @var array
+ */	
+	public $actsAs = array('Acl' => array('type' => 'requester'));
+/**
  * Display field
  *
  * @var string
@@ -52,5 +58,12 @@ class Role extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+/**
+ * parentNode method
+ */
+	public function parentNode() {
+		return null;
+	}
 
 }
