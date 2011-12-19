@@ -6,7 +6,6 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
 		echo $this->Form->input('prueba');
-		echo $this->Form->input('is_active');
 	?>
 	</fieldset>
 <?php echo $this->Html->link(__('Cancelar'),array('action'=>'index'),array('class'=>'cancelar'));?>

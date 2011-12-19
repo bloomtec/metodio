@@ -15,16 +15,6 @@
 			<?php echo h($role['Role']['prueba']); ?>
 			&nbsp;
 		</h3>
-		<label><?php echo __('Activo'); ?></label>
-		<?php if($role['Role']['is_active']){ ?> 
-			 <input type='checkbox' checked='checked' disabled='true' class='checkbox'/> 
-		 <?php }else{ ?> 
-			 <input type='checkbox' disabled='true' class='checkbox'/>
-		 <?php } ?>
-		<h3>
-			<?php echo h($role['Role']['is_active']); ?>
-			&nbsp;
-		</h3>
 	
 </div>
 <div class="actions">

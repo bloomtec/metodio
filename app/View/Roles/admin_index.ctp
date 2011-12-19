@@ -1,26 +1,23 @@
 <div class="roles index">
 	<h2><?php echo __('Roles');?></h2>
+	<div class="search">
+		<label>BUSCAR:</label>
+		<input type="text" />
+		<input type="button" class="submit search-generic" value="Search" />
+	</div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th class="actions"><?php echo __('Activo');?></th>
 									<th><?php echo $this->Paginator->sort('name');?></th>
 							<th><?php echo $this->Paginator->sort('description');?></th>
 							<th><?php echo $this->Paginator->sort('created');?></th>
 							<th><?php echo $this->Paginator->sort('updated');?></th>
 							<th><?php echo $this->Paginator->sort('prueba');?></th>
-								<th class="actions"><?php echo __('Actions');?></th>
+					<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;
 	foreach ($roles as $role): ?>
 	<tr>
-		<td>
-			<?php if($role['Role']['is_active']){ ?> 
-				 <input type='checkbox' checked='checked' disabled='true' class='checkbox'/> 
-			 <?php }else{ ?> 
-				 <input type='checkbox' disabled='true' class='checkbox'/>
-			 <?php } ?>
-		</td>
 		<td><?php echo h($role['Role']['name']); ?>&nbsp;</td>
 		<td><?php echo h($role['Role']['description']); ?>&nbsp;</td>
 		<td><?php echo h($role['Role']['created']); ?>&nbsp;</td>

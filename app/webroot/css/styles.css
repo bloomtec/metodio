@@ -230,13 +230,14 @@ p {
 
 #main-menu ul ul{
 	margin-top: 5px;
-	display: none;
+
 }
 #main-menu ul ul li{
-	background-image: none;
+	margin-bottom:0;
+	background: none;
 }
 #container #main-menu ul ul a{
-	padding-left: 12px;
+	padding-left: 16px;
 	background-image: url(/img/drop_menu.png);
 }
 #main-menu .usuarios a{
@@ -247,7 +248,7 @@ p {
 }
 #main-menu .centros a{
 	background-image: url(/img/menu_centros.png);
-	padding-top: 0;
+	
 }
 #main-menu .extensiones a{
 	background-image: url(/img/menu_extensiones.png);
