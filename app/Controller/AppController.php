@@ -58,7 +58,7 @@ class AppController extends Controller {
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
 			//$this -> layout = "ez/default";
 			$this -> Auth -> loginRedirect = array("controller" => "pages", "action" => "ez", "admin" => true);
-			$this -> Auth -> allow($this->action);
+			$this -> Auth -> deny($this->action);
 		}else{
 			$this -> Auth -> loginRedirect = array("controller" => "users", "action" => "profile");
 			$this -> Auth -> allow($this->action);
