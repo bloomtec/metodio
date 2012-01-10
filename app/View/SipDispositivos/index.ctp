@@ -60,6 +60,8 @@
 							<th><?php echo $this->Paginator->sort('useragent');?></th>
 							<th><?php echo $this->Paginator->sort('exten');?></th>
 							<th><?php echo $this->Paginator->sort('priority');?></th>
+							<th><?php echo $this->Paginator->sort('department_id');?></th>
+							<th><?php echo $this->Paginator->sort('cost_center_id');?></th>
 					<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
@@ -119,6 +121,12 @@
 		<td><?php echo h($sipDispositivo['SipDispositivo']['useragent']); ?>&nbsp;</td>
 		<td><?php echo h($sipDispositivo['SipDispositivo']['exten']); ?>&nbsp;</td>
 		<td><?php echo h($sipDispositivo['SipDispositivo']['priority']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($sipDispositivo['Department']['name'], array('controller' => 'departments', 'action' => 'view', $sipDispositivo['Department']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($sipDispositivo['CostCenter']['name'], array('controller' => 'cost_centers', 'action' => 'view', $sipDispositivo['CostCenter']['id'])); ?>
+		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $sipDispositivo['SipDispositivo']['id']),array('class'=>'view')); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $sipDispositivo['SipDispositivo']['id']),array('class'=>'edit')); ?>

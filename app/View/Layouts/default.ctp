@@ -36,55 +36,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	</head>
 	<body>
 		<div id="container">
-			<div id="main-menu">
-				<a class="logo" href="/"><img src="/img/logo_menu.png" /></a>
-				<ul>
-					<li class="usuarios"><a href="">USUARIOS</a>
-						<ul>
-							<li><a href="">Agregar</a></li>
-						</ul>
-					</li>
-					<li class="departamentos"><a href="">DEPARTAMENTOS</a>
-						<ul>
-							<li><a href="">Agregar</a></li>
-						</ul>	
-					</li>
-					<li class="centros"><a href="">CENTROS DE COSTO</a>
-						<ul>
-							<li><a href="">Agregar</a></li>
-						</ul>	
-					</li>
-					<li class="extensiones"><a href="">EXTENSIONES</a>
-						<ul>
-							<li><a href="">Agregar</a></li>
-						</ul>	
-					</li>
-					<li class="abreviados"><a href="">ABREVIADOS</a>
-						<ul>
-							<li><a href="">Agregar</a></li>
-						</ul>	
-					</li>
-					<li class="informes"><a href="">INFORMES</a>
-						<ul>
-							<li><a href="">General</a></li>
-							<li><a href="">Por extensión</a></li>
-							<li><a href="">Por número de origen</a></li>
-							<li><a href="">Por número de destino</a></li>
-							<li><a href="">Por departamento</a></li>
-							<li><a href="">Por centro de costo</a></li>
-						</ul>	
-					</li>
-				</ul>
-			</div>
-			<?php echo $this -> element('header');?>
+			<?php echo $this -> element('menu'); ?>
+			<?php echo $this -> element('header'); ?>
 			<div id="content">
-				<?php echo $this -> Session -> flash('auth');?>
-				<?php echo $this -> Session -> flash();?>
+				<?php echo $this -> Session -> flash('auth'); ?>
+				<?php echo $this -> Session -> flash(); ?>
 
-				<?php echo $content_for_layout;?>
+				<?php echo $content_for_layout; ?>
 			</div>
-			<?php echo $this -> element('footer');?>
+			<?php echo $this -> element('footer'); ?>
 		</div>
-		<?php echo $this -> element('sql_dump');?>
+		<?php echo $this -> element('sql_dump'); ?>
 	</body>
 </html>

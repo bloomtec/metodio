@@ -57,6 +57,8 @@
 		echo $this->Form->input('useragent');
 		echo $this->Form->input('exten');
 		echo $this->Form->input('priority');
+		echo $this->Form->input('department_id');
+		echo $this->Form->input('cost_center_id');
 	?>
 	</fieldset>
 <?php echo $this->Html->link(__('Cancelar'),array('action'=>'index'),array('class'=>'cancelar'));?>

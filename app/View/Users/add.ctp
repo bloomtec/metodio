@@ -6,7 +6,7 @@
 		echo $this->Form->input('role_id');
 		echo $this->Form->input('email');
 		echo $this->Form->input('password');
-		echo $this->Form->input('is_active');
+		echo $this->Form->input('is_active',array('checked'=>true));
 		echo $this->Form->input('email_verified');
 	?>
 	</fieldset>

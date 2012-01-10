@@ -47,6 +47,9 @@ class SipDispositivosController extends AppController {
 				$this->Session->setFlash(__('The sip dispositivo could not be saved. Please, try again.'),'crud/error');
 			}
 		}
+		$departments = $this->SipDispositivo->Department->find('list');
+		$costCenters = $this->SipDispositivo->CostCenter->find('list');
+		$this->set(compact('departments', 'costCenters'));
 	}
 
 /**
@@ -70,6 +73,9 @@ class SipDispositivosController extends AppController {
 		} else {
 			$this->request->data = $this->SipDispositivo->read(null, $id);
 		}
+		$departments = $this->SipDispositivo->Department->find('list');
+		$costCenters = $this->SipDispositivo->CostCenter->find('list');
+		$this->set(compact('departments', 'costCenters'));
 	}
 
 /**
@@ -132,6 +138,9 @@ class SipDispositivosController extends AppController {
 				$this->Session->setFlash(__('The sip dispositivo could not be saved. Please, try again.'),'crud/error');
 			}
 		}
+		$departments = $this->SipDispositivo->Department->find('list');
+		$costCenters = $this->SipDispositivo->CostCenter->find('list');
+		$this->set(compact('departments', 'costCenters'));
 	}
 
 /**
@@ -155,6 +164,9 @@ class SipDispositivosController extends AppController {
 		} else {
 			$this->request->data = $this->SipDispositivo->read(null, $id);
 		}
+		$departments = $this->SipDispositivo->Department->find('list');
+		$costCenters = $this->SipDispositivo->CostCenter->find('list');
+		$this->set(compact('departments', 'costCenters'));
 	}
 
 /**
