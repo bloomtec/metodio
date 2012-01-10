@@ -37,4 +37,19 @@ class SipDispositivo extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	public function beforeSave() {
+		$this -> data['SipDispositivo']['allow'] = 'ulaw;alaw;gsm';
+		$this -> data['SipDispositivo']['mailbox'] = $this -> data['SipDispositivo']['name'] . '@default';
+		$this -> data['SipDispositivo']['host'] = 'dynamic';
+		$this -> data['SipDispositivo']['callerid'] = '';
+		$this -> data['SipDispositivo']['username'] = $this -> data['SipDispositivo']['name'];
+		$this -> data['SipDispositivo']['ipaddr'] = '0.0.0.0';
+		/**
+		echo $this -> Form -> hidden('fullcontact', array('value' => 'sip'));
+		 * 
+		 */
+		return true;
+	}
+	
 }

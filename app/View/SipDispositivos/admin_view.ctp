@@ -120,11 +120,6 @@
 			<?php echo h($sipDispositivo['SipDispositivo']['mailbox']); ?>
 			&nbsp;
 		</h3>
-		<label><?php echo __('Asterisk.voicemessages'); ?></label>
-		<h3>
-			<?php echo h($sipDispositivo['SipDispositivo']['asterisk.voicemessages']); ?>
-			&nbsp;
-		</h3>
 		<label><?php echo __('Md5secret'); ?></label>
 		<h3>
 			<?php echo h($sipDispositivo['SipDispositivo']['md5secret']); ?>

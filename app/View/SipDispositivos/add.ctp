@@ -27,7 +27,6 @@
 		echo $this->Form->input('insecure');
 		echo $this->Form->input('language');
 		echo $this->Form->input('mailbox');
-		echo $this->Form->input('asterisk.voicemessages');
 		echo $this->Form->input('md5secret');
 		echo $this->Form->input('deny');
 		echo $this->Form->input('permit');

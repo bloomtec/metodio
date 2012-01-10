@@ -1,35 +1,38 @@
+<?php $role = $this->Session->read('Auth.User.role_id'); ?>
 <div id="main-menu">
 	<a class="logo" href="/"><img src="/img/logo_menu.png" /></a>
 	<ul>
+		<?php if($role==1) : ?>
 		<li class="usuarios">
-			<a href="">USUARIOS</a>
+			<a href="/admin/users">USUARIOS</a>
 			<ul>
 				<li>
-					<a href="">Agregar</a>
+					<a href="/admin/users/add">Agregar</a>
 				</li>
 			</ul>
 		</li>
+		<?php endif; ?>
 		<li class="departamentos">
-			<a href="">DEPARTAMENTOS</a>
+			<a href="<?php if($role==1) echo '/admin'; ?>/Departments">DEPARTAMENTOS</a>
 			<ul>
 				<li>
-					<a href="">Agregar</a>
+					<a href="<?php if($role==1) echo '/admin'; ?>/Departments/add">Agregar</a>
 				</li>
 			</ul>
 		</li>
 		<li class="centros">
-			<a href="">CENTROS DE COSTO</a>
+			<a href="<?php if($role==1) echo '/admin'; ?>/CostCenters">CENTROS DE COSTO</a>
 			<ul>
 				<li>
-					<a href="">Agregar</a>
+					<a href="<?php if($role==1) echo '/admin'; ?>/CostCenters/add">Agregar</a>
 				</li>
 			</ul>
 		</li>
 		<li class="extensiones">
-			<a href="">EXTENSIONES</a>
+			<a href="<?php if($role==1) echo '/admin'; ?>/SipDispositivos">EXTENSIONES</a>
 			<ul>
 				<li>
-					<a href="">Agregar</a>
+					<a href="<?php if($role==1) echo '/admin'; ?>/SipDispositivos/add">Agregar</a>
 				</li>
 			</ul>
 		</li>
