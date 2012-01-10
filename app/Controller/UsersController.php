@@ -6,108 +6,12 @@ App::uses('AppController', 'Controller');
  * @property User $User
  */
 class UsersController extends AppController {
-	
+
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('initAcl');
+		$this -> Auth -> allow('initAcl');
 	}
-	
-	public function initAcl() {
-		$this->autoRender=false;
-		
-		/**
-		 * Empty tables
-		 */
-		$this->User->query('TRUNCATE TABLE aros;');
-		$this->User->query('TRUNCATE TABLE acos;');
-		$this->User->query('TRUNCATE TABLE aros_acos;');
-		$this->User->query('TRUNCATE TABLE users;');
-		
-		/**
-		 * Agregar Aro's
-		 */
-		$aro = &$this -> Acl -> Aro;
 
-		// Here's all of our group info in an array we can iterate through
-		$roles = array(
-			0 => array('foreign_key'=>1, 'model' => 'Role', 'alias' => 'administradores'),
-			1 => array('foreign_key'=>2, 'model' => 'Role', 'alias' => 'usuarios')
-		);
-
-		// Iterate and create ARO groups
-		foreach ($roles as $data) {
-			// Remember to call create() when saving in loops...
-			$aro -> create();
-
-			// Save data
-			$aro -> save($data);
-		}
-		
-		/**
-		 * Añadir el usuario admin
-		 */
-		$this->User->create();
-		$user = array();
-		$user['User']['email'] = 'admin@bloomweb.co';
-		$user['User']['password'] = 'admin'; //$this->Auth->password('admin');
-		$user['User']['is_active'] = true;
-		$user['User']['email_verified'] = true;
-		$user['User']['role_id'] = 1;
-		$this->User->save($user);
-		
-		/**
-		 * Agregar Aco's
-		 */
-		
-		$aco = &$this -> Acl -> Aco;
-		$aco->create(array('parent_id' => null, 'alias' => 'controllers'));
-		$aco->save();
-		
-		$controladores = array('Users');
-		$acciones_asignadas = array();
-		
-		foreach($controladores as $controlador) {
-			$aco->create(array('parent_id' => 1, 'alias' => 'controllers/'.$controlador));
-			$aco->save();
-			$acciones = array('view', 'index');
-			if($controlador === 'Users') {
-				$acciones[]='profile';
-				$acciones[]='login';
-				$acciones[]='logout';
-			}
-			$tmp_id = $aco -> id;
-			foreach ($acciones as $accion) {
-				$aco->create(array('parent_id' => $tmp_id, 'alias' => 'controllers/'.$controlador.'/'.$accion));
-				$aco->save();
-				$acciones_asignadas[$aco->id] = 'controllers/'.$controlador.'/'.$accion;
-			}
-		}
-		
-		/**
-		 * Permisos 
-		 */
-		
-    	//Allow admins to everything
-    	$this->Acl->allow('administradores', 'controllers');
-		
-		//Deny everything to everyone else
-		$this->Acl->deny('usuarios', 'controllers');
-		
-		//Allow specific actions to everyone else
-		foreach ($acciones_asignadas as $aco_id=>$alias) {
-			$this->User->query(
-				'INSERT INTO aros_acos (aro_id, aco_id, _create, _read, _update, _delete) ' .
-				"values (2, $aco_id, 1, 1, 1, 1)"
-			);
-		}
-		
-		/**
-		 * Finished
-		 */
-		echo 'Permisos inicializados';
-		exit;
-	}
-		
 	/**
 	 * login method
 	 *
@@ -179,11 +83,11 @@ class UsersController extends AppController {
 	 *
 	 * @return void
 	 */
-	private function sendRegistrationEmail($email = null, $code = null) {	
+	private function sendRegistrationEmail($email = null, $code = null) {
 		/**
 		 * Asignar las variables del componente Email
 		 */
-		if($email && $code) {
+		if ($email && $code) {
 			/**
 			 * Crear el objeto CakeEmail y configurar lo necesario
 			 */
@@ -199,7 +103,7 @@ class UsersController extends AppController {
 			 */
 			$email_handler -> send();
 		}
-		
+
 	}
 
 	/**
@@ -247,7 +151,7 @@ class UsersController extends AppController {
 	}
 
 	function changePassword($id = null) {
-		$this->layout="profile";
+		$this -> layout = "profile";
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid user', true));
 			$this -> redirect(array('action' => 'profile'));
@@ -272,14 +176,14 @@ class UsersController extends AppController {
 	}
 
 	function resetPassword() {
-		if (isset($this->data['User']['email']) && !empty($this->data['User']['email'])) {
+		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email'])) {
 			$this -> User -> recursive = 0;
-			$user = $this -> User -> findByEmail(trim($this->data['User']['email']));
+			$user = $this -> User -> findByEmail(trim($this -> data['User']['email']));
 			if (!empty($user)) {
 				$email = $user['User']['email'];
 				$password = $this -> createPassword();
 				$user['User']['password'] = $this -> Auth -> password($password);
-				if($this -> User -> save($user)) {
+				if ($this -> User -> save($user)) {
 					$this -> sendResetPasswordEmail($email, $email, $password);
 					$this -> Session -> setFlash(__("An email has been sent to $email with the new password.", true));
 				} else {
@@ -299,12 +203,12 @@ class UsersController extends AppController {
 		}
 		return $cad;
 	}
-	
-	private function sendResetPasswordEmail($email = null, $username = null, $password = null) {	
+
+	private function sendResetPasswordEmail($email = null, $username = null, $password = null) {
 		/**
 		 * Asignar las variables del componente Email
 		 */
-		if($email && $username && $password) {
+		if ($email && $username && $password) {
 			/**
 			 * Crear el objeto CakeEmail y configurar lo necesario
 			 */
@@ -320,7 +224,7 @@ class UsersController extends AppController {
 			 */
 			$email_handler -> send();
 		}
-		
+
 	}
 
 	/**
@@ -526,6 +430,73 @@ class UsersController extends AppController {
 		}
 		$this -> Session -> setFlash(__('User was not deleted'));
 		$this -> redirect(array('action' => 'index'));
+	}
+
+	function initAcl() {
+		$this -> autoRender = false;
+
+		/**
+		 * Empty tables
+		 */
+		$this -> User -> query('TRUNCATE TABLE aros;');
+		$this -> User -> query('TRUNCATE TABLE acos;');
+		$this -> User -> query('TRUNCATE TABLE aros_acos;');
+		$this -> User -> query('TRUNCATE TABLE users;');
+
+		/**
+		 * Agregar Aro's
+		 */
+		$aro = &$this -> Acl -> Aro;
+
+		// Here's all of our group info in an array we can iterate through
+		$roles = array(0 => array('foreign_key' => 1, 'model' => 'Role', 'alias' => 'administradores'), 1 => array('foreign_key' => 2, 'model' => 'Role', 'alias' => 'usuarios'));
+
+		// Iterate and create ARO groups
+		foreach ($roles as $data) {
+			// Remember to call create() when saving in loops...
+			$aro -> create();
+
+			// Save data
+			$aro -> save($data);
+		}
+
+		/**
+		 * Añadir el usuario admin
+		 */
+		$this -> User -> create();
+		$user = array();
+		$user['User']['email'] = 'admin@bloomweb.co';
+		$user['User']['password'] = 'test';
+		$user['User']['role_id'] = 1;
+		$user['User']['is_active'] = true;
+		$user['User']['email_verified'] = true;
+		$this -> User -> save($user);
+
+		/**
+		 * Agregar Aco's
+		 */
+
+		$this -> requestAction('AclExtras.AclExtras/aco_sync');
+
+		/**
+		 * Permisos
+		 */
+
+		$role = &$this -> User -> Role;
+		// Permisos para administradores
+		$role -> id = 1;
+		$this -> Acl -> allow($role, 'controllers');
+		// Permisos para usuarios
+		$role -> id = 2;
+		$this -> Acl -> deny($role, 'controllers');
+		$this -> Acl -> allow($role, 'controllers/Posts');
+		$this -> Acl -> allow($role, 'controllers/Widgets');
+
+		/**
+		 * Finished
+		 */
+		echo 'Permisos inicializados';
+		exit ;
 	}
 
 }

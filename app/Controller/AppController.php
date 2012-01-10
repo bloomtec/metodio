@@ -34,39 +34,23 @@ App::uses('CakeEmail', 'Network/Email');
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
 class AppController extends Controller {
-	
+
 	public $cacheAction = true;
-	
-	public $components = array(
-	    'Auth'=> array(
-	    	'authorize' => array(
-                'Actions' => array(
-                    'actionPath' => 'controllers'
-                 )
-            ),
-            'authenticate' => array(
-	            'Form' => array(
-	                'fields' => array(
-	                	'username' => 'email',
-	                	'password' => 'password'
-	                ),
-	                'scope' => array('is_active' => true)
-	            )
-	        )
-	    ),
-	    'Acl',
-	    'Session'
-	);
+
+	public $components = array('Auth', 'Acl', 'Session');
 
 	public function beforeFilter() {
-		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+		$this -> Auth -> authorize = array('Actions' => array('actionPath' => 'controllers'));
+		$this -> Auth -> authenticate = array('Form' => array('fields' => array('username' => 'email', 'password' => 'password')));
+		$this -> Auth -> scope = array('is_active' => true);
+		$this -> Auth -> loginAction = array('controller' => 'users', 'action' => 'login');
 		$this -> Auth -> allow('display', 'logout');
-		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin") {
+		if (isset($this -> params["prefix"]) && $this -> params["prefix"] == "admin") {
 			$this -> layout = "ez/default";
 			$this -> Auth -> loginRedirect = array("controller" => "users", "action" => "index", "admin" => true);
 		} else {
 			$this -> Auth -> loginRedirect = array("controller" => "users", "action" => "profile");
 		}
 	}
-	
+
 }
