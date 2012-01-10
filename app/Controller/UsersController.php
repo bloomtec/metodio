@@ -434,12 +434,19 @@ class UsersController extends AppController {
 
 	function initAcl() {
 		$this -> autoRender = false;
+		
+		/**
+		 * Agregar Aco's
+		 */
+
+		// Correr shell de acl_extras
+		// ./Console/cake AclExtras.AclExtras aco_sync
 
 		/**
 		 * Empty tables
 		 */
 		$this -> User -> query('TRUNCATE TABLE aros;');
-		$this -> User -> query('TRUNCATE TABLE acos;');
+		//$this -> User -> query('TRUNCATE TABLE acos;');
 		$this -> User -> query('TRUNCATE TABLE aros_acos;');
 		$this -> User -> query('TRUNCATE TABLE users;');
 
@@ -473,12 +480,6 @@ class UsersController extends AppController {
 		$this -> User -> save($user);
 
 		/**
-		 * Agregar Aco's
-		 */
-
-		$this -> requestAction('AclExtras.AclExtras/aco_sync');
-
-		/**
 		 * Permisos
 		 */
 
@@ -489,8 +490,6 @@ class UsersController extends AppController {
 		// Permisos para usuarios
 		$role -> id = 2;
 		$this -> Acl -> deny($role, 'controllers');
-		$this -> Acl -> allow($role, 'controllers/Posts');
-		$this -> Acl -> allow($role, 'controllers/Widgets');
 
 		/**
 		 * Finished
