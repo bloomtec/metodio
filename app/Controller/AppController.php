@@ -38,10 +38,13 @@ class AppController extends Controller {
 	public $cacheAction = true;
 	
 	public $components = array(
-		'Acl',
 	    'Auth'=> array(
-	    	//'authorize' => 'actions',
-	        'authenticate' => array(
+	    	'authorize' => array(
+                'Actions' => array(
+                    'actionPath' => 'controllers'
+                 )
+            ),
+            'authenticate' => array(
 	            'Form' => array(
 	                'fields' => array(
 	                	'username' => 'email',
@@ -51,17 +54,18 @@ class AppController extends Controller {
 	            )
 	        )
 	    ),
+	    'Acl',
 	    'Session'
 	);
 
-	function beforeFilter() {
-		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
-			//$this -> layout = "ez/default";
-			$this -> Auth -> loginRedirect = array("controller" => "pages", "action" => "ez", "admin" => true);
-			$this -> Auth -> deny($this->action);
-		}else{
+	public function beforeFilter() {
+		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+		$this -> Auth -> allow('display', 'logout');
+		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin") {
+			$this -> layout = "ez/default";
+			$this -> Auth -> loginRedirect = array("controller" => "users", "action" => "index", "admin" => true);
+		} else {
 			$this -> Auth -> loginRedirect = array("controller" => "users", "action" => "profile");
-			$this -> Auth -> allow($this->action);
 		}
 	}
 	

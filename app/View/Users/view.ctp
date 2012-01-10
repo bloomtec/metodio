@@ -28,7 +28,7 @@
 		</dd>
 		<dt><?php echo __('Verified Email'); ?></dt>
 		<dd>
-			<?php echo h($user['User']['verified_email']); ?>
+			<?php echo h($user['User']['email_verified']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>

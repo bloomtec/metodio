@@ -36,8 +36,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<div class="login-bg"></div>
 		<div id="container">
 			<div id="content">
-				<?php echo $this -> Session -> flash();?>
 				<?php echo $this -> Session -> flash('auth');?>
+				<?php echo $this -> Session -> flash();?>
 
 				<?php echo $content_for_layout;?>
 			</div>

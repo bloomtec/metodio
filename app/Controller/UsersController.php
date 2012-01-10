@@ -7,6 +7,107 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 	
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('initAcl');
+	}
+	
+	public function initAcl() {
+		$this->autoRender=false;
+		
+		/**
+		 * Empty tables
+		 */
+		$this->User->query('TRUNCATE TABLE aros;');
+		$this->User->query('TRUNCATE TABLE acos;');
+		$this->User->query('TRUNCATE TABLE aros_acos;');
+		$this->User->query('TRUNCATE TABLE users;');
+		
+		/**
+		 * Agregar Aro's
+		 */
+		$aro = &$this -> Acl -> Aro;
+
+		// Here's all of our group info in an array we can iterate through
+		$roles = array(
+			0 => array('foreign_key'=>1, 'model' => 'Role', 'alias' => 'administradores'),
+			1 => array('foreign_key'=>2, 'model' => 'Role', 'alias' => 'usuarios')
+		);
+
+		// Iterate and create ARO groups
+		foreach ($roles as $data) {
+			// Remember to call create() when saving in loops...
+			$aro -> create();
+
+			// Save data
+			$aro -> save($data);
+		}
+		
+		/**
+		 * Añadir el usuario admin
+		 */
+		$this->User->create();
+		$user = array();
+		$user['User']['email'] = 'admin@bloomweb.co';
+		$user['User']['password'] = 'admin'; //$this->Auth->password('admin');
+		$user['User']['is_active'] = true;
+		$user['User']['email_verified'] = true;
+		$user['User']['role_id'] = 1;
+		$this->User->save($user);
+		
+		/**
+		 * Agregar Aco's
+		 */
+		
+		$aco = &$this -> Acl -> Aco;
+		$aco->create(array('parent_id' => null, 'alias' => 'controllers'));
+		$aco->save();
+		
+		$controladores = array('Users');
+		$acciones_asignadas = array();
+		
+		foreach($controladores as $controlador) {
+			$aco->create(array('parent_id' => 1, 'alias' => 'controllers/'.$controlador));
+			$aco->save();
+			$acciones = array('view', 'index');
+			if($controlador === 'Users') {
+				$acciones[]='profile';
+				$acciones[]='login';
+				$acciones[]='logout';
+			}
+			$tmp_id = $aco -> id;
+			foreach ($acciones as $accion) {
+				$aco->create(array('parent_id' => $tmp_id, 'alias' => 'controllers/'.$controlador.'/'.$accion));
+				$aco->save();
+				$acciones_asignadas[$aco->id] = 'controllers/'.$controlador.'/'.$accion;
+			}
+		}
+		
+		/**
+		 * Permisos 
+		 */
+		
+    	//Allow admins to everything
+    	$this->Acl->allow('administradores', 'controllers');
+		
+		//Deny everything to everyone else
+		$this->Acl->deny('usuarios', 'controllers');
+		
+		//Allow specific actions to everyone else
+		foreach ($acciones_asignadas as $aco_id=>$alias) {
+			$this->User->query(
+				'INSERT INTO aros_acos (aro_id, aco_id, _create, _read, _update, _delete) ' .
+				"values (2, $aco_id, 1, 1, 1, 1)"
+			);
+		}
+		
+		/**
+		 * Finished
+		 */
+		echo 'Permisos inicializados';
+		exit;
+	}
+		
 	/**
 	 * login method
 	 *

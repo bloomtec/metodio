@@ -120,4 +120,11 @@ class User extends AppModel {
 	        return array('Role' => array('id' => $data['User']['role_id']));
 	    }
 	}
+	
+/**
+ * bindNode method
+ */
+	function bindNode($user) {
+		return array('model' => 'Role', 'foreign_key' => $user['User']['role_id']);
+	}
 }

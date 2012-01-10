@@ -7,28 +7,6 @@ App::uses('AppController', 'Controller');
  */
 class RolesController extends AppController {
 
-	public function initAcl() {
-		$this->autoRender=false;
-		
-		$aro = &$this -> Acl -> Aro;
-
-		// Here's all of our group info in an array we can iterate through
-		$roles = array(
-			0 => array('foreign_key'=>1, 'model' => 'Role', 'alias' => 'administradores'),
-			1 => array('foreign_key'=>2, 'model' => 'Role', 'alias' => 'usuarios')
-		);
-
-		// Iterate and create ARO groups
-		foreach ($roles as $data) {
-			// Remember to call create() when saving in loops...
-			$aro -> create();
-
-			// Save data
-			$aro -> save($data);
-		}
-		
-	}
-
 	/**
 	 * index method
 	 *
