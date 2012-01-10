@@ -473,8 +473,20 @@ class UsersController extends AppController {
 		$this -> User -> create();
 		$user = array();
 		$user['User']['email'] = 'admin@bloomweb.co';
-		$user['User']['password'] = 'test';
+		$user['User']['password'] = 'admin';
 		$user['User']['role_id'] = 1;
+		$user['User']['is_active'] = true;
+		$user['User']['email_verified'] = true;
+		$this -> User -> save($user);
+		
+		/**
+		 * Añadir un usuario
+		 */
+		$this -> User -> create();
+		$user = array();
+		$user['User']['email'] = 'user@bloomweb.co';
+		$user['User']['password'] = 'user';
+		$user['User']['role_id'] = 2;
 		$user['User']['is_active'] = true;
 		$user['User']['email_verified'] = true;
 		$this -> User -> save($user);
