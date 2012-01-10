@@ -24,20 +24,20 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $this -> Html -> charset();?>
 		<title><?php echo $title_for_layout;?></title>
 		<?php
+				
 		echo $this -> Html -> meta('icon');
 
-		echo $this -> Html -> css('ez');
-		echo $this -> Html -> css('cms');
+		echo $this -> Html -> css('styles');
+		//echo $this -> Html -> css('ez');
+		//echo $this -> Html -> css('cms');
 
 		echo $scripts_for_layout;
 		?>
 	</head>
 	<body id="ez">
 		<div id="container">
-			<div id="header">
-				<?php echo $this->element("header")
-				?>
-			</div>
+			<?php echo $this -> element('menu');?>
+			<?php echo $this -> element('header');?>
 			<div id="content">
 				<?php echo $this -> Session -> flash('auth');?>
 				<?php echo $this -> Session -> flash();?>
