@@ -1,43 +1,130 @@
-<?php
-	$role = $this->Session->read('Auth.User.role_id');
-	$this -> requestAction('/users/verificarAcceso/controllers');
-?>
+<?php $role_id = $this->Session->read('Auth.User.role_id'); ?>
 <div id="main-menu">
 	<a class="logo" href="/"><img src="/img/logo_menu.png" /></a>
 	<ul>
-		<?php if($role==1) : ?>
 		<li class="usuarios">
+			<?php
+				if($role_id == 2) {
+					if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users')))) {
+			?>
+			<a href="/users">USUARIOS</a>
+			<ul>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', 'add')))) { ?>
+				<li>
+					<a href="/users/add">Agregar</a>
+				</li>
+			</ul>
+			<?php
+					}
+				}
+			?>
+			<?php } else { ?>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users')))) { ?>
 			<a href="/admin/users">USUARIOS</a>
 			<ul>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', 'admin_add')))) { ?>
 				<li>
 					<a href="/admin/users/add">Agregar</a>
 				</li>
 			</ul>
+			<?php
+						}
+					}
+				}
+			?>
 		</li>
-		<?php endif; ?>
 		<li class="departamentos">
-			<a href="<?php if($role==1) echo '/admin'; ?>/Departments">DEPARTAMENTOS</a>
+			<?php
+				if($role_id == 2) {
+					if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments')))) {
+			?>
+			<a href="/departments">DEPARTAMENTOS</a>
 			<ul>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'add')))) { ?>
 				<li>
-					<a href="<?php if($role==1) echo '/admin'; ?>/Departments/add">Agregar</a>
+					<a href="/departments/add">Agregar</a>
 				</li>
 			</ul>
+			<?php
+					}
+				}
+			?>
+			<?php } else { ?>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments')))) { ?>
+			<a href="/admin/departments">DEPARTAMENTOS</a>
+			<ul>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'admin_add')))) { ?>
+				<li>
+					<a href="/admin/departments/add">Agregar</a>
+				</li>
+			</ul>
+			<?php
+						}
+					}
+				}
+			?>
 		</li>
 		<li class="centros">
-			<a href="<?php if($role==1) echo '/admin'; ?>/CostCenters">CENTROS DE COSTO</a>
+			<?php
+				if($role_id == 2) {
+					if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters')))) {
+			?>
+			<a href="/cost_centers">CENTROS DE COSTO</a>
 			<ul>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'add')))) { ?>
 				<li>
-					<a href="<?php if($role==1) echo '/admin'; ?>/CostCenters/add">Agregar</a>
+					<a href="/cost_centers/add">Agregar</a>
 				</li>
 			</ul>
+			<?php
+					}
+				}
+			?>
+			<?php } else { ?>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters')))) { ?>
+			<a href="/admin/cost_centers">CENTROS DE COSTO</a>
+			<ul>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'admin_add')))) { ?>
+				<li>
+					<a href="/admin/cost_centers/add">Agregar</a>
+				</li>
+			</ul>
+			<?php
+						}
+					}
+				}
+			?>
 		</li>
 		<li class="extensiones">
-			<a href="<?php if($role==1) echo '/admin'; ?>/SipDispositivos">EXTENSIONES</a>
+			<?php
+				if($role_id == 2) {
+					if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos')))) {
+			?>
+			<a href="/sip_dispositivos">EXTENSIONES</a>
 			<ul>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'add')))) { ?>
 				<li>
-					<a href="<?php if($role==1) echo '/admin'; ?>/SipDispositivos/add">Agregar</a>
+					<a href="/sip_dispositivos/add">Agregar</a>
 				</li>
 			</ul>
+			<?php
+					}
+				}
+			?>
+			<?php } else { ?>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos')))) { ?>
+			<a href="/admin/sip_dispositivos">EXTENSIONES</a>
+			<ul>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'admin_add')))) { ?>
+				<li>
+					<a href="/admin/sip_dispositivos/add">Agregar</a>
+				</li>
+			</ul>
+			<?php
+						}
+					}
+				}
+			?>			
 		</li>
 		<li class="abreviados">
 			<a href="">ABREVIADOS</a>

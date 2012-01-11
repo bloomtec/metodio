@@ -12,19 +12,25 @@ class UsersController extends AppController {
 		$this -> Auth -> allow('initAcl', 'verificarAcceso');
 	}
 
-	public function verificarAcceso($ruta = null) {
-		if ($ruta) {
-			$role = (int)$this -> Session -> read('Auth.User.role_id');
-			if ($role === 1) {
-				$role = 'administradores';
-			} elseif ($role === 2) {
-				$role = 'usuarios';
-			} else {
-				$role = 'anonimo';
-			}
-			debug($ruta);
-			debug($this -> Acl -> check($role, $ruta));
+	public function verificarAcceso() {
+		$role = (int)$this -> Session -> read('Auth.User.role_id');
+		if ($role === 1) {
+			$role = 'administradores';
+		} elseif ($role === 2) {
+			$role = 'usuarios';
+		} else {
+			$role = 'anonimo';
 		}
+		
+		// Armar la ruta
+		$ruta = '';
+		for ($i=0; $i < count($this->params['ruta']); $i++) { 
+			$ruta .= $this->params['ruta'][$i];
+			if($i != count($this->params['ruta']) - 1) {
+				$ruta .= '/';
+			}
+		}
+		return $this -> Acl -> check($role, $ruta);
 	}
 
 	/**
