@@ -1,4 +1,7 @@
-<?php $role = $this->Session->read('Auth.User.role_id'); ?>
+<?php
+	$role = $this->Session->read('Auth.User.role_id');
+	$this -> requestAction('/users/verificarAcceso/controllers');
+?>
 <div id="main-menu">
 	<a class="logo" href="/"><img src="/img/logo_menu.png" /></a>
 	<ul>

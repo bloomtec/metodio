@@ -9,7 +9,22 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this -> Auth -> allow('initAcl');
+		$this -> Auth -> allow('initAcl', 'verificarAcceso');
+	}
+
+	public function verificarAcceso($ruta = null) {
+		if ($ruta) {
+			$role = (int)$this -> Session -> read('Auth.User.role_id');
+			if ($role === 1) {
+				$role = 'administradores';
+			} elseif ($role === 2) {
+				$role = 'usuarios';
+			} else {
+				$role = 'anonimo';
+			}
+			debug($ruta);
+			debug($this -> Acl -> check($role, $ruta));
+		}
 	}
 
 	/**
@@ -434,7 +449,7 @@ class UsersController extends AppController {
 
 	function initAcl() {
 		$this -> autoRender = false;
-		
+
 		/**
 		 * Agregar Aco's
 		 */
@@ -478,7 +493,7 @@ class UsersController extends AppController {
 		$user['User']['is_active'] = true;
 		$user['User']['email_verified'] = true;
 		$this -> User -> save($user);
-		
+
 		/**
 		 * Añadir un usuario
 		 */
