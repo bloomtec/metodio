@@ -1,7 +1,11 @@
 <div class="form reporte-general">
 	<form id="CdrReportForm" method="post" accept-charset="utf-8" action="/cdrs/reporte">
-		<legend class="legend">Historial General De Llamadas</legend>
+		<legend class="legend">Historial De Llamadas Por Centro De Costo</legend>
 		<fieldset class="fieldet">
+			<div class="input">
+				<label for="CdrCentro">Centro De Costo</label>
+				<input type="text" id="CdrCentro" class="input" required="required" name="data[Cdr][centro]" />
+			</div>
 			<div class="input">
 				<label for="CdrFechaInicial">Fecha Inicial</label>
 				<input type="date" id="CdrFechaInicial" class="input" required="required" name="data[Cdr][fecha_inicial]" />

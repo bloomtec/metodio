@@ -4,7 +4,7 @@
 		<fieldset class="fieldet">
 			<div class="input">
 				<label for="CdrOrigen">Número De Origen</label>
-				<input type="date" id="CdrOrigen" class="input" required="required" name="data[Cdr][origen]" />
+				<input type="text" id="CdrOrigen" class="input" required="required" name="data[Cdr][origen]" />
 			</div>
 			<div class="input">
 				<label for="CdrFechaInicial">Fecha Inicial</label>
