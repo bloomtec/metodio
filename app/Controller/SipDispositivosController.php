@@ -14,6 +14,15 @@ class SipDispositivosController extends AppController {
 	 */
 	public function index() {
 		$this -> SipDispositivo -> recursive = 0;
+		$conditions = array();
+		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
+			$query = $this->params['named']['query'];
+			$conditions['SipDispositivo.name LIKE'] = "%$query%";
+		}
+		$this -> paginate = array(
+			'conditions' => $conditions,
+			'order' => array('SipDispositivo.name'=>'ASC')
+		);
 		$this -> set('sipDispositivos', $this -> paginate());
 	}
 
@@ -106,6 +115,15 @@ class SipDispositivosController extends AppController {
 	 */
 	public function admin_index() {
 		$this -> SipDispositivo -> recursive = 0;
+		$conditions = array();
+		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
+			$query = $this->params['named']['query'];
+			$conditions['SipDispositivo.name LIKE'] = "%$query%";
+		}
+		$this -> paginate = array(
+			'conditions' => $conditions,
+			'order' => array('SipDispositivo.name'=>'ASC')
+		);
 		$this -> set('sipDispositivos', $this -> paginate());
 	}
 

@@ -15,6 +15,15 @@ class CostCentersController extends AppController {
  */
 	public function index() {
 		$this->CostCenter->recursive = 0;
+		$conditions = array();
+		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
+			$query = $this->params['named']['query'];
+			$conditions['CostCenter.name LIKE'] = "%$query%";
+		}
+		$this -> paginate = array(
+			'conditions' => $conditions,
+			'order' => array('CostCenter.name'=>'ASC')
+		);
 		$this->set('costCenters', $this->paginate());
 	}
 
@@ -100,6 +109,15 @@ class CostCentersController extends AppController {
  */
 	public function admin_index() {
 		$this->CostCenter->recursive = 0;
+		$conditions = array();
+		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
+			$query = $this->params['named']['query'];
+			$conditions['CostCenter.name LIKE'] = "%$query%";
+		}
+		$this -> paginate = array(
+			'conditions' => $conditions,
+			'order' => array('CostCenter.name'=>'ASC')
+		);
 		$this->set('costCenters', $this->paginate());
 	}
 

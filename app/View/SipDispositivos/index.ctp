@@ -32,9 +32,17 @@
 			<?php echo $this->Html->link($sipDispositivo['CostCenter']['name'], array('controller' => 'cost_centers', 'action' => 'view', $sipDispositivo['CostCenter']['id'])); ?>
 		</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $sipDispositivo['SipDispositivo']['id']),array('class'=>'view')); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $sipDispositivo['SipDispositivo']['id']),array('class'=>'edit')); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $sipDispositivo['SipDispositivo']['id']), array('class'=>'delete'), __('Esta seguro que quiere eliminar el registro?', $sipDispositivo['SipDispositivo']['id'])); ?>
+			<?php
+				if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'view')))) {
+					echo $this->Html->link(__('View'), array('action' => 'view', $sipDispositivo['SipDispositivo']['id']),array('class'=>'view'));
+				}
+				if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'edit')))) {
+					echo $this->Html->link(__('Edit'), array('action' => 'edit', $sipDispositivo['SipDispositivo']['id']),array('class'=>'edit'));
+				}
+				if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'delete')))) {
+					echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $sipDispositivo['SipDispositivo']['id']), array('class'=>'delete'), __('Esta seguro que quiere eliminar el registro?', $sipDispositivo['SipDispositivo']['id']));
+				}
+			?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -55,8 +63,10 @@
 	?>
 	</div>
 </div>
+<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'add')))) : ?>
 <div class="actions">
 	<ul>
 		<li><?php echo $this->Html->link(__('Agregar Sip Dispositivo'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
+<?php endif; ?>

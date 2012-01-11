@@ -24,28 +24,28 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $this -> Html -> charset();?>
 		<title><?php echo $title_for_layout;?></title>
 		<?php
-				
-		echo $this -> Html -> meta('icon');
-
-		echo $this -> Html -> css('styles');
-		//echo $this -> Html -> css('ez');
-		//echo $this -> Html -> css('cms');
-
-		echo $scripts_for_layout;
+			echo $this -> Html -> meta('icon');
+			echo $this -> Html -> css('styles');
+			echo $this -> Html -> script('jquery');
+			echo $this -> Html -> script('jquery.tools.min');
+			echo $this -> Html -> script('bjs');
+			echo $this -> Html -> script('default');
+			echo $this -> Html -> script('common');
+			echo $scripts_for_layout;
 		?>
 	</head>
-	<body id="ez">
+	<body>
 		<div id="container">
-			<?php echo $this -> element('menu');?>
-			<?php echo $this -> element('header');?>
+			<?php echo $this -> element('menu'); ?>
+			<?php echo $this -> element('header'); ?>
 			<div id="content">
-				<?php echo $this -> Session -> flash('auth');?>
-				<?php echo $this -> Session -> flash();?>
+				<?php echo $this -> Session -> flash('auth'); ?>
+				<?php echo $this -> Session -> flash(); ?>
 
-				<?php echo $content_for_layout;?>
+				<?php echo $content_for_layout; ?>
 			</div>
 			<?php echo $this -> element('footer'); ?>
 		</div>
-		<?php echo $this -> element('sql_dump');?>
+		<?php echo $this -> element('sql_dump'); ?>
 	</body>
 </html>

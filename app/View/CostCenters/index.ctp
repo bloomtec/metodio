@@ -22,9 +22,17 @@
 		<td><?php echo h($costCenter['CostCenter']['created']); ?>&nbsp;</td>
 		<td><?php echo h($costCenter['CostCenter']['updated']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $costCenter['CostCenter']['id']),array('class'=>'view')); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $costCenter['CostCenter']['id']),array('class'=>'edit')); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $costCenter['CostCenter']['id']), array('class'=>'delete'), __('Esta seguro que quiere eliminar el registro?', $costCenter['CostCenter']['id'])); ?>
+			<?php
+				if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'view')))) {
+					echo $this->Html->link(__('View'), array('action' => 'view', $costCenter['CostCenter']['id']),array('class'=>'view'));
+				}
+				if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'edit')))) {
+					echo $this->Html->link(__('Edit'), array('action' => 'edit', $costCenter['CostCenter']['id']),array('class'=>'edit'));
+				}
+				if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'delete')))) {
+					echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $costCenter['CostCenter']['id']), array('class'=>'delete'), __('Esta seguro que quiere eliminar el registro?', $costCenter['CostCenter']['id']));
+				}
+			?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -45,8 +53,10 @@
 	?>
 	</div>
 </div>
+<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'add')))) : ?>
 <div class="actions">
 	<ul>
 		<li><?php echo $this->Html->link(__('Agregar Cost Center'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
+<?php endif; ?>

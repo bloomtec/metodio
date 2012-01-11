@@ -4,8 +4,7 @@
 	<ul>
 		<li class="usuarios">
 			<?php
-				if($role_id == 2) {
-					if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users')))) {
+				if($role_id == 2 && $this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', 'index')))) {
 			?>
 			<a href="/users">USUARIOS</a>
 			<ul>
@@ -13,11 +12,8 @@
 				<li>
 					<a href="/users/add">Agregar</a>
 				</li>
+			<?php } ?>
 			</ul>
-			<?php
-					}
-				}
-			?>
 			<?php } else { ?>
 			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users')))) { ?>
 			<a href="/admin/users">USUARIOS</a>
@@ -35,8 +31,7 @@
 		</li>
 		<li class="departamentos">
 			<?php
-				if($role_id == 2) {
-					if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments')))) {
+				if($role_id == 2 && $this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'index')))) {
 			?>
 			<a href="/departments">DEPARTAMENTOS</a>
 			<ul>
@@ -44,11 +39,8 @@
 				<li>
 					<a href="/departments/add">Agregar</a>
 				</li>
+			<?php }	?>
 			</ul>
-			<?php
-					}
-				}
-			?>
 			<?php } else { ?>
 			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments')))) { ?>
 			<a href="/admin/departments">DEPARTAMENTOS</a>
@@ -65,21 +57,15 @@
 			?>
 		</li>
 		<li class="centros">
-			<?php
-				if($role_id == 2) {
-					if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters')))) {
-			?>
+			<?php if($role_id == 2 && $this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'index')))) { ?>
 			<a href="/cost_centers">CENTROS DE COSTO</a>
 			<ul>
 			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'add')))) { ?>
 				<li>
 					<a href="/cost_centers/add">Agregar</a>
 				</li>
+			<?php } ?>
 			</ul>
-			<?php
-					}
-				}
-			?>
 			<?php } else { ?>
 			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters')))) { ?>
 			<a href="/admin/cost_centers">CENTROS DE COSTO</a>
@@ -97,8 +83,7 @@
 		</li>
 		<li class="extensiones">
 			<?php
-				if($role_id == 2) {
-					if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos')))) {
+				if($role_id == 2 && $this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'index')))) {	
 			?>
 			<a href="/sip_dispositivos">EXTENSIONES</a>
 			<ul>
@@ -106,11 +91,8 @@
 				<li>
 					<a href="/sip_dispositivos/add">Agregar</a>
 				</li>
+			<?php }	?>
 			</ul>
-			<?php
-					}
-				}
-			?>
 			<?php } else { ?>
 			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos')))) { ?>
 			<a href="/admin/sip_dispositivos">EXTENSIONES</a>
@@ -135,25 +117,25 @@
 			</ul>
 		</li>
 		<li class="informes">
-			<a href="">INFORMES</a>
+			<a href="/cdrs/reporteGeneral">INFORMES</a>
 			<ul>
 				<li>
-					<a href="">General</a>
+					<a href="/cdrs/reporteGeneral">General</a>
 				</li>
 				<li>
-					<a href="">Por extensión</a>
+					<a href="/cdrs/reporteExtension">Por extensión</a>
 				</li>
 				<li>
-					<a href="">Por número de origen</a>
+					<a href="/cdrs/reporteNumeroOrigen">Por número de origen</a>
 				</li>
 				<li>
-					<a href="">Por número de destino</a>
+					<a href="/cdrs/reporteNumeroDestino">Por número de destino</a>
 				</li>
 				<li>
-					<a href="">Por departamento</a>
+					<a href="/cdrs/reporteDepartamento">Por departamento</a>
 				</li>
 				<li>
-					<a href="">Por centro de costo</a>
+					<a href="/cdrs/reporteCentroCosto">Por centro de costo</a>
 				</li>
 			</ul>
 		</li>

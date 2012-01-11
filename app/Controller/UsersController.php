@@ -283,6 +283,16 @@ class UsersController extends AppController {
 		$this -> User -> recursive = 0;
 		$this -> set('users', $this -> paginate());
 	}
+	
+	/**
+	 * index method
+	 *
+	 * @return void
+	 */
+	public function index() {
+		$this -> User -> recursive = 0;
+		$this -> set('users', $this -> paginate());
+	}
 
 	/**
 	 * view method
@@ -515,15 +525,45 @@ class UsersController extends AppController {
 		/**
 		 * Permisos
 		 */
-
 		$role = &$this -> User -> Role;
+		
 		// Permisos para administradores
 		$role -> id = 1;
+		
+		// Se permite acceso total
 		$this -> Acl -> allow($role, 'controllers');
+		
 		// Permisos para usuarios
 		$role -> id = 2;
+		
+		// Módulo usuarios
 		$this -> Acl -> deny($role, 'controllers');
-
+		$this -> Acl -> allow($role, 'Users/logout');
+		$this -> Acl -> allow($role, 'Users/profile');
+		
+		// Módulo extensiones
+		$this -> Acl -> allow($role, 'SipDispositivos/index');
+		$this -> Acl -> allow($role, 'SipDispositivos/view');
+		
+		// Módulo centros de costos
+		$this -> Acl -> allow($role, 'CostCenters/index');
+		$this -> Acl -> allow($role, 'CostCenters/view');
+		
+		// Módulo departamentos
+		$this -> Acl -> allow($role, 'Departments/index');
+		$this -> Acl -> allow($role, 'Departments/view');
+		// Módulo abreviados
+		// TODO : No se ha hecho este módulo todavía
+		
+		// Módulo informes
+		$this -> Acl -> allow($role, 'Cdrs/reporte');
+		$this -> Acl -> allow($role, 'Cdrs/reporteGeneral');
+		$this -> Acl -> allow($role, 'Cdrs/reporteExtension');
+		$this -> Acl -> allow($role, 'Cdrs/reporteNumeroOrigen');
+		$this -> Acl -> allow($role, 'Cdrs/reporteNumeroDestino');
+		$this -> Acl -> allow($role, 'Cdrs/reporteDepartamento');
+		$this -> Acl -> allow($role, 'Cdrs/reporteCentroCosto');
+				
 		/**
 		 * Finished
 		 */

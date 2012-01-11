@@ -44,7 +44,7 @@ class AppController extends Controller {
 		$this -> Auth -> authenticate = array('Form' => array('fields' => array('username' => 'email', 'password' => 'password')));
 		$this -> Auth -> scope = array('is_active' => true);
 		$this -> Auth -> loginAction = array('controller' => 'users', 'action' => 'login');
-		//$this -> Auth -> allow('display');
+		$this -> Auth -> logoutRedirect = array("controller" => "users", "action" => "login", "admin"=>false);
 		if (isset($this -> params["prefix"]) && $this -> params["prefix"] == "admin") {
 			$this -> layout = "ez/default";
 			$this -> Auth -> loginRedirect = array("controller" => "users", "action" => "index", "admin" => true);

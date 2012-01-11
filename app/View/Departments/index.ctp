@@ -7,11 +7,11 @@
 	</div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-									<th><?php echo $this->Paginator->sort('name');?></th>
-							<th><?php echo $this->Paginator->sort('description');?></th>
-							<th><?php echo $this->Paginator->sort('created');?></th>
-							<th><?php echo $this->Paginator->sort('updated');?></th>
-					<th class="actions"><?php echo __('Actions');?></th>
+		<th><?php echo $this->Paginator->sort('name');?></th>
+		<th><?php echo $this->Paginator->sort('description');?></th>
+		<th><?php echo $this->Paginator->sort('created');?></th>
+		<th><?php echo $this->Paginator->sort('updated');?></th>
+		<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -22,9 +22,17 @@
 		<td><?php echo h($department['Department']['created']); ?>&nbsp;</td>
 		<td><?php echo h($department['Department']['updated']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $department['Department']['id']),array('class'=>'view')); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $department['Department']['id']),array('class'=>'edit')); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $department['Department']['id']), array('class'=>'delete'), __('Esta seguro que quiere eliminar el registro?', $department['Department']['id'])); ?>
+			<?php
+				if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'view')))) {
+					echo $this->Html->link(__('View'), array('action' => 'view', $department['Department']['id']),array('class'=>'view'));
+				}
+				if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'edit')))) {
+					echo $this->Html->link(__('Edit'), array('action' => 'edit', $department['Department']['id']),array('class'=>'edit'));
+				}
+				if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'delete')))) {
+					echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $department['Department']['id']), array('class'=>'delete'), __('Esta seguro que quiere eliminar el registro?', $department['Department']['id']));
+				}
+			?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -45,8 +53,10 @@
 	?>
 	</div>
 </div>
+<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'add')))) : ?>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Agregar Department'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Agregar Departamento'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
+<?php endif; ?>

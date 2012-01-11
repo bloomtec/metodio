@@ -274,7 +274,11 @@
 </div>
 <div class="actions">
 	<ul>
+		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'index')))) : ?>
 		<li><?php echo $this->Html->link(__('Volver Sip Dispositivos'), array('action' => 'index')); ?> </li>
+		<?php endif; ?>
+		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'edit')))) : ?>
 		<li><?php echo $this->Html->link(__('Modificar Sip Dispositivo'), array('action' => 'edit', $sipDispositivo['SipDispositivo']['id'])); ?> </li>
+		<?php endif; ?>
 	</ul>
 </div>

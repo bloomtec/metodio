@@ -15,6 +15,15 @@ class DepartmentsController extends AppController {
  */
 	public function index() {
 		$this->Department->recursive = 0;
+		$conditions = array();
+		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
+			$query = $this->params['named']['query'];
+			$conditions['Department.name LIKE'] = "%$query%";
+		}
+		$this -> paginate = array(
+			'conditions' => $conditions,
+			'order' => array('Department.name'=>'ASC')
+		);
 		$this->set('departments', $this->paginate());
 	}
 
@@ -100,6 +109,15 @@ class DepartmentsController extends AppController {
  */
 	public function admin_index() {
 		$this->Department->recursive = 0;
+		$conditions = array();
+		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
+			$query = $this->params['named']['query'];
+			$conditions['Department.name LIKE'] = "%$query%";
+		}
+		$this -> paginate = array(
+			'conditions' => $conditions,
+			'order' => array('Department.name'=>'ASC')
+		);
 		$this->set('departments', $this->paginate());
 	}
 
