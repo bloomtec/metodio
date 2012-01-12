@@ -5,8 +5,8 @@
 		<?php
 		echo $this -> Form -> input('name');
 		echo $this -> Form -> input('secret');
-		echo $this -> Form -> input('context', array('type' => 'select', 'options' => $privileges));
-		echo $this -> Form -> input('nat', array('type' => 'select', 'options' => array('no'=>'no', 'yes'=>'yes')));
+		echo $this -> Form -> input('context', array('type' => 'select', 'options' => $privileges, 'empty'=>'Seleccione...'));
+		echo $this -> Form -> input('nat', array('type' => 'select', 'options' => array('no'=>'no', 'yes'=>'yes'), 'empty'=>'Seleccione...'));
 		echo $this -> Form -> input('department_id', array('empty' => __('Seleccione...', true)));
 		echo $this -> Form -> input('cost_center_id', array('empty' => __('Seleccione...', true)));
 		?>

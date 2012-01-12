@@ -49,15 +49,21 @@ class SipDispositivosController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> SipDispositivo -> create();
 			if ($this -> SipDispositivo -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The sip dispositivo has been saved'), 'crud/success');
+				$this -> Session -> setFlash(__('Se ha creado la extensión'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The sip dispositivo could not be saved. Please, try again.'), 'crud/error');
+				$this -> Session -> setFlash(__('La extensión no se pudo crear. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 		$departments = $this -> SipDispositivo -> Department -> find('list');
 		$costCenters = $this -> SipDispositivo -> CostCenter -> find('list');
-		$this -> set(compact('departments', 'costCenters'));
+		$this -> loadModel('Privilege');
+		$privileges_tmp = $this -> Privilege -> find('list');
+		$privileges = array();
+		foreach ($privileges_tmp as $key => $value) {
+			$privileges[$value]=$value;
+		}
+		$this -> set(compact('departments', 'costCenters', 'privileges'));
 	}
 
 	/**
@@ -73,10 +79,10 @@ class SipDispositivosController extends AppController {
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> SipDispositivo -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The sip dispositivo has been saved'), 'crud/success');
+				$this -> Session -> setFlash(__('Se ha modificado la extensión'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The sip dispositivo could not be saved. Please, try again.'), 'crud/error');
+				$this -> Session -> setFlash(__('La extensión no se pudo modificar. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> SipDispositivo -> read(null, $id);
@@ -150,10 +156,10 @@ class SipDispositivosController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> SipDispositivo -> create();
 			if ($this -> SipDispositivo -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The sip dispositivo has been saved'), 'crud/success');
+				$this -> Session -> setFlash(__('Se ha creado la extensión'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The sip dispositivo could not be saved. Please, try again.'), 'crud/error');
+				$this -> Session -> setFlash(__('La extensión no se pudo crear. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 		$departments = $this -> SipDispositivo -> Department -> find('list');
@@ -180,17 +186,23 @@ class SipDispositivosController extends AppController {
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> SipDispositivo -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The sip dispositivo has been saved'), 'crud/success');
+				$this -> Session -> setFlash(__('Se ha modificado la extensión'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The sip dispositivo could not be saved. Please, try again.'), 'crud/error');
+				$this -> Session -> setFlash(__('La extensión no se pudo modificar. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> SipDispositivo -> read(null, $id);
 		}
 		$departments = $this -> SipDispositivo -> Department -> find('list');
 		$costCenters = $this -> SipDispositivo -> CostCenter -> find('list');
-		$this -> set(compact('departments', 'costCenters'));
+		$this -> loadModel('Privilege');
+		$privileges_tmp = $this -> Privilege -> find('list');
+		$privileges = array();
+		foreach ($privileges_tmp as $key => $value) {
+			$privileges[$value]=$value;
+		}
+		$this -> set(compact('departments', 'costCenters', 'privileges'));
 	}
 
 	/**

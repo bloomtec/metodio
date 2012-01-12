@@ -13,6 +13,53 @@ class SipDispositivo extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
+/**
+ * Validation rules
+ *
+ * @var array
+ */
+	public $validate = array(
+		'name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Debe ingresar un nombre',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'context' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Debe seleccionar un contexto',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'secret' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Debe ingresar una contraseña',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'nat' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Debe escoger el uso de NAT',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
