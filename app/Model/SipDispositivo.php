@@ -52,4 +52,13 @@ class SipDispositivo extends AppModel {
 		return true;
 	}
 	
+	public function afterSave($created) {
+		if($created) {
+			// Que hacer cuando es creado el registro
+		} else {
+			// Que hacer cuando es actualizado el registro
+		}
+		exec('sudo /usr/sbin/asterisk -rx "module reload" 2>&1');
+	}
+	
 }
