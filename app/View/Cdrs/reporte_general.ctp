@@ -8,10 +8,7 @@
 			</div>
 			<div class="input">
 				<label for="CdrHoraInicial">Hora Inicial</label>
-				<input type="time" id="CdrHoraInicial" class="input" required="required" name="data[Cdr][hora_inicial]{horas}" />
-				<?php 
-					echo $this -> Form -> input("Cdr.hora_inicial",array('type'=>'time'));
-				?>
+				<input type="time" id="CdrHoraInicial" class="input" required="required" name="data[Cdr][hora_inicial]" />
 			</div>
 			
 			<div class="input">
