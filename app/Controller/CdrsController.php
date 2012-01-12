@@ -24,7 +24,9 @@ class CdrsController extends AppController {
 	}
 	
 	public function reporteDepartamento() {
-		
+		$this -> loadModel('Department');
+		$departments = $this -> Department -> find('list', array('order'=>array('Department.name'=>'ASC')));
+		$this -> set(compact('departments'));
 	}
 	
 	public function reporteCentroCosto() {

@@ -270,7 +270,6 @@
 			<?php echo $this->Html->link($sipDispositivo['CostCenter']['name'], array('controller' => 'cost_centers', 'action' => 'view', $sipDispositivo['CostCenter']['id'])); ?>
 			&nbsp;
 		</h3>
-	
 </div>
 <div class="actions">
 	<ul>
