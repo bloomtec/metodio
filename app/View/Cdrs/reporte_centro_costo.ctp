@@ -2,9 +2,13 @@
 	<form id="CdrReportForm" method="post" accept-charset="utf-8" action="/cdrs/reporte">
 		<legend class="legend">Historial De Llamadas Por Centro De Costo</legend>
 		<fieldset class="fieldet">
-			<div class="input">
+			<div class="input select">
 				<label for="CdrCentro">Centro De Costo</label>
-				<input type="text" id="CdrCentro" class="input" required="required" name="data[Cdr][centro]" />
+				<select id="CdrCentro" name="data[Cdr][centro]">
+					<?php foreach ($costCenters as $key => $value) : ?>
+					<option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select>
 			</div>
 			<div class="input">
 				<label for="CdrFechaInicial">Fecha Inicial</label>

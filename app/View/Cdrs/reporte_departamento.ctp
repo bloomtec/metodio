@@ -5,7 +5,7 @@
 		</legend>
 		<fieldset class="fieldet">
 			<div class="input select">
-				<label for="CdrDepartamento">Department</label>
+				<label for="CdrDepartamento">Departamento</label>
 				<select id="CdrDepartamento" name="data[Cdr][departamento]">
 					<?php foreach ($departments as $key => $value) : ?>
 					<option value="<?php echo $key; ?>"><?php echo $value; ?></option>
