@@ -50,10 +50,10 @@ class DepartmentsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Department->create();
 			if ($this->Department->save($this->request->data)) {
-				$this->Session->setFlash(__('The department has been saved'),'crud/success');
+				$this->Session->setFlash(__('Se ha creado el departamento.'),'crud/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The department could not be saved. Please, try again.'),'crud/error');
+				$this->Session->setFlash(__('No se pudo crear el departamento. Por favor, intente de nuevo.'),'crud/error');
 			}
 		}
 	}
@@ -71,10 +71,10 @@ class DepartmentsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Department->save($this->request->data)) {
-				$this->Session->setFlash(__('The department has been saved'),'crud/success');
+				$this->Session->setFlash(__('Se ha modificado el departamento.'),'crud/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The department could not be saved. Please, try again.'),'crud/error');
+				$this->Session->setFlash(__('No se pudo modificar el departamento. Por favor, intente de nuevo.'),'crud/error');
 			}
 		} else {
 			$this->request->data = $this->Department->read(null, $id);
@@ -144,10 +144,10 @@ class DepartmentsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Department->create();
 			if ($this->Department->save($this->request->data)) {
-				$this->Session->setFlash(__('The department has been saved'),'crud/success');
+				$this->Session->setFlash(__('Se ha creado el departamento.'),'crud/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The department could not be saved. Please, try again.'),'crud/error');
+				$this->Session->setFlash(__('No se pudo crear el departamento. Por favor, intente de nuevo.'),'crud/error');
 			}
 		}
 	}
@@ -165,10 +165,10 @@ class DepartmentsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Department->save($this->request->data)) {
-				$this->Session->setFlash(__('The department has been saved'),'crud/success');
+				$this->Session->setFlash(__('Se ha modificado el departamento.'),'crud/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The department could not be saved. Please, try again.'),'crud/error');
+				$this->Session->setFlash(__('No se pudo modificar el departamento. Por favor, intente de nuevo.'),'crud/error');
 			}
 		} else {
 			$this->request->data = $this->Department->read(null, $id);

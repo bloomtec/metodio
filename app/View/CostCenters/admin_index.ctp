@@ -1,17 +1,17 @@
 <div class="costCenters index">
-	<h2><?php echo __('Cost Centers');?></h2>
+	<h2><?php echo __('Centros De Costo');?></h2>
 	<div class="search">
 		<label>BUSCAR:</label>
 		<input type="text" />
-		<input type="button" class="submit search-generic" value="Search" />
+		<input type="button" class="submit search-generic" value="Buscar" />
 	</div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-									<th><?php echo $this->Paginator->sort('name');?></th>
-							<th><?php echo $this->Paginator->sort('description');?></th>
-							<th><?php echo $this->Paginator->sort('created');?></th>
-							<th><?php echo $this->Paginator->sort('updated');?></th>
-					<th class="actions"><?php echo __('Actions');?></th>
+		<th><?php echo $this->Paginator->sort('name', 'Nombre');?></th>
+		<th><?php echo $this->Paginator->sort('description', 'Descripción');?></th>
+		<th><?php echo $this->Paginator->sort('created', 'Creado');?></th>
+		<th><?php echo $this->Paginator->sort('updated', 'Modificado');?></th>
+		<th class="actions"><?php echo __('Opciones');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -47,6 +47,6 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Agregar Cost Center'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Agregar Centro De Costo'), array('action' => 'add')); ?></li>
 	</ul>
 </div>

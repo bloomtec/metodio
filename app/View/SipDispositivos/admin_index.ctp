@@ -1,20 +1,20 @@
 <div class="sipDispositivos index">
-	<h2><?php echo __('Sip Dispositivos');?></h2>
+	<h2><?php echo __('Extensiones');?></h2>
 	<div class="search">
 		<label>BUSCAR:</label>
 		<input type="text" />
-		<input type="button" class="submit search-generic" value="Search" />
+		<input type="button" class="submit search-generic" value="Buscar" />
 	</div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-		<th><?php echo $this->Paginator->sort('name');?></th>
-		<th><?php echo $this->Paginator->sort('host');?></th>
-		<th><?php echo $this->Paginator->sort('nat');?></th>
-		<th><?php echo $this->Paginator->sort('callerid');?></th>
-		<th><?php echo $this->Paginator->sort('context');?></th>		
-		<th><?php echo $this->Paginator->sort('department_id');?></th>
-		<th><?php echo $this->Paginator->sort('cost_center_id');?></th>
-		<th class="actions"><?php echo __('Actions');?></th>
+		<th><?php echo $this->Paginator->sort('name', 'Nombre');?></th>
+		<th><?php echo $this->Paginator->sort('host', 'Host');?></th>
+		<th><?php echo $this->Paginator->sort('nat', 'NAT');?></th>
+		<th><?php echo $this->Paginator->sort('callerid', 'ID Marcado');?></th>
+		<th><?php echo $this->Paginator->sort('context', 'Contexto');?></th>		
+		<th><?php echo $this->Paginator->sort('department_id', 'Departamento');?></th>
+		<th><?php echo $this->Paginator->sort('cost_center_id', 'Centro De Costo');?></th>
+		<th class="actions"><?php echo __('Opciones');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -57,6 +57,6 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Agregar Sip Dispositivo'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Agregar Extensión'), array('action' => 'add')); ?></li>
 	</ul>
 </div>

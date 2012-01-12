@@ -28,6 +28,14 @@ class SipDispositivo extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'isUnique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'Ya existe una extensión con este nombre',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		),
 		'context' => array(
 			'notempty' => array(

@@ -1,6 +1,6 @@
 <div class="sipDispositivos view">
-<h2><?php  echo __('Sip Dispositivo');?></h2>
-		<label><?php echo __('Name'); ?></label>
+<h2><?php  echo __('Extensión');?></h2>
+		<label><?php echo __('Nombre'); ?></label>
 		<h3>
 			<?php echo h($sipDispositivo['SipDispositivo']['name']); ?>
 			&nbsp;
@@ -10,12 +10,12 @@
 			<?php echo h($sipDispositivo['SipDispositivo']['host']); ?>
 			&nbsp;
 		</h3>
-		<label><?php echo __('Nat'); ?></label>
+		<label><?php echo __('NAT'); ?></label>
 		<h3>
 			<?php echo h($sipDispositivo['SipDispositivo']['nat']); ?>
 			&nbsp;
 		</h3>
-		<label><?php echo __('Type'); ?></label>
+		<label><?php echo __('Tipo'); ?></label>
 		<h3>
 			<?php echo h($sipDispositivo['SipDispositivo']['type']); ?>
 			&nbsp;
@@ -255,17 +255,17 @@
 			<?php echo h($sipDispositivo['SipDispositivo']['exten']); ?>
 			&nbsp;
 		</h3>
-		<label><?php echo __('Priority'); ?></label>
+		<label><?php echo __('Prioridad'); ?></label>
 		<h3>
 			<?php echo h($sipDispositivo['SipDispositivo']['priority']); ?>
 			&nbsp;
 		</h3>
-		<label><?php echo __('Department'); ?></label>
+		<label><?php echo __('Departamento'); ?></label>
 		<h3>
 			<?php echo $this->Html->link($sipDispositivo['Department']['name'], array('controller' => 'departments', 'action' => 'view', $sipDispositivo['Department']['id'])); ?>
 			&nbsp;
 		</h3>
-		<label><?php echo __('Cost Center'); ?></label>
+		<label><?php echo __('Centro De Costo'); ?></label>
 		<h3>
 			<?php echo $this->Html->link($sipDispositivo['CostCenter']['name'], array('controller' => 'cost_centers', 'action' => 'view', $sipDispositivo['CostCenter']['id'])); ?>
 			&nbsp;
@@ -274,7 +274,7 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Volver Sip Dispositivos'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('Modificar Sip Dispositivo'), array('action' => 'edit', $sipDispositivo['SipDispositivo']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Volver'), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Modificar Extensión'), array('action' => 'edit', $sipDispositivo['SipDispositivo']['id'])); ?> </li>
 	</ul>
 </div>

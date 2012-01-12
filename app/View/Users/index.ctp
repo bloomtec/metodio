@@ -3,18 +3,17 @@
 	<div class="search">
 		<label>BUSCAR:</label>
 		<input type="text" />
-		<input type="button" class="submit search-generic" value="Search" />
+		<input type="button" class="submit search-generic" value="Buscar" />
 	</div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th class="actions"><?php echo __('Activo');?></th>
-									<th><?php echo $this->Paginator->sort('role_id');?></th>
-							<th><?php echo $this->Paginator->sort('email');?></th>
-							<th><?php echo $this->Paginator->sort('password');?></th>
-										<th><?php echo $this->Paginator->sort('email_verified');?></th>
-							<th><?php echo $this->Paginator->sort('created');?></th>
-							<th><?php echo $this->Paginator->sort('updated');?></th>
-					<th class="actions"><?php echo __('Actions');?></th>
+		<th class="actions"><?php echo __('Activo');?></th>
+		<th><?php echo $this->Paginator->sort('role_id', 'Rol');?></th>
+		<th><?php echo $this->Paginator->sort('email', 'Correo Electrónico');?></th>
+		<th><?php echo $this->Paginator->sort('email_verified', 'Correo Verificado');?></th>
+		<th><?php echo $this->Paginator->sort('created', 'Creado');?></th>
+		<th><?php echo $this->Paginator->sort('updated', 'Modificado');?></th>
+		<th class="actions"><?php echo __('Opciones');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -31,8 +30,13 @@
 			<?php echo $this->Html->link($user['Role']['name'], array('controller' => 'roles', 'action' => 'view', $user['Role']['id'])); ?>
 		</td>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['email_verified']); ?>&nbsp;</td>
+		<td>
+			<?php if($user['User']['email_verified']){ ?> 
+				 <input type='checkbox' checked='checked' disabled='true' class='checkbox'/> 
+			 <?php }else{ ?> 
+				 <input type='checkbox' disabled='true' class='checkbox'/>
+			 <?php } ?>
+		</td>
 		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['updated']); ?>&nbsp;</td>
 		<td class="actions">
@@ -61,6 +65,6 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Agregar User'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Crear Usuario'), array('action' => 'add')); ?></li>
 	</ul>
 </div>

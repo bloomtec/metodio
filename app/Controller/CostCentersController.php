@@ -50,10 +50,10 @@ class CostCentersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->CostCenter->create();
 			if ($this->CostCenter->save($this->request->data)) {
-				$this->Session->setFlash(__('The cost center has been saved'),'crud/success');
+				$this->Session->setFlash(__('Se ha creado el centro de costo.'),'crud/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The cost center could not be saved. Please, try again.'),'crud/error');
+				$this->Session->setFlash(__('No se pudo crear el centro de costo. Por favor, intente de nuevo.'),'crud/error');
 			}
 		}
 	}
@@ -71,10 +71,10 @@ class CostCentersController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->CostCenter->save($this->request->data)) {
-				$this->Session->setFlash(__('The cost center has been saved'),'crud/success');
+				$this->Session->setFlash(__('Se ha modificado el centro de costo.'),'crud/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The cost center could not be saved. Please, try again.'),'crud/error');
+				$this->Session->setFlash(__('No se pudo modificar el cenrto de costo. Por favor, intente de nuevo.'),'crud/error');
 			}
 		} else {
 			$this->request->data = $this->CostCenter->read(null, $id);
@@ -144,10 +144,10 @@ class CostCentersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->CostCenter->create();
 			if ($this->CostCenter->save($this->request->data)) {
-				$this->Session->setFlash(__('The cost center has been saved'),'crud/success');
+				$this->Session->setFlash(__('Se ha creado el centro de costo.'),'crud/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The cost center could not be saved. Please, try again.'),'crud/error');
+				$this->Session->setFlash(__('No se pudo crear el centro de costo. Por favor, intente de nuevo.'),'crud/error');
 			}
 		}
 	}
@@ -165,10 +165,10 @@ class CostCentersController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->CostCenter->save($this->request->data)) {
-				$this->Session->setFlash(__('The cost center has been saved'),'crud/success');
+				$this->Session->setFlash(__('Se ha modificado el centro de costo.'),'crud/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The cost center could not be saved. Please, try again.'),'crud/error');
+				$this->Session->setFlash(__('No se pudo modificar el cenrto de costo. Por favor, intente de nuevo.'),'crud/error');
 			}
 		} else {
 			$this->request->data = $this->CostCenter->read(null, $id);

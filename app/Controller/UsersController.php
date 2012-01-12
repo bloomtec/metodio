@@ -406,10 +406,10 @@ class UsersController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> User -> create();
 			if ($this -> User -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The user has been saved'));
+				$this -> Session -> setFlash(__('Se ha creado el usuario.'));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('No se puedo crear el usuario. Por favor, intente de nuevo.'));
 			}
 		}
 		$roles = $this -> User -> Role -> find('list');
@@ -456,10 +456,10 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this -> User -> delete()) {
-			$this -> Session -> setFlash(__('User deleted'));
+			$this -> Session -> setFlash(__('Se eliminó el usuario'));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('User was not deleted'));
+		$this -> Session -> setFlash(__('No se pudo eliminar el usuario.'));
 		$this -> redirect(array('action' => 'index'));
 	}
 
