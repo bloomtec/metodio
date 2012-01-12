@@ -8,8 +8,12 @@
 			</div>
 			<div class="input">
 				<label for="CdrHoraInicial">Hora Inicial</label>
-				<input type="time" id="CdrHoraInicial" class="input" required="required" name="data[Cdr][hora_inicial]" />
+				<input type="time" id="CdrHoraInicial" class="input" required="required" name="data[Cdr][hora_inicial]{horas}" />
+				<?php 
+					echo $this -> Form -> input("Cdr.hora_inicial",array('type'=>'time'));
+				?>
 			</div>
+			
 			<div class="input">
 				<label for="CdrFechaFinal">Fecha Final</label>
 				<input type="date" id="CdrFechaFinal" class="input" required="required" name="data[Cdr][fecha_final]" />
@@ -22,3 +26,12 @@
 		<input type="submit" value="Mostrar Reporte" />
 	</form>
 </div>
+<script>
+$(":date").dateinput({
+
+	// this is displayed to the user
+	format: 'yyyy-mm-dd',
+	offset:[-35, 330]
+}
+);
+</script>
