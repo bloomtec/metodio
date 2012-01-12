@@ -8,7 +8,7 @@
 				<label for="CdrDepartamento">Department</label>
 				<select id="CdrDepartamento" name="data[Cdr][departamento]">
 					<?php foreach ($departments as $key => $value) : ?>
-					<option value="<?=$key;?>"><?=$value;?></option>
+					<option value="<?php echo $key; ?>"><?php echo $value; ?></option>
 					<?php endforeach; ?>
 				</select>
 			</div>
