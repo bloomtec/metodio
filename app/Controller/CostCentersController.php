@@ -93,13 +93,13 @@ class CostCentersController extends AppController {
 		}
 		$this->CostCenter->id = $id;
 		if (!$this->CostCenter->exists()) {
-			throw new NotFoundException(__('Invalid cost center'));
+			throw new NotFoundException(__('Centro de costo no válido.'));
 		}
 		if ($this->CostCenter->delete()) {
-			$this->Session->setFlash(__('Cost center deleted'),'crud/success');
+			$this->Session->setFlash(__('El centro de costo fue eliminado.'),'crud/success');
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('Cost center was not deleted'),'crud/error');
+		$this->Session->setFlash(__('No se eliminó el Centro De Costo.'),'crud/error');
 		$this->redirect(array('action' => 'index'));
 	}
 /**
@@ -187,13 +187,13 @@ class CostCentersController extends AppController {
 		}
 		$this->CostCenter->id = $id;
 		if (!$this->CostCenter->exists()) {
-			throw new NotFoundException(__('Invalid cost center'));
+			throw new NotFoundException(__('Centro de costo no válido.'));
 		}
 		if ($this->CostCenter->delete()) {
-			$this->Session->setFlash(__('Cost center deleted'),'crud/success');
+			$this->Session->setFlash(__('El centro de costo fue eliminado.'),'crud/success');
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('Cost center was not deleted'),'crud/error');
+		$this->Session->setFlash(__('No se eliminó el Centro De Costo.'),'crud/error');
 		$this->redirect(array('action' => 'index'));
 	}
 }

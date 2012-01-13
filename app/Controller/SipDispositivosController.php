@@ -104,13 +104,13 @@ class SipDispositivosController extends AppController {
 		}
 		$this -> SipDispositivo -> id = $id;
 		if (!$this -> SipDispositivo -> exists()) {
-			throw new NotFoundException(__('Invalid sip dispositivo'));
+			throw new NotFoundException(__('Extensión no válida.'));
 		}
 		if ($this -> SipDispositivo -> delete()) {
-			$this -> Session -> setFlash(__('Sip dispositivo deleted'), 'crud/success');
+			$this -> Session -> setFlash(__('La extensión fue eliminada.'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Sip dispositivo was not deleted'), 'crud/error');
+		$this -> Session -> setFlash(__('No se eliminó la extensión.'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 
@@ -217,13 +217,13 @@ class SipDispositivosController extends AppController {
 		}
 		$this -> SipDispositivo -> id = $id;
 		if (!$this -> SipDispositivo -> exists()) {
-			throw new NotFoundException(__('Invalid sip dispositivo'));
+			throw new NotFoundException(__('Extensión no válida.'));
 		}
 		if ($this -> SipDispositivo -> delete()) {
-			$this -> Session -> setFlash(__('Sip dispositivo deleted'), 'crud/success');
+			$this -> Session -> setFlash(__('La extensión fue eliminada.'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Sip dispositivo was not deleted'), 'crud/error');
+		$this -> Session -> setFlash(__('No se eliminó la extensión.'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 

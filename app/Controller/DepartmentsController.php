@@ -93,13 +93,13 @@ class DepartmentsController extends AppController {
 		}
 		$this->Department->id = $id;
 		if (!$this->Department->exists()) {
-			throw new NotFoundException(__('Invalid department'));
+			throw new NotFoundException(__('Departamento no válido.'));
 		}
 		if ($this->Department->delete()) {
-			$this->Session->setFlash(__('Department deleted'),'crud/success');
+			$this->Session->setFlash(__('El departamento fue eliminado.'),'crud/success');
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('Department was not deleted'),'crud/error');
+		$this->Session->setFlash(__('No se eliminó el departamento.'),'crud/error');
 		$this->redirect(array('action' => 'index'));
 	}
 /**
@@ -187,13 +187,13 @@ class DepartmentsController extends AppController {
 		}
 		$this->Department->id = $id;
 		if (!$this->Department->exists()) {
-			throw new NotFoundException(__('Invalid department'));
+			throw new NotFoundException(__('Departamento no válido.'));
 		}
 		if ($this->Department->delete()) {
-			$this->Session->setFlash(__('Department deleted'),'crud/success');
+			$this->Session->setFlash(__('El departamento fue eliminado.'),'crud/success');
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->Session->setFlash(__('Department was not deleted'),'crud/error');
+		$this->Session->setFlash(__('No se eliminó el departamento.'),'crud/error');
 		$this->redirect(array('action' => 'index'));
 	}
 }

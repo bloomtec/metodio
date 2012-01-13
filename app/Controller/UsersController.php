@@ -462,7 +462,7 @@ class UsersController extends AppController {
 		}
 		$this -> User -> id = $id;
 		if (!$this -> User -> exists()) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no válido.'));
 		}
 		if ($this -> User -> delete()) {
 			$this -> Session -> setFlash(__('Se eliminó el usuario'));

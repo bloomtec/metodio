@@ -60,10 +60,10 @@ class AbbreviatesController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> Abbreviate -> create();
 			if ($this -> Abbreviate -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The abbreviate has been saved'), 'crud/success');
+				$this -> Session -> setFlash(__('Se ha creado el abreviado'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The abbreviate could not be saved. Please, try again.'), 'crud/error');
+				$this -> Session -> setFlash(__('El abreviado no se pudo crear. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 	}
@@ -81,10 +81,10 @@ class AbbreviatesController extends AppController {
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> Abbreviate -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The abbreviate has been saved'), 'crud/success');
+				$this -> Session -> setFlash(__('Se ha modificado el abreviado.'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The abbreviate could not be saved. Please, try again.'), 'crud/error');
+				$this -> Session -> setFlash(__('El abreviado no se pudo modificar. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> Abbreviate -> read(null, $id);
@@ -103,13 +103,13 @@ class AbbreviatesController extends AppController {
 		}
 		$this -> Abbreviate -> id = $id;
 		if (!$this -> Abbreviate -> exists()) {
-			throw new NotFoundException(__('Invalid abbreviate'));
+			throw new NotFoundException(__('Abreviado no válido.'));
 		}
 		if ($this -> Abbreviate -> delete()) {
-			$this -> Session -> setFlash(__('Abbreviate deleted'), 'crud/success');
+			$this -> Session -> setFlash(__('El abreviado fue eliminado.'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Abbreviate was not deleted'), 'crud/error');
+		$this -> Session -> setFlash(__('No se eliminó el abreviado.'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 
@@ -152,10 +152,10 @@ class AbbreviatesController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> Abbreviate -> create();
 			if ($this -> Abbreviate -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The abbreviate has been saved'), 'crud/success');
+				$this -> Session -> setFlash(__('Se ha creado el abreviado'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The abbreviate could not be saved. Please, try again.'), 'crud/error');
+				$this -> Session -> setFlash(__('El abreviado no se pudo crear. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 	}
@@ -173,10 +173,10 @@ class AbbreviatesController extends AppController {
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> Abbreviate -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The abbreviate has been saved'), 'crud/success');
+				$this -> Session -> setFlash(__('Se ha modificado el abreviado.'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The abbreviate could not be saved. Please, try again.'), 'crud/error');
+				$this -> Session -> setFlash(__('El abreviado no se pudo modificar. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> Abbreviate -> read(null, $id);
@@ -195,13 +195,13 @@ class AbbreviatesController extends AppController {
 		}
 		$this -> Abbreviate -> id = $id;
 		if (!$this -> Abbreviate -> exists()) {
-			throw new NotFoundException(__('Invalid abbreviate'));
+			throw new NotFoundException(__('Abreviado no válido.'));
 		}
 		if ($this -> Abbreviate -> delete()) {
-			$this -> Session -> setFlash(__('Abbreviate deleted'), 'crud/success');
+			$this -> Session -> setFlash(__('El abreviado fue eliminado.'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Abbreviate was not deleted'), 'crud/error');
+		$this -> Session -> setFlash(__('No se eliminó el abreviado.'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 

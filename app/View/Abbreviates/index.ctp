@@ -34,8 +34,6 @@
 	</tr>
 	<?php endforeach; ?>
 	</table>
-
-
 	<div class="paging">
 	<!--<p>
 	<?php
@@ -50,8 +48,10 @@
 	?>
 	</div>
 </div>
+<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Abbreviates', 'add')))) : ?>
 <div class="actions">
 	<ul>
 		<li><?php echo $this->Html->link(__('Agregar Abreviado'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
+<?php endif; ?>

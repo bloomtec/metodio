@@ -7,30 +7,27 @@
 	</div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-									<th><?php echo $this->Paginator->sort('abbreviate');?></th>
-							<th><?php echo $this->Paginator->sort('phone');?></th>
-							<th><?php echo $this->Paginator->sort('created');?></th>
-							<th><?php echo $this->Paginator->sort('updated');?></th>
-					<th class="actions"><?php echo __('Actions');?></th>
+		<th><?php echo $this->Paginator->sort('abbreviate', 'Abreviado');?></th>
+		<th><?php echo $this->Paginator->sort('phone', 'Número');?></th>
+		<th class="actions"><?php echo __('Opciones');?></th>
 	</tr>
 	<?php
-	$i = 0;
-	foreach ($abbreviates as $abbreviate): ?>
+		$i = 0;
+		foreach ($abbreviates as $abbreviate):
+	?>
 	<tr>
 		<td><?php echo h($abbreviate['Abbreviate']['abbreviate']); ?>&nbsp;</td>
 		<td><?php echo h($abbreviate['Abbreviate']['phone']); ?>&nbsp;</td>
-		<td><?php echo h($abbreviate['Abbreviate']['created']); ?>&nbsp;</td>
-		<td><?php echo h($abbreviate['Abbreviate']['updated']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $abbreviate['Abbreviate']['id']),array('class'=>'view')); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $abbreviate['Abbreviate']['id']),array('class'=>'edit')); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $abbreviate['Abbreviate']['id']), array('class'=>'delete'), __('Esta seguro que quiere eliminar el registro?', $abbreviate['Abbreviate']['id'])); ?>
+			<?php
+				echo $this->Html->link(__('View'), array('action' => 'view', $abbreviate['Abbreviate']['id']),array('class'=>'view'));
+				echo $this->Html->link(__('Edit'), array('action' => 'edit', $abbreviate['Abbreviate']['id']),array('class'=>'edit'));
+				echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $abbreviate['Abbreviate']['id']), array('class'=>'delete'), __('Esta seguro que quiere eliminar el registro?', $abbreviate['Abbreviate']['id']));
+			?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 	</table>
-
-
 	<div class="paging">
 	<!--<p>
 	<?php
@@ -47,6 +44,6 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Agregar Abbreviate'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Agregar Abreviado'), array('action' => 'add')); ?></li>
 	</ul>
 </div>
