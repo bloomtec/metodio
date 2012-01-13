@@ -116,4 +116,8 @@ class SipDispositivo extends AppModel {
 		exec('sudo /usr/sbin/asterisk -rx "module reload" 2>&1');
 	}
 	
+	public function afterDelete() {
+		exec('sudo /usr/sbin/asterisk -rx "module reload" 2>&1');
+	}
+	
 }

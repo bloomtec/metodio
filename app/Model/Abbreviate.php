@@ -110,10 +110,12 @@ class Abbreviate extends AppModel {
 		if(!$this->updateFromfile) {
 			$this -> writeFile();
 		}
+		exec('sudo /usr/sbin/asterisk -rx "module reload" 2>&1');
 	}
 	
 	public function afterDelete() {
 		$this -> writeFile();
+		exec('sudo /usr/sbin/asterisk -rx "module reload" 2>&1');
 	}
 
 }
