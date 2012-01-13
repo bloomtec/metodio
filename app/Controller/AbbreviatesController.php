@@ -12,6 +12,9 @@ class AbbreviatesController extends AppController {
 		$this -> Auth -> allow('*');
 	}
 	
-	
+	public function pruebas() {
+		$this->autoRender = false;
+		debug($this->Abbreviate->read());
+	}
 
 }
