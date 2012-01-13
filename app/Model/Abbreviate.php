@@ -92,7 +92,7 @@ class Abbreviate extends AppModel {
 			$file->create();
 			$abreviados = $this -> find('all');
 			foreach ($abreviados as $key => $value) {
-				$texto = $value['Abbreviate']['abbreviate'] . '|' . $value['Abbreviate']['phone'].chr(13).chr(10);
+				$texto = $value['Abbreviate']['abbreviate'] . '|' . $value['Abbreviate']['phone'].chr(10);
 				$file -> append($texto);
 			}
 		} else {
