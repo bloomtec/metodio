@@ -1,40 +1,30 @@
-<div class="sipDispositivos index">
-	<h2><?php echo __('Extensiones');?></h2>
+<div class="abbreviates index">
+	<h2><?php echo __('Abbreviates');?></h2>
 	<div class="search">
 		<label>BUSCAR:</label>
 		<input type="text" />
-		<input type="button" class="submit search-generic" value="Buscar" />
+		<input type="button" class="submit search-generic" value="Search" />
 	</div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-		<th><?php echo $this->Paginator->sort('name', 'Nombre');?></th>
-		<th><?php echo $this->Paginator->sort('host', 'Host');?></th>
-		<th><?php echo $this->Paginator->sort('nat', 'NAT');?></th>
-		<th><?php echo $this->Paginator->sort('callerid', 'ID Marcado');?></th>
-		<th><?php echo $this->Paginator->sort('context', 'Contexto');?></th>		
-		<th><?php echo $this->Paginator->sort('department_id', 'Departamento');?></th>
-		<th><?php echo $this->Paginator->sort('cost_center_id', 'Centro De Costo');?></th>
-		<th class="actions"><?php echo __('Opciones');?></th>
+									<th><?php echo $this->Paginator->sort('abbreviate');?></th>
+							<th><?php echo $this->Paginator->sort('phone');?></th>
+							<th><?php echo $this->Paginator->sort('created');?></th>
+							<th><?php echo $this->Paginator->sort('updated');?></th>
+					<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;
-	foreach ($sipDispositivos as $sipDispositivo): ?>
+	foreach ($abbreviates as $abbreviate): ?>
 	<tr>
-		<td><?php echo h($sipDispositivo['SipDispositivo']['name']); ?>&nbsp;</td>
-		<td><?php echo h($sipDispositivo['SipDispositivo']['host']); ?>&nbsp;</td>
-		<td><?php echo h($sipDispositivo['SipDispositivo']['nat']); ?>&nbsp;</td>
-		<td><?php echo h($sipDispositivo['SipDispositivo']['callerid']); ?>&nbsp;</td>
-		<td><?php echo h($sipDispositivo['SipDispositivo']['context']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($sipDispositivo['Department']['name'], array('controller' => 'departments', 'action' => 'view', $sipDispositivo['Department']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($sipDispositivo['CostCenter']['name'], array('controller' => 'cost_centers', 'action' => 'view', $sipDispositivo['CostCenter']['id'])); ?>
-		</td>
+		<td><?php echo h($abbreviate['Abbreviate']['abbreviate']); ?>&nbsp;</td>
+		<td><?php echo h($abbreviate['Abbreviate']['phone']); ?>&nbsp;</td>
+		<td><?php echo h($abbreviate['Abbreviate']['created']); ?>&nbsp;</td>
+		<td><?php echo h($abbreviate['Abbreviate']['updated']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $sipDispositivo['SipDispositivo']['id']),array('class'=>'view')); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $sipDispositivo['SipDispositivo']['id']),array('class'=>'edit')); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $sipDispositivo['SipDispositivo']['id']), array('class'=>'delete'), __('Esta seguro que quiere eliminar el registro?', $sipDispositivo['SipDispositivo']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $abbreviate['Abbreviate']['id']),array('class'=>'view')); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $abbreviate['Abbreviate']['id']),array('class'=>'edit')); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $abbreviate['Abbreviate']['id']), array('class'=>'delete'), __('Esta seguro que quiere eliminar el registro?', $abbreviate['Abbreviate']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -57,6 +47,6 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Agregar Extensión'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Agregar Abbreviate'), array('action' => 'add')); ?></li>
 	</ul>
 </div>

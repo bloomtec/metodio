@@ -8,17 +8,17 @@
 			?>
 			<a href="/users">USUARIOS</a>
 			<ul>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', 'add')))) { ?>
-				<li>
-					<a href="/users/add">Agregar</a>
-				</li>
-			<?php } ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', 'add')))) { ?>
+					<li>
+						<a href="/users/add">Agregar</a>
+					</li>
+				<?php } ?>
 			</ul>
 			<?php } else { ?>
 			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users')))) { ?>
 			<a href="/admin/users">USUARIOS</a>
 			<ul>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', 'admin_add')))) { ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', 'admin_add')))) { ?>
 				<li>
 					<a href="/admin/users/add">Agregar</a>
 				</li>
@@ -35,17 +35,17 @@
 			?>
 			<a href="/departments">DEPARTAMENTOS</a>
 			<ul>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'add')))) { ?>
-				<li>
-					<a href="/departments/add">Agregar</a>
-				</li>
-			<?php }	?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'add')))) { ?>
+					<li>
+						<a href="/departments/add">Agregar</a>
+					</li>
+				<?php }	?>
 			</ul>
 			<?php } else { ?>
 			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments')))) { ?>
 			<a href="/admin/departments">DEPARTAMENTOS</a>
 			<ul>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'admin_add')))) { ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'admin_add')))) { ?>
 				<li>
 					<a href="/admin/departments/add">Agregar</a>
 				</li>
@@ -60,17 +60,17 @@
 			<?php if($role_id == 2 && $this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'index')))) { ?>
 			<a href="/cost_centers">CENTROS DE COSTO</a>
 			<ul>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'add')))) { ?>
-				<li>
-					<a href="/cost_centers/add">Agregar</a>
-				</li>
-			<?php } ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'add')))) { ?>
+					<li>
+						<a href="/cost_centers/add">Agregar</a>
+					</li>
+				<?php } ?>
 			</ul>
 			<?php } else { ?>
 			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters')))) { ?>
 			<a href="/admin/cost_centers">CENTROS DE COSTO</a>
 			<ul>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'admin_add')))) { ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'admin_add')))) { ?>
 				<li>
 					<a href="/admin/cost_centers/add">Agregar</a>
 				</li>
@@ -87,11 +87,11 @@
 			?>
 			<a href="/sip_dispositivos">EXTENSIONES</a>
 			<ul>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'add')))) { ?>
-				<li>
-					<a href="/sip_dispositivos/add">Agregar</a>
-				</li>
-			<?php }	?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'add')))) { ?>
+					<li>
+						<a href="/sip_dispositivos/add">Agregar</a>
+					</li>
+				<?php }	?>
 			</ul>
 			<?php } else { ?>
 			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos')))) { ?>
@@ -109,12 +109,31 @@
 			?>			
 		</li>
 		<li class="abreviados">
-			<a href="">ABREVIADOS</a>
+			<?php
+				if($role_id == 2 && $this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Abbreviates', 'index')))) {	
+			?>
+			<a href="/abbreviates">ABREVIADOS</a>
 			<ul>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Abbreviates', 'add')))) { ?>
+					<li>
+						<a href="/abbreviates/add">Agregar</a>
+					</li>
+				<?php }	?>
+			</ul>
+				<?php } else { ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Abbreviates')))) { ?>
+				<a href="/admin/abbreviates">ABREVIADOS</a>
+			<ul>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Abbreviates', 'admin_add')))) { ?>
 				<li>
-					<a href="">Agregar</a>
+					<a href="/admin/abbreviates/add">Agregar</a>
 				</li>
 			</ul>
+			<?php
+						}
+					}
+				}
+			?>
 		</li>
 		<li class="informes">
 			<a href="/cdrs/reporteGeneral">INFORMES</a>

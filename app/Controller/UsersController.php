@@ -9,7 +9,16 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this -> Auth -> allow('initAcl', 'verificarAcceso');
+		$this -> Auth -> allow('initAcl', 'verificarAcceso', 'userRedirect');
+	}
+	
+	public function userRedirect() {
+		$role_id = $this -> Session -> read('Auth.User.role_id');
+		if($role_id == 1) {
+			$this -> redirect(array('controller' => 'SipDispositivos', 'action'=>'index', 'admin'=>true));
+		} else {
+			$this -> redirect(array('controller' => 'SipDispositivos', 'action'=>'index'));
+		}
 	}
 
 	public function verificarAcceso() {
@@ -553,7 +562,8 @@ class UsersController extends AppController {
 		$this -> Acl -> allow($role, 'Departments/index');
 		$this -> Acl -> allow($role, 'Departments/view');
 		// Módulo abreviados
-		// TODO : No se ha hecho este módulo todavía
+		$this -> Acl -> allow($role, 'Abbreviates/index');
+		$this -> Acl -> allow($role, 'Abbreviates/view');
 		
 		// Módulo informes
 		$this -> Acl -> allow($role, 'Cdrs/reporte');
