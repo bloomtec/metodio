@@ -14,7 +14,18 @@ class AbbreviatesController extends AppController {
 	
 	public function pruebas() {
 		$this->autoRender = false;
-		debug($this->Abbreviate->read());
+		//debug($this->Abbreviate->find('all'));
+		debug($this->paginate());
+	}
+	
+	public function index() {
+		$this -> Abbreviate -> recursive = 0;
+		$conditions = array();
+		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
+			$query = $this->params['named']['query'];
+			$conditions['Abbreviate.name LIKE'] = "%$query%";
+		}
+		$this -> set('abbreviates', $this -> Abbreviate -> find('archivo'));
 	}
 
 }
