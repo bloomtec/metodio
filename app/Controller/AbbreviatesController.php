@@ -7,17 +7,12 @@ App::uses('AppController', 'Controller');
  */
 class AbbreviatesController extends AppController {
 
-	public function beforeFilter() {
-		parent::beforeFilter();
-		$this -> Auth -> allow('*');
-	}
-
 	public function admin_fillDB() {
 		$this -> autoRender = false;
 		if ($this -> Abbreviate -> fillDBFromFile()) {
-			echo 'se lleno la tabla con los datos del archivo';
+			echo 'Se grabaron los datos del archivo en la BD.';
 		} else {
-			echo 'error';
+			echo 'Ocurrio un error.';
 		}
 	}
 
