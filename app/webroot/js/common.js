@@ -1,4 +1,11 @@
 $(function() {
+	$(":date").dateinput({
+
+		// this is displayed to the user
+		format: 'yyyy-mm-dd',
+		offset:[-35, 330]
+	}
+	);
 	$(".index .search-generic").click(function() {
 		search();
 	});

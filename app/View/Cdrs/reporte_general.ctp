@@ -30,12 +30,3 @@
 		<input type="submit" value="Mostrar Reporte" />
 	</form>
 </div>
-<script>
-$(":date").dateinput({
-
-	// this is displayed to the user
-	format: 'yyyy-mm-dd',
-	offset:[-35, 330]
-}
-);
-</script>
