@@ -17,6 +17,7 @@
 				<input type="date" id="CdrFechaInicial" class="input" required="required" name="data[Cdr][fecha_inicial]" />
 			</div>
 			<div class="input">
+				<label for="CdrHoraInicial">Hora Inicial</label>
 				<!--<input type="time" id="CdrHoraInicial" class="input" required="required" name="data[Cdr][hora_inicial]" />-->
 				<?php echo $this -> Form -> hour('Cdr.hora_inicial.hora',true)?>
 				<?php echo $this -> Form -> minute('Cdr.hora_inicial.minuto')?>
