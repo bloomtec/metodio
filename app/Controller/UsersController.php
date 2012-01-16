@@ -566,6 +566,7 @@ class UsersController extends AppController {
 		$this -> Acl -> allow($role, 'Abbreviates/view');
 		
 		// Módulo informes
+		$this -> Acl -> allow($role, 'Cdrs/parseData');
 		$this -> Acl -> allow($role, 'Cdrs/reporte');
 		$this -> Acl -> allow($role, 'Cdrs/reporteGeneral');
 		$this -> Acl -> allow($role, 'Cdrs/reporteExtension');
