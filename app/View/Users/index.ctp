@@ -9,8 +9,7 @@
 	<tr>
 		<th class="actions"><?php echo __('Activo');?></th>
 		<th><?php echo $this->Paginator->sort('role_id', 'Rol');?></th>
-		<th><?php echo $this->Paginator->sort('email', 'Correo Electrónico');?></th>
-		<th><?php echo $this->Paginator->sort('email_verified', 'Correo Verificado');?></th>
+		<th><?php echo $this->Paginator->sort('username', 'Usuario');?></th>
 		<th><?php echo $this->Paginator->sort('created', 'Creado');?></th>
 		<th><?php echo $this->Paginator->sort('updated', 'Modificado');?></th>
 		<th class="actions"><?php echo __('Opciones');?></th>
@@ -29,14 +28,7 @@
 		<td>
 			<?php echo $this->Html->link($user['Role']['name'], array('controller' => 'roles', 'action' => 'view', $user['Role']['id'])); ?>
 		</td>
-		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td>
-			<?php if($user['User']['email_verified']){ ?> 
-				 <input type='checkbox' checked='checked' disabled='true' class='checkbox'/> 
-			 <?php }else{ ?> 
-				 <input type='checkbox' disabled='true' class='checkbox'/>
-			 <?php } ?>
-		</td>
+		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['updated']); ?>&nbsp;</td>
 		<td class="actions">

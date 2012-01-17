@@ -4,10 +4,10 @@
 		<h2><?php echo __('Modificar Ususario');?></h2>
 		<?php
 		echo $this -> Form -> input('id');
-		echo $this -> Form -> input('role_id');
-		echo $this -> Form -> input('email');
-		echo $this -> Form -> input('is_active');
-		echo $this -> Form -> input('email_verified');
+		echo $this -> Form -> input('role_id', array('label'=>'Rol'));
+		echo $this -> Form -> input('username', array('label'=>'Usuario'));
+		echo $this -> Form -> input('new_password', array('label'=>'Nueva Contraseña', 'type'=>'password'));
+		echo $this -> Form -> input('is_active', array('label'=>'Activo'));
 		?>
 	</fieldset>
 	<?php echo $this -> Html -> link(__('Cancelar'), array('action' => 'index'), array('class' => 'cancelar'));?>

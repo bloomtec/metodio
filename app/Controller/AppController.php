@@ -41,7 +41,7 @@ class AppController extends Controller {
 
 	public function beforeFilter() {
 		$this -> Auth -> authorize = array('Actions' => array('actionPath' => 'controllers'));
-		$this -> Auth -> authenticate = array('Form' => array('fields' => array('username' => 'email', 'password' => 'password')));
+		$this -> Auth -> authenticate = array('Form' => array('fields' => array('username' => 'username', 'password' => 'password')));
 		$this -> Auth -> scope = array('is_active' => true);
 		$this -> Auth -> loginAction = array('controller' => 'users', 'action' => 'login');
 		$this -> Auth -> loginRedirect = array('controller' => 'users', 'action'=>'userRedirect');
