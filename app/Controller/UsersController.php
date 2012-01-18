@@ -90,6 +90,15 @@ class UsersController extends AppController {
 	 */
 	public function index() {
 		$this -> User -> recursive = 0;
+		$conditions = array();
+		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
+			$query = $this->params['named']['query'];
+			$conditions['User.username LIKE'] = "%$query%";
+		}
+		$this -> paginate = array(
+			'conditions' => $conditions,
+			'order' => array('User.username'=>'ASC')
+		);
 		$this -> set('users', $this -> paginate());
 	}
 
@@ -182,6 +191,15 @@ class UsersController extends AppController {
 	 */
 	public function admin_index() {
 		$this -> User -> recursive = 0;
+		$conditions = array();
+		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
+			$query = $this->params['named']['query'];
+			$conditions['User.username LIKE'] = "%$query%";
+		}
+		$this -> paginate = array(
+			'conditions' => $conditions,
+			'order' => array('User.username'=>'ASC')
+		);
 		$this -> set('users', $this -> paginate());
 	}
 
