@@ -48,6 +48,9 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function login() {
+		if($this->Session->read('Auth.User')) {
+			$this -> userRedirect();
+		}		
 		$this -> layout = "login";
 		if ($this -> request -> is('ajax')) {
 			if ($this -> Auth -> login()) {
@@ -135,6 +138,9 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function admin_login() {
+		if($this->Session->read('Auth.User')) {
+			$this -> userRedirect();
+		}
 		$this -> layout = "ez/login";
 		if ($this -> request -> is('ajax')) {
 			if ($this -> Auth -> login()) {
