@@ -94,7 +94,7 @@ class SipDispositivo extends AppModel {
 	);
 	
 	public function beforeSave() {
-		$this -> data['SipDispositivo']['allow'] = 'ulaw;alaw;gsm';
+		$this -> data['SipDispositivo']['allow'] = 'g729;ulaw;alaw;gsm';
 		$this -> data['SipDispositivo']['mailbox'] = $this -> data['SipDispositivo']['name'] . '@default';
 		$this -> data['SipDispositivo']['host'] = 'dynamic';
 		$this -> data['SipDispositivo']['callerid'] = '';
