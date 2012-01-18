@@ -7,7 +7,7 @@
 				<?php echo $this -> element('ajax-login'); ?>
 			</li>
 		<?php }else{?>
-			<li><?php echo $this -> Session -> read("Auth.User.username") . ' :: ' . $this -> Html -> link(__('Cerrar Sesión',true),array("controller"=>"users","action"=>"logout")); ?></li>
+			<li><?php echo 'Ha iniciado sesión como <b>' . $this -> Session -> read("Auth.User.username") . '</b> :: ' . $this -> Html -> link(__('Cerrar Sesión',true),array("controller"=>"users","action"=>"logout")); ?></li>
 		<?php } ?>
 	</ul>
 </div>

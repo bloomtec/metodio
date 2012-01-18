@@ -2,7 +2,7 @@
 	<h2><?php echo __('Informe');?></h2>
 	<table cellpadding="0" cellspacing="0">
 		<tr>
-			<th><?php echo $this -> Paginator -> sort('calldate', 'Fecha');?></th>
+			<th><?php echo $this -> Paginator -> sort('calldate', 'Fecha Y Hora');?></th>
 			<th><?php echo $this -> Paginator -> sort('clid', 'Usuario');?></th>
 			<th><?php echo $this -> Paginator -> sort('src', 'Origen');?></th>
 			<th><?php echo $this -> Paginator -> sort('dst', 'Destino');?></th>
