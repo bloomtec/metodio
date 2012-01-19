@@ -52,6 +52,7 @@ h2 { /*Titulos Secundarios*/
 	font-size: 14px	;
 	text-transform: uppercase;
 	font-weight: bold;
+	float: left;
 }
 h3 { /*SubTttulos principales*/
 	font-size: 165%;
@@ -71,18 +72,32 @@ p {
 	
 #container.login{
 	padding-left: 0;
+	width: auto;
+	position: absolute;
+	top:50%;
+	margin-top:-147px;
+	left: 50%;
+	margin-left: -264px;
 }	
 #container.login #header{
 	text-align: center;
-	padding-top: 100px;
 }
 #container.login #content{
 	width: 488px;
 	margin: 0 auto;
 }
-#container.login .submit input{
+#container.login .submit{
 	float: right;
-	margin-right: 5px;
+	margin-right: 13px;
+}
+#container.login #footer {
+	background-color: #000000;
+    bottom: 0;
+    clear: both;
+    padding: 6px 10px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
 }
 	
 /**  END LOGIN  **/	
@@ -157,7 +172,7 @@ p {
 .search{
 	float: right;
 	width: 400px;
-	margin-top: 10px;
+	margin-bottom: 15px;
 }
 .search label{
 	display: inline;
@@ -244,34 +259,34 @@ p {
 	margin-bottom:0;
 	background: none;
 }
-#container #main-menu ul ul a{
+#main-menu ul ul a{
 	padding-left: 16px;
 	background-image: url(/img/drop_menu.png);
 }
-#main-menu .usuarios a{
+ul .usuarios a{
 	background-image: url(/img/menu_users.png);
 }
-#main-menu .departamentos a{
+ul .departamentos a{
 	background-image: url(/img/menu_departamentos.png);
 }
-#main-menu .centros a{
+ul .centros a{
 	background-image: url(/img/menu_centros.png);
 	
 }
-#main-menu .extensiones a{
+ul .extensiones a{
 	background-image: url(/img/menu_extensiones.png);
 }
-#main-menu .abreviados a{
+ul .abreviados a{
 	background-image: url(/img/menu_abreviados.png);
 }
-#main-menu .informes a{
+ul .informes a{
 	background-image: url(/img/menu_informes.png);
 }
 #content{
 	background: #fff;
 	clear: both;
 	color: #333;
-	padding: 10px 20px 40px 20px;
+	padding: 10px 20px 60px 20px;
 	overflow: auto;
 }
 .paging{
@@ -307,10 +322,14 @@ div.actions a:hover,  a.cancelar:hover{
 	background-color: #1E72D8; 	
 }
 #footer {
-	clear: both;
-	padding: 6px 10px;
-	text-align: center;
-	background-color: #000;
+	background-color: #000000;
+    bottom: 0;
+    clear: both;
+    left: 0;
+    padding: 6px 10px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
 }
 #content .roles h2{
 	background-image: url("/img/users.png");
@@ -373,7 +392,7 @@ div.actions a:hover,  a.cancelar:hover{
     text-transform: capitalize;
     width: 150px;
 }
-.form input,form textarea{
+.form input,form textarea,form .input input{
 	float: left;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 13px;
@@ -382,6 +401,12 @@ div.actions a:hover,  a.cancelar:hover{
 	clear: none;
 	padding-left: 4px;
 }	
+form .input input{
+	padding: 7px 4px;
+}
+#container.login .submit input{
+	margin-top: 5px;
+}
 .form input.time{
 	width: 2.5em;
 }
@@ -596,6 +621,7 @@ form .input input{
 	float: left;
 	width: 300px;
 	clear: none;
+	font-size: 14px;
 }
 form .required {
 	font-weight: bold;

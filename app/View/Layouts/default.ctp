@@ -35,17 +35,21 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		?>
 	</head>
 	<body>
+		<?php echo $this -> element('menu'); ?>
 		<div id="container">
-			<?php echo $this -> element('menu'); ?>
 			<?php echo $this -> element('header'); ?>
 			<div id="content">
 				<?php echo $this -> Session -> flash('auth'); ?>
 				<?php echo $this -> Session -> flash(); ?>
 
 				<?php echo $content_for_layout; ?>
+				
 			</div>
 			<?php echo $this -> element('footer'); ?>
+			
 		</div>
+		
+		
 		<?php echo $this -> element('sql_dump'); ?>
 	</body>
 </html>
