@@ -158,5 +158,8 @@
 				</li>
 			</ul>
 		</li>
+		<li class="panel">
+			<a href="/panel">PANEL</a>
+		</li>
 	</ul>
 </div>

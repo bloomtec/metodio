@@ -25,5 +25,23 @@ $(function() {
 			document.location = beforeQuery + afterQuery;
 		}
 	}
+	
+	/*FUNCIONALIDAD PROPIA DEL PROYECT*/
+	$.each($("#main-menu > ul > li"),function(i,val){
+		if($(val).find("ul").length){
+			$(val).addClass("opened");
+		}
+	});
+	$("#main-menu > ul > li").click(function(){
+		if($(this).is('.opened')){
+			$(this).removeClass('opened');
+			$(this).addClass('closed')
+		}else{
+			if($(this).is('.closed')){
+				$(this).removeClass('closed');
+				$(this).addClass('opened')
+			}
+		}
+	});
 
 });
