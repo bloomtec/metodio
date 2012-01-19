@@ -324,11 +324,10 @@ class UsersController extends AppController {
 		 */
 		$this -> User -> create();
 		$user = array();
-		$user['User']['email'] = 'admin@bloomweb.co';
+		$user['User']['username'] = 'admin';
 		$user['User']['password'] = 'admin';
 		$user['User']['role_id'] = 1;
 		$user['User']['is_active'] = true;
-		$user['User']['email_verified'] = true;
 		$this -> User -> save($user);
 
 		/**
@@ -336,11 +335,10 @@ class UsersController extends AppController {
 		 */
 		$this -> User -> create();
 		$user = array();
-		$user['User']['email'] = 'user@bloomweb.co';
+		$user['User']['username'] = 'user';
 		$user['User']['password'] = 'user';
 		$user['User']['role_id'] = 2;
 		$user['User']['is_active'] = true;
-		$user['User']['email_verified'] = true;
 		$this -> User -> save($user);
 
 		/**
@@ -385,6 +383,7 @@ class UsersController extends AppController {
 		$this -> Acl -> allow($role, 'Cdrs/reporteNumeroDestino');
 		$this -> Acl -> allow($role, 'Cdrs/reporteDepartamento');
 		$this -> Acl -> allow($role, 'Cdrs/reporteCentroCosto');
+		$this -> Acl -> allow($role, 'Cdrs/CSVExport');
 				
 		/**
 		 * Finished

@@ -1,5 +1,12 @@
 <div class="cdrs index">
 	<h2><?php echo __('Informe');?></h2>
+	<div class="csv-export">
+		<?php
+			$fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition';
+			echo $this -> Html -> link('Exportar ésta página a CSV', array('action' => 'CSVExport', 'type'=>'page', 'fields'=>$fields));
+			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'type'=>'full', 'fields'=>$fields));
+		?>
+	</div>
 	<table cellpadding="0" cellspacing="0">
 		<tr>
 			<th><?php echo $this -> Paginator -> sort('calldate', 'Fecha Y Hora');?></th>
