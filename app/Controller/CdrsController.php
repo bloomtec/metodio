@@ -6,25 +6,39 @@ App::uses('AppController', 'Controller');
  * @property Cdr $Cdr
  */
 class CdrsController extends AppController {
+	public function getDates(){
+		$ayer=explode('.', date('Y.m.d',strtotime('yesterday')));
+		$hoy= explode('.', date('Y.m.d.h.i.s')) ;
+		$this -> set(compact('ayer','hoy'));
+	}
+	public function reporteGeneral() {
+		$this -> getDates();
+	}
 
-	public function reporteGeneral() {}
+	public function reporteExtension() {
+		$this -> getDates();
+	}
 
-	public function reporteExtension() {}
+	public function reporteNumeroOrigen() {
+		$this -> getDates();
+	}
 
-	public function reporteNumeroOrigen() {}
-
-	public function reporteNumeroDestino() {}
+	public function reporteNumeroDestino() {
+		$this -> getDates();
+	}
 
 	public function reporteDepartamento() {
 		$this -> loadModel('Department');
 		$departments = $this -> Department -> find('list', array('order' => array('Department.name' => 'ASC')));
 		$this -> set(compact('departments'));
+		$this -> getDates();
 	}
 
 	public function reporteCentroCosto() {
 		$this -> loadModel('CostCenter');
 		$costCenters = $this -> CostCenter -> find('list', array('order' => array('CostCenter.name' => 'ASC')));
 		$this -> set(compact('costCenters'));
+		$this -> getDates();
 	}
 	
 	public function parseData() {
@@ -35,24 +49,24 @@ class CdrsController extends AppController {
 			$redirect = "reporte";
 			if (isset($this -> data['Cdr']) && !empty($this -> data['Cdr'])) {
 				$data = $this -> data['Cdr'];
-	
+			
 				// Fecha inicial
-				if (!empty($data['fecha_inicial'])) {
-					$conditions['Cdr.calldate >='] = $data['fecha_inicial'];
+				if (!empty($data['fecha_inicial']['fecha'])) {
+					$conditions['Cdr.calldate >='] = $data['fecha_inicial']['fecha'];
 				}
 	
 				// Hora inicial
 				$hora_inicial = array('hora' => '0', 'minuto' => '00', 'segundo' => '00', 'usar' => false);
-				if (isset($data['hora_inicial']['hora']['hour']) && !empty($data['hora_inicial']['hora']['hour'])) {
-					$hora_inicial['hora'] = $data['hora_inicial']['hora']['hour'];
+				if (isset($data['hora_inicial']['hora']['hour']) && !empty($data['hora_inicial']['hora'])) {
+					$hora_inicial['hora'] = $data['hora_inicial']['hora'];
 					$hora_inicial['usar'] = true;
 				}
-				if (isset($data['hora_inicial']['minuto']['min']) && !empty($data['hora_inicial']['minuto']['min'])) {
-					$hora_inicial['minuto'] = $data['hora_inicial']['minuto']['min'];
+				if (isset($data['hora_inicial']['minuto']['min']) && !empty($data['hora_inicial']['minuto'])) {
+					$hora_inicial['minuto'] = $data['hora_inicial']['minuto'];
 					$hora_inicial['usar'] = true;
 				}
-				if (isset($data['hora_inicial']['segundo']['min']) && !empty($data['hora_inicial']['segundo']['min'])) {
-					$hora_inicial['segundo'] = $data['hora_inicial']['segundo']['min'];
+				if (isset($data['hora_inicial']['segundo']['min']) && !empty($data['hora_inicial']['segundo'])) {
+					$hora_inicial['segundo'] = $data['hora_inicial']['segundo'];
 					$hora_inicial['usar'] = true;
 				}
 				if (isset($conditions['Cdr.calldate >='])) {
@@ -67,8 +81,8 @@ class CdrsController extends AppController {
 				}
 	
 				// Fecha final
-				if (!empty($data['fecha_final'])) {
-					$conditions['Cdr.calldate <='] = $data['fecha_final'];
+				if (!empty($data['fecha_final']['fecha'])) {
+					$conditions['Cdr.calldate <='] = $data['fecha_final']['fecha'];
 				}
 				// Hora final
 				$hora_final = array('hora' => '0', 'minuto' => '00', 'segundo' => '00', 'usar' => false);

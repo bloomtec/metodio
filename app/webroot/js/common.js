@@ -32,16 +32,20 @@ $(function() {
 			$(val).addClass("opened");
 		}
 	});
-	$("#main-menu > ul > li").click(function(){
-		if($(this).is('.opened')){
-			$(this).removeClass('opened');
-			$(this).addClass('closed')
-		}else{
-			if($(this).is('.closed')){
-				$(this).removeClass('closed');
-				$(this).addClass('opened')
+	$("#main-menu > ul > li").click(function(e){
+		if($(e.target).is("#main-menu > ul > li")){// Si el evento lo lanza el li
+			if($(this).is('.opened')){
+				$(this).removeClass('opened');
+				$(this).addClass('closed')
+			}else{
+				if($(this).is('.closed')){
+					$(this).removeClass('closed');
+					$(this).addClass('opened')
+				}
 			}
 		}
 	});
+	
+	$('form').validate();
 
 });

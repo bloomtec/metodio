@@ -231,7 +231,9 @@ p {
 	background-repeat: no-repeat;
 	padding-top: 5px;
 }
-
+#main-menu ul a:hover{
+	color:red;
+}
 #main-menu ul ul{
 	margin-top: 5px;
 }
@@ -380,7 +382,14 @@ div.actions a:hover,  a.cancelar:hover{
 	clear: none;
 	padding-left: 4px;
 }	
-
+.form input.time{
+	width: 2.5em;
+}
+.form .description{
+	padding-top: 10px;
+	display: block;
+	float: left;
+}
 /** END FORMS **/	
 	
 /** Users Module**/
