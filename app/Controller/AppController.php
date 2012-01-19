@@ -51,9 +51,19 @@ class AppController extends Controller {
 	/**
 	 * @fields	: arreglo que contiene los nombres de las columnas del modelo que se quieren imprimir
 	 */
-	public function CSVExport($fields = null) {
+	public function CSVExport() {
+		$this -> autoRender = false;
 		$model = $this -> modelClass;
 		$model_fields = $this -> $model -> schema();
+		$requested_fields = $this->request->params['named']['fields'];
+		$export_type = $this->request->params['named']['type'];
+		
+		if($requested_fields) {
+			$requested_fields = explode(',', $requested_fields);
+			debug($requested_fields);
+		}
+		
+		/*
 		if ($fields) {
 			foreach ($fields as $field) {
 				if (isset($model_fields[$field]) && $this -> $model -> isForeignKey($field)) {
@@ -70,6 +80,24 @@ class AppController extends Controller {
 				}
 			}
 		}
+		 */
+		
+		/**
+		 * Sección para imprimir
+		 */
+		$delimiter = ','; // Delimitador para el archivo CSV 
+		$enclosure = '"'; // Caracter que encapsula el valor de la columna
+		$filename = "$model.csv"; // Nombre del archivo CSV
+		$line = array(); // Linea de datos para agregar al archivo
+		$buffer = fopen('php://temp/maxmemory:'. (5*1024*1024), 'r+');
+		$rows = array();
+		foreach($rows as $row) {
+			// $line --> $row en este caso
+			fputcsv($buffer, $row, $delimiter, $enclosure);
+		}
+		
+		// Devolverse
+		// $this -> redirect($this->referer());
 	}
 
 	/**
