@@ -1,5 +1,5 @@
 <div class="abbreviates index">
-	<h2><?php echo __('Abbreviates');?></h2>
+	<h2><?php echo __('Abreviados');?></h2>
 	<div class="search">
 		<label>BUSCAR:</label>
 		<input type="text" class="text-search-generic" />
