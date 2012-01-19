@@ -32,16 +32,29 @@ $(function() {
 			$(val).addClass("opened");
 		}
 	});
-	$("#main-menu > ul > li").click(function(){
-		if($(this).is('.opened')){
-			$(this).removeClass('opened');
-			$(this).addClass('closed')
-		}else{
-			if($(this).is('.closed')){
-				$(this).removeClass('closed');
-				$(this).addClass('opened')
+	$("#main-menu > ul > li").click(function(e){
+		if($(e.target).is("#main-menu > ul > li")){// Si el evento lo lanza el li
+			if($(this).is('.opened')){
+				$(this).removeClass('opened');
+				$(this).addClass('closed')
+			}else{
+				if($(this).is('.closed')){
+					$(this).removeClass('closed');
+					$(this).addClass('opened')
+				}
 			}
 		}
 	});
+	//VALIDATOR
+	$.tools.validator.localize("es", {
+		'*'			: 'Valor del campo no valido',
+		':email'  	: 'Formato de email no valido',
+		':number' 	: 'Este campo debe ser númerico',
+		':url' 		: 'Formato de URL no valido',
+		'[max]'	 	: 'Este campo no puede ser mayor que $1',
+		'[min]'		: 'Este campo no puede ser menor que $1',
+		'[required]'	: 'Campo obligatorio'
+	});
+	$('form').validator({lang:'es'});
 
 });
