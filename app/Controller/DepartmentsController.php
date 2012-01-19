@@ -16,9 +16,8 @@ class DepartmentsController extends AppController {
 	public function index() {
 		$this->Department->recursive = 0;
 		$conditions = array();
-		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
-			$query = $this->params['named']['query'];
-			$conditions['Department.name LIKE'] = "%$query%";
+		if (isset($this -> params['named']['query']) && !empty($this -> params['named']['query'])) {
+			$conditions = $this -> searchFilter($this -> params['named']['query'], array('name', 'description'));
 		}
 		$this -> paginate = array(
 			'conditions' => $conditions,
@@ -110,9 +109,8 @@ class DepartmentsController extends AppController {
 	public function admin_index() {
 		$this->Department->recursive = 0;
 		$conditions = array();
-		if(isset($this->params['named']['query']) && !empty($this->params['named']['query'])) {
-			$query = $this->params['named']['query'];
-			$conditions['Department.name LIKE'] = "%$query%";
+		if (isset($this -> params['named']['query']) && !empty($this -> params['named']['query'])) {
+			$conditions = $this -> searchFilter($this -> params['named']['query'], array('name', 'description'));
 		}
 		$this -> paginate = array(
 			'conditions' => $conditions,

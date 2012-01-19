@@ -8,6 +8,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 		<th><?php echo $this->Paginator->sort('abbreviate', 'Abreviado');?></th>
+		<th><?php echo $this->Paginator->sort('name', 'Nombre');?></th>
 		<th><?php echo $this->Paginator->sort('phone', 'Número');?></th>
 		<th class="actions"><?php echo __('Opciones');?></th>
 	</tr>
@@ -17,6 +18,7 @@
 	?>
 	<tr>
 		<td><?php echo h($abbreviate['Abbreviate']['abbreviate']); ?>&nbsp;</td>
+		<td><?php echo h($abbreviate['Abbreviate']['name']); ?>&nbsp;</td>
 		<td><?php echo h($abbreviate['Abbreviate']['phone']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php

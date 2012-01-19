@@ -25,8 +25,7 @@ class AbbreviatesController extends AppController {
 		$this -> Abbreviate -> recursive = 0;
 		$conditions = array();
 		if (isset($this -> params['named']['query']) && !empty($this -> params['named']['query'])) {
-			$query = $this -> params['named']['query'];
-			$conditions['Abbreviate.abbreviate LIKE'] = "%$query%";
+			$conditions = $this -> searchFilter($this -> params['named']['query'], array('abbreviate', 'name', 'phone'));
 		}
 		$this -> paginate = array('conditions' => $conditions, 'order' => array('Abbreviate.abbreviate' => 'ASC'));
 		$this -> set('abbreviates', $this -> paginate());
@@ -117,8 +116,7 @@ class AbbreviatesController extends AppController {
 		$this -> Abbreviate -> recursive = 0;
 		$conditions = array();
 		if (isset($this -> params['named']['query']) && !empty($this -> params['named']['query'])) {
-			$query = $this -> params['named']['query'];
-			$conditions['Abbreviate.abbreviate LIKE'] = "%$query%";
+			$conditions = $this -> searchFilter($this -> params['named']['query'], array('abbreviate', 'name', 'phone'));
 		}
 		$this -> paginate = array('conditions' => $conditions, 'order' => array('Abbreviate.abbreviate' => 'ASC'));
 		$this -> set('abbreviates', $this -> paginate());

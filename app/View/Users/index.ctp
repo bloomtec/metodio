@@ -1,5 +1,5 @@
 <div class="users index">
-	<h2><?php echo __('Users');?></h2>
+	<h2><?php echo __('Usuarios');?></h2>
 	<div class="search">
 		<label>BUSCAR:</label>
 		<input type="text" class="text-search-generic" />

@@ -5,6 +5,7 @@
 		<?php
 		echo $this -> Form -> input('id');
 		echo $this -> Form -> input('abbreviate', array('label' => 'Abreviado'));
+		echo $this -> Form -> input('name', array('label' => 'Nombre'));
 		echo $this -> Form -> input('phone', array('label' => 'Número'));
 		?>
 	</fieldset>
