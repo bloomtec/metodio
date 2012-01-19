@@ -44,8 +44,31 @@ class AppController extends Controller {
 		$this -> Auth -> authenticate = array('Form' => array('fields' => array('username' => 'username', 'password' => 'password')));
 		$this -> Auth -> scope = array('is_active' => true);
 		$this -> Auth -> loginAction = array('controller' => 'users', 'action' => 'login');
-		$this -> Auth -> loginRedirect = array('controller' => 'users', 'action'=>'userRedirect');
-		$this -> Auth -> logoutRedirect = array('controller' => 'users', 'action' => 'login', 'admin'=>false);
+		$this -> Auth -> loginRedirect = array('controller' => 'users', 'action' => 'userRedirect');
+		$this -> Auth -> logoutRedirect = array('controller' => 'users', 'action' => 'login', 'admin' => false);
+	}
+
+	public function searchFilter($query = null, $fields = null) {
+		$conditions = array();
+		$model = $this -> modelClass;
+		$model_fields = $this -> $model -> schema();
+		if ($fields) {
+			foreach ($fields as $field) {
+				if(isset($model_fields[$field]) && $this->$model->isForeignKey($field)) {
+					$foreign_model = substr(Inflector::camelize($field),0,-2);
+					$this -> $model -> $foreign_model -> recursive = -1;
+					$foreign_display_name = $this -> $model -> $foreign_model -> displayField;
+					$foreign_conditions = array("$foreign_model.$foreign_display_name LIKE" => "%$query%");
+					$foreign_results = $this -> $model -> $foreign_model -> find('list', array('fields' => array("$foreign_model.id"), 'conditions' => $foreign_conditions));
+					if(!empty($foreign_results)) {
+						$conditions['OR'][$model . ".$field"] = $foreign_results;
+					}
+				} elseif(isset($model_fields[$field])) {
+					$conditions['OR'][$model . ".$field LIKE"] = "%$query%";
+				}
+			}
+		}
+		return $conditions;
 	}
 
 }

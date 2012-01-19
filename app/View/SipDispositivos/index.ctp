@@ -10,7 +10,7 @@
 		<th><?php echo $this->Paginator->sort('name', 'Nombre');?></th>
 		<th><?php echo $this->Paginator->sort('host', 'Host');?></th>
 		<th><?php echo $this->Paginator->sort('nat', 'NAT');?></th>
-		<th><?php echo $this->Paginator->sort('callerid', 'ID Marcado');?></th>
+		<th><?php echo $this->Paginator->sort('callerid', 'CLI');?></th>
 		<th><?php echo $this->Paginator->sort('context', 'Contexto');?></th>		
 		<th><?php echo $this->Paginator->sort('department_id', 'Departamento');?></th>
 		<th><?php echo $this->Paginator->sort('cost_center_id', 'Centro De Costo');?></th>

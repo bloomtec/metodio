@@ -5,6 +5,11 @@
 		<?php echo h($abbreviate['Abbreviate']['abbreviate']); ?>
 		&nbsp;
 	</h3>
+	<label><?php echo __('Nombre'); ?></label>
+	<h3>
+		<?php echo h($abbreviate['Abbreviate']['name']); ?>
+		&nbsp;
+	</h3>
 	<label><?php echo __('Número'); ?></label>
 	<h3>
 		<?php echo h($abbreviate['Abbreviate']['phone']); ?>

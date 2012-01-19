@@ -4,6 +4,7 @@
 		<h2><?php echo __('Agregar Abreviado');?></h2>
 		<?php
 		echo $this -> Form -> input('abbreviate', array('label' => 'Abreviado'));
+		echo $this -> Form -> input('name', array('label' => 'Nombre'));
 		echo $this -> Form -> input('phone', array('label' => 'Número'));
 		?>
 	</fieldset>
