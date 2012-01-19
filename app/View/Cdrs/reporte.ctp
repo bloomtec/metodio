@@ -3,8 +3,9 @@
 	<div class="csv-export">
 		<?php
 			$fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition';
-			echo $this -> Html -> link('Exportar ésta página a CSV', array('action' => 'CSVExport', 'type'=>'page', 'fields'=>$fields));
-			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'type'=>'full', 'fields'=>$fields));
+			$headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Duración,Estado';
+			echo $this -> Html -> link('Exportar ésta página a CSV', array('action' => 'CSVExport', 'type'=>'page', 'fields'=>$fields, 'headers'=>$headers));
+			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'type'=>'full', 'fields'=>$fields, 'headers'=>$headers));
 		?>
 	</div>
 	<table cellpadding="0" cellspacing="0">

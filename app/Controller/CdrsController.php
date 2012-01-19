@@ -203,8 +203,11 @@ class CdrsController extends AppController {
 		}
 		$this -> paginate = array('conditions' => $conditions, 'order' => array('Cdr.calldate' => 'ASC'));
 		$csv_data = $this -> Cdr -> find('all', array('conditions' => $conditions));
-		$this -> set('cdrs', $this -> paginate());
+		$cdrs = $this -> paginate();
+		$this -> set('cdrs', $cdrs);
 		$this -> set('csv_data', $csv_data);
+		$this -> Session -> write('CSVExport.full', $csv_data);
+		$this -> Session -> write('CSVExport.page', $cdrs);
 	}
 
 }

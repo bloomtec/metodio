@@ -48,82 +48,131 @@ class AppController extends Controller {
 		$this -> Auth -> logoutRedirect = array('controller' => 'users', 'action' => 'login', 'admin' => false);
 	}
 
-	/**
-	 * @fields	: arreglo que contiene los nombres de las columnas del modelo que se quieren imprimir
-	 */
 	public function CSVExport() {
 		$this -> autoRender = false;
 		$model = $this -> modelClass;
-		$model_fields = $this -> $model -> schema();
-		$requested_fields = $this->request->params['named']['fields'];
-		$export_type = $this->request->params['named']['type'];
-		
-		if($requested_fields) {
-			$requested_fields = explode(',', $requested_fields);
-			debug($requested_fields);
+		$model_schema = $this -> $model -> schema();
+		$model_fields = array();
+
+		foreach ($model_schema as $model_field => $schema) {
+			$model_fields[] = $model_field;
 		}
-		
-		/*
-		if ($fields) {
-			foreach ($fields as $field) {
-				if (isset($model_fields[$field]) && $this -> $model -> isForeignKey($field)) {
-					$foreign_model = substr(Inflector::camelize($field), 0, -2);
-					$this -> $model -> $foreign_model -> recursive = -1;
-					$foreign_display_name = $this -> $model -> $foreign_model -> displayField;
-					$foreign_conditions = array("$foreign_model.$foreign_display_name LIKE" => "%$query%");
-					$foreign_results = $this -> $model -> $foreign_model -> find('list', array('fields' => array("$foreign_model.id"), 'conditions' => $foreign_conditions));
-					if (!empty($foreign_results)) {
-						$conditions['OR'][$model . ".$field"] = $foreign_results;
-					}
-				} elseif (isset($model_fields[$field])) {
-					$conditions['OR'][$model . ".$field LIKE"] = "%$query%";
-				}
-			}
-		}
-		 */
-		
+
 		/**
-		 * Sección para imprimir
+		 * Estos campos deben de llegar por medio de $this -> request -> params
 		 */
-		$delimiter = ','; // Delimitador para el archivo CSV 
-		$enclosure = '"'; // Caracter que encapsula el valor de la columna
-		$filename = "$model.csv"; // Nombre del archivo CSV
-		$line = array(); // Linea de datos para agregar al archivo
-		$buffer = fopen('php://temp/maxmemory:'. (5*1024*1024), 'r+');
-		$rows = array();
-		foreach($rows as $row) {
-			// $line --> $row en este caso
-			fputcsv($buffer, $row, $delimiter, $enclosure);
+		$requested_fields = null;
+		$requested_headers = null;
+		$export_type = null;
+
+		/**
+		 * Este campo debe de asignarse en la sesión
+		 */
+		$export_data = null;
+
+		/**
+		 * Procesar los datos enviados
+		 */
+		if (isset($this -> request -> params['named']['fields']) && !empty($this -> request -> params['named']['fields'])) {
+			$requested_fields = $this -> request -> params['named']['fields'];
+			$requested_fields = explode(',', $requested_fields);
+			$model_fields = array_intersect($model_fields, $requested_fields);
 		}
-		
-		// Devolverse
-		// $this -> redirect($this->referer());
+
+		if (isset($this -> request -> params['named']['headers']) && !empty($this -> request -> params['named']['headers'])) {
+			$requested_headers = $this -> request -> params['named']['headers'];
+			$requested_headers = explode(',', $requested_headers);
+		}
+
+		if (isset($this -> request -> params['named']['type']) && !empty($this -> request -> params['named']['type'])) {
+			$export_type = $this -> request -> params['named']['type'];
+		}
+
+		if ($export_type == 'full') {
+			$export_data = $this -> Session -> read('CSVExport.full');
+		} elseif ($export_type == 'page') {
+			$export_data = $this -> Session -> read('CSVExport.page');
+		} else {
+			$export_data = false;
+		}
+
+		/**
+		 * Sección para procesar los datos e iniciar la descarga al usuario
+		 */
+		if ($export_data && $model_fields) {
+			// Delimitador para el archivo CSV
+			$delimiter = ',';
+			// Caracter que encapsula el valor de la columna
+			$enclosure = '"';
+			// Nombre del archivo CSV
+			$filename = "$model.csv";
+			// Linea de datos para agregar al archivo
+			$line = array();
+			// Definir buffer de memoria
+			$buffer = fopen('php://temp/maxmemory:' . (5 * 1024 * 1024), 'r+');
+
+			// Asignar el header
+			if ($requested_headers) {
+				fputcsv($buffer, $requested_headers, $delimiter, $enclosure);
+			} else {
+				fputcsv($buffer, $model_fields, $delimiter, $enclosure);
+			}
+
+			// Asignar los valores
+			foreach ($export_data as $key => $row) {
+				// $line --> $row en este caso
+				foreach ($model_fields as $model_field) {
+					$line[] = $row[$model][$model_field];
+				}
+				fputcsv($buffer, $line, $delimiter, $enclosure);
+				$line = array();
+			}
+
+			header("Content-type:application/vnd.ms-excel");
+			header("Content-disposition:attachment;filename=" . $filename);
+			rewind($buffer);
+			$output = stream_get_contents($buffer);
+			fclose($buffer);
+			return $output;
+		} else {
+			// No se puede exportar
+		}
 	}
 
 	/**
-	 * @query	: el texto que se va a buscaar
+	 * @query	: el texto que se va a buscar
 	 * @fields	: arreglo que contiene los nombres de las columnas del modelo en los que se quiere buscar
+	 * 			  en caso de que no se defina, se toman todas las columnas
 	 */
 	public function searchFilter($query = null, $fields = null) {
 		$conditions = array();
 		$model = $this -> modelClass;
-		$model_fields = $this -> $model -> schema();
+		$model_schema = $this -> $model -> schema();
+		$model_fields = array();
+
+		foreach ($model_schema as $model_field => $schema) {
+			$model_fields[] = $model_field;
+		}
+
 		if ($fields) {
-			foreach ($fields as $field) {
-				if (isset($model_fields[$field]) && $this -> $model -> isForeignKey($field)) {
-					$foreign_model = substr(Inflector::camelize($field), 0, -2);
-					$this -> $model -> $foreign_model -> recursive = -1;
-					$foreign_display_name = $this -> $model -> $foreign_model -> displayField;
-					$foreign_conditions = array("$foreign_model.$foreign_display_name LIKE" => "%$query%");
-					$foreign_results = $this -> $model -> $foreign_model -> find('list', array('fields' => array("$foreign_model.id"), 'conditions' => $foreign_conditions));
-					if (!empty($foreign_results)) {
-						$conditions['OR'][$model . ".$field"] = $foreign_results;
-					}
-				} elseif (isset($model_fields[$field])) {
-					$conditions['OR'][$model . ".$field LIKE"] = "%$query%";
+			$model_fields = array_intersect($model_fields, $fields);
+		}
+
+		foreach ($model_fields as $model_field) {
+			if ($this -> $model -> isForeignKey($model_field)) {
+				$foreign_model = substr(Inflector::camelize($model_field), 0, -2);
+				$this -> $model -> $foreign_model -> recursive = -1;
+				$foreign_display_name = $this -> $model -> $foreign_model -> displayField;
+				$foreign_conditions = array("$foreign_model.$foreign_display_name LIKE" => "%$query%");
+				$foreign_results = $this -> $model -> $foreign_model -> find('list', array('fields' => array("$foreign_model.id"), 'conditions' => $foreign_conditions));
+				if (!empty($foreign_results)) {
+					$conditions['OR'][$model . ".$model_field"] = $foreign_results;
 				}
+			} else {
+				$conditions['OR'][$model . ".$model_field LIKE"] = "%$query%";
 			}
 		}
+
 		return $conditions;
 	}
 
