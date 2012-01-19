@@ -45,7 +45,16 @@ $(function() {
 			}
 		}
 	});
-	
-	$('form').validate();
+	//VALIDATOR
+	$.tools.validator.localize("es", {
+		'*'			: 'Valor del campo no valido',
+		':email'  	: 'Formato de email no valido',
+		':number' 	: 'Este campo debe ser númerico',
+		':url' 		: 'Formato de URL no valido',
+		'[max]'	 	: 'Este campo no puede ser mayor que $1',
+		'[min]'		: 'Este campo no puede ser menor que $1',
+		'[required]'	: 'Campo obligatorio'
+	});
+	$('form').validator({lang:'es'});
 
 });
