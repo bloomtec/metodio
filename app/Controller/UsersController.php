@@ -13,12 +13,15 @@ class UsersController extends AppController {
 	}
 	
 	public function userRedirect() {
+		/*
 		$role_id = $this -> Session -> read('Auth.User.role_id');
 		if($role_id == 1) {
 			$this -> redirect(array('controller' => 'SipDispositivos', 'action'=>'index', 'admin'=>true));
 		} else {
 			$this -> redirect(array('controller' => 'SipDispositivos', 'action'=>'index'));
 		}
+		 */
+		$this -> redirect(array('controller' => 'pages', 'action'=>'display', 'home'));
 	}
 
 	public function verificarAcceso() {
