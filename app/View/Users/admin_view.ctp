@@ -1,5 +1,5 @@
 <div class="users view">
-<h2><?php  echo __('User');?></h2>
+<h2><?php  echo __('Usuario');?></h2>
 		<label><?php echo __('Rol'); ?></label>
 		<h3>
 			<?php echo $this->Html->link($user['Role']['name'], array('controller' => 'roles', 'action' => 'view', $user['Role']['id'])); ?>

@@ -1,7 +1,7 @@
 <div class="users form">
 	<?php echo $this -> Form -> create('User');?>
 	<fieldset>
-		<h2><?php echo __('Modificar Ususario');?></h2>
+		<h2><?php echo __('Modificar Usuario');?></h2>
 		<?php
 		echo $this -> Form -> input('id');
 		echo $this -> Form -> input('role_id', array('label'=>'Rol'));

@@ -1,7 +1,7 @@
 <div class="departments form">
 <?php echo $this->Form->create('Department');?>
 	<fieldset>
-		<h2><?php echo __('Modificar Departmento'); ?></h2>
+		<h2><?php echo __('Modificar Departamento'); ?></h2>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name', array('label'=>'Departamento'));

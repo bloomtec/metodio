@@ -1,7 +1,7 @@
 <div class="sipDispositivos form">
 	<?php echo $this -> Form -> create('SipDispositivo');?>
 	<fieldset>
-		<h2><?php echo __('Modificar Sip Dispositivo');?></h2>
+		<h2><?php echo __('Modificar Extensión');?></h2>
 		<?php
 		echo $this -> Form -> input('id');
 		echo $this -> Form -> input('name', array('label' => 'Nombre'));
