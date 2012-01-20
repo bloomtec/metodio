@@ -78,6 +78,8 @@ p {
 	margin-top:-147px;
 	left: 50%;
 	margin-left: -264px;
+	background: none;
+	min-height: 0;
 }	
 #container.login #header{
 	text-align: center;
@@ -249,7 +251,7 @@ p {
 	padding-top: 5px;
 }
 #main-menu ul a:hover{
-	color:red;
+	color:#C15007;
 }
 #main-menu ul ul{
 	margin-top: 5px;
@@ -284,6 +286,9 @@ ul .abreviados a{
 ul .informes a{
 	background-image: url(/img/menu_informes.png);
 }
+ul .panel a{
+	background-image: url(/img/telefono2.png);
+}
 #content{
 	background: #fff;
 	clear: both;
@@ -306,7 +311,7 @@ ul .informes a{
 .actions li{
 	list-style: none;
 }
-.actions a, a.cancelar{
+.actions a, a.cancelar, .cdrs a{
 	background-color: #13498e;
 	color:#fff;
 	padding: 6px;
@@ -316,6 +321,14 @@ ul .informes a{
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	float: left;
+}
+.cdrs a{
+	margin-right: 1em;
+	margin-bottom: 15px;
+	padding: 10px 8px;
+}
+.cdrs th a:hover{
+	background: none;
 }
 div.actions a, a.cancelar{
 	margin-right: 1em;
@@ -377,8 +390,8 @@ div.actions a:hover,  a.cancelar:hover{
     padding-top: 15px;
     float: left;
 }
-#content .departments h2{
-	background-image: url("/img/departamentos.png");
+#content .sipDispositivos h2{
+	background-image: url("/img/extensiones.png");
     background-position: left center;
     background-repeat: no-repeat;
     height: 27px;
@@ -387,6 +400,45 @@ div.actions a:hover,  a.cancelar:hover{
     padding-left: 70px;
     padding-top: 15px;
     float: left;
+}
+#content .abbreviates h2{
+	background-image: url("/img/abreviados.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 27px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    padding-left: 70px;
+    padding-top: 15px;
+    float: left;
+}
+#CdrReportForm legend{
+	background-image: url("/img/informes.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 27px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    padding-left: 70px;
+    padding-top: 15px;
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#CdrReportForm fieldset{
+	clear: left;
+}
+.cdrs h2{
+	background-image: url("/img/informes.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 27px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    padding-left: 70px;
+    padding-top: 15px;
+    width: 92%;
+
 }
 #footer h4{
 	color: #FFFFFF;
@@ -495,12 +547,20 @@ form .input input{
 #user-menu li{
 	display:inline;
 	position:relative;
+	margin-right: 10px;
 	
 }
 #user-menu li a{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	font-weight: bold;
+	background-image: url("/img/logout.png");
+    background-position: left top;
+    background-repeat: no-repeat;
+    color: #C15007;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-left: 32px;
+    padding-top: 13px;
 }
 #user-menu div.ajax-login{
 	position:absolute;
@@ -518,7 +578,7 @@ table {
 	margin-bottom: 10px;
 	width: 100%;
 }
-th{
+#content th{
 	border:0;
 	background-color:#13498e;
 	text-align: left;
@@ -528,15 +588,16 @@ th{
 	font-weight: bold;
 	font-size: 13px;
 }
-th a{
+#content th a{
 	color:#fff;
 }
-th a {
+#content th a {
 	display: block;
     font-size: 13px;
     padding: 2px 4px;
     text-decoration: none;
     font-weight: bold;
+    margin-bottom: 0;
 }
 th a.asc:after {
 	content: ' ⇣';
@@ -749,6 +810,9 @@ form .submit input[type=submit] {
 	text-shadow: none;
 }
 form .submit input[type=submit]:hover {
+	background: #1E72D8;
+}
+.cdrs a:hover{
 	background: #1E72D8;
 }
 /* Form errors */
