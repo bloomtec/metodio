@@ -159,7 +159,11 @@ p {
 #container {
 	text-align: left;
 	position: relative;
-	padding-left:18%; 
+	padding-left:18%;
+	background-image: url(/img/trama_menu.png);
+	background-position: 17% 0%;
+	background-repeat: repeat-y; 
+	min-height: 800px;
 }
 #header{
 	padding: 10px 20px;
@@ -208,9 +212,7 @@ p {
 	position: absolute;
 	left: 0;
 	top: 0;
-	background-image: url(/img/trama_menu.png);
-	background-position: bottom right;
-	background-repeat: repeat-y;
+	
 }
 #main-menu .logo{
 	display: block;
@@ -333,6 +335,50 @@ div.actions a:hover,  a.cancelar:hover{
 }
 #content .roles h2{
 	background-image: url("/img/users.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 27px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    padding-left: 70px;
+    padding-top: 15px;
+    float: left;
+}
+#content .users h2{
+	background-image: url("/img/users.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 27px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    padding-left: 70px;
+    padding-top: 15px;
+    float: left;
+}
+#content .departments h2{
+	background-image: url("/img/departamentos.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 27px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    padding-left: 70px;
+    padding-top: 15px;
+    float: left;
+}
+#content .costCenters h2{
+	background-image: url("/img/centros_costo.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 27px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    padding-left: 70px;
+    padding-top: 15px;
+    float: left;
+}
+#content .departments h2{
+	background-image: url("/img/departamentos.png");
     background-position: left center;
     background-repeat: no-repeat;
     height: 27px;
