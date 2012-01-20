@@ -13,8 +13,7 @@
 			USUARIOS
 		</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+			Listado de los usuarios que tienen acceso a esta aplicación.
 		</p>
 	</a>
 	<?php endif; ?>
@@ -24,7 +23,7 @@
 			DEPARTAMENTOS
 		</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+			Listado de los departamentos que han sido creados.
 		</p>
 	</a>
 	<?php endif; ?>
@@ -34,7 +33,7 @@
 			CENTROS DE COSTO
 		</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+			Listado de los centros de costo disponibles.
 		</p>
 	</a>
 	<?php endif; ?>
@@ -44,7 +43,7 @@
 			EXTENSIONES
 		</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+			Extensiones creadas para los usuarios de linea telefónica.
 		</p>
 	</a>
 	<?php endif; ?>
@@ -54,7 +53,7 @@
 			ABREVIADOS
 		</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+			Combinaciones especiales asignadas a números telefónicos especificos para poder así realizar llamadas a estos.
 		</p>
 	</a>
 	<?php endif; ?>
@@ -63,7 +62,7 @@
 			INFORMES
 		</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+			Visualización de historial de llamadas registradas.
 		</p>
 	</a>
 </div>
