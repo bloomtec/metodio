@@ -55,6 +55,6 @@ $(function() {
 		'[min]'		: 'Este campo no puede ser menor que $1',
 		'[required]'	: 'Campo obligatorio'
 	});
-	$('form').validator({lang:'es'});
+	$('form').validator({lang:'es',messageClass:'error-form'});
 
 });
