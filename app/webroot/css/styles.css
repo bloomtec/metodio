@@ -513,15 +513,19 @@ form .input input{
 	display: block;
 	float: left;
 }
-.error {
+.error-form {
 	/* supply height to ensure consistent positioning for every browser */
-	height:15px;
-	background-color:#FFFE36;
-	border:1px solid #E1E16D;
-	font-size:11px;
-	color:#000;
-	padding:3px 10px;
-	margin-left:-2px;
+	 background-color: #C15007;
+    background-image: url("/img/triangulo.jpg");
+    background-position: left center;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: bold;
+    height: 15px;
+    margin-left: -30px;
+    margin-top: -1px;
+    padding: 6px 10px 6px 33px;
 
 
 	/* CSS3 spicing for mozilla and webkit */
