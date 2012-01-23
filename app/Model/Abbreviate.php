@@ -54,8 +54,11 @@ class Abbreviate extends AppModel {
 			$this->updateFromfile=true;
 			$this->query('TRUNCATE TABLE abbreviates');
 			$success = true;
+			debug($data);
 			foreach ($data as $key => $value) {
-				if(!empty($value) && !$this -> save($value)) $success = false;
+				if(!empty($key) && !empty($value)) {
+					if(!$this -> save($value)) $success = false;
+				}
 			}
 			$this->updateFromfile=false;
 			return $success;
