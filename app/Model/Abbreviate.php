@@ -56,9 +56,7 @@ class Abbreviate extends AppModel {
 			$success = true;
 			debug($data);
 			foreach ($data as $key => $value) {
-				if(!empty($key) && !empty($value)) {
-					if(!$this -> save($value)) $success = false;
-				}
+				if(!empty($value['Abbreviate']['phone']) && !$this -> save($value)) $success = false;
 			}
 			$this->updateFromfile=false;
 			return $success;
