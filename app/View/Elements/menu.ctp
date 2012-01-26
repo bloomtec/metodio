@@ -70,25 +70,25 @@
 		</li>
 		<?php endif; ?>
 		<li class="informes">
-			<a href="/cdrs/reporteGeneral">INFORMES</a>
+			<a href="/cdrs/informeGeneral">INFORMES</a>
 			<ul>
 				<li>
-					<a href="/cdrs/reporteGeneral">General</a>
+					<a href="/cdrs/informeGeneral">General</a>
 				</li>
 				<li>
-					<a href="/cdrs/reporteExtension">Por extensión</a>
+					<a href="/cdrs/informeExtension">Por extensión</a>
 				</li>
 				<li>
-					<a href="/cdrs/reporteNumeroOrigen">Por número de origen</a>
+					<a href="/cdrs/informeNumeroOrigen">Por número de origen</a>
 				</li>
 				<li>
-					<a href="/cdrs/reporteNumeroDestino">Por número de destino</a>
+					<a href="/cdrs/informeNumeroDestino">Por número de destino</a>
 				</li>
 				<li>
-					<a href="/cdrs/reporteDepartamento">Por departamento</a>
+					<a href="/cdrs/informeDepartamento">Por departamento</a>
 				</li>
 				<li>
-					<a href="/cdrs/reporteCentroCosto">Por centro de costo</a>
+					<a href="/cdrs/informeCentroCosto">Por centro de costo</a>
 				</li>
 			</ul>
 		</li>

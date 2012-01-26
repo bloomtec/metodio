@@ -18,7 +18,7 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Volver'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('Modificar Abreviado'), array('action' => 'edit', $abbreviate['Abbreviate']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Volver'), array('action' => 'index')); ?> </li>
 	</ul>
 </div>

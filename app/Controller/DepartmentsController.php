@@ -7,7 +7,9 @@ App::uses('AppController', 'Controller');
  */
 class DepartmentsController extends AppController {
 
-
+	public function beforeRender(){
+		$this -> set('title_for_layout','Departamentos');
+	}
 /**
  * index method
  *

@@ -6,39 +6,46 @@ App::uses('AppController', 'Controller');
  * @property Cdr $Cdr
  */
 class CdrsController extends AppController {
+
 	public function getDates(){
 		$ayer=explode('.', date('Y.m.d',strtotime('yesterday')));
 		$hoy= explode('.', date('Y.m.d.h.i.s')) ;
 		$this -> set(compact('ayer','hoy'));
 	}
-	public function reporteGeneral() {
+	public function informeGeneral() {
 		$this -> getDates();
+		$this -> set('title_for_layout','Informe general');
 	}
 
-	public function reporteExtension() {
+	public function informeExtension() {
 		$this -> getDates();
+		$this -> set('title_for_layout','Informe por extensión');
 	}
 
-	public function reporteNumeroOrigen() {
+	public function informeNumeroOrigen() {
 		$this -> getDates();
+		$this -> set('title_for_layout','Informe por numero de origen');
 	}
 
-	public function reporteNumeroDestino() {
+	public function informeNumeroDestino() {
 		$this -> getDates();
+		$this -> set('title_for_layout','Informe por numero de destino');
 	}
 
-	public function reporteDepartamento() {
+	public function informeDepartamento() {
 		$this -> loadModel('Department');
 		$departments = $this -> Department -> find('list', array('order' => array('Department.name' => 'ASC')));
 		$this -> set(compact('departments'));
 		$this -> getDates();
+		$this -> set('title_for_layout','Informe por departamento');
 	}
 
-	public function reporteCentroCosto() {
+	public function informeCentroCosto() {
 		$this -> loadModel('CostCenter');
 		$costCenters = $this -> CostCenter -> find('list', array('order' => array('CostCenter.name' => 'ASC')));
 		$this -> set(compact('costCenters'));
 		$this -> getDates();
+		$this -> set('title_for_layout','Informe por centro de costo');
 	}
 	
 	public function parseData() {

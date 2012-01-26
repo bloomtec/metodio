@@ -9,14 +9,14 @@
 </div>
 <div class="actions">
 	<ul>
-		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'index')))) : ?>
-		<li>
-			<?php echo $this -> Html -> link(__('Volver'), array('action' => 'index'));?>
-		</li>
-		<?php endif;?>
 		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'edit')))) : ?>
 		<li>
 			<?php echo $this -> Html -> link(__('Modificar Centro De Costo'), array('action' => 'edit', $costCenter['CostCenter']['id']));?>
+		</li>
+		<?php endif;?>
+		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'index')))) : ?>
+		<li>
+			<?php echo $this -> Html -> link(__('Volver'), array('action' => 'index'));?>
 		</li>
 		<?php endif;?>
 	</ul>

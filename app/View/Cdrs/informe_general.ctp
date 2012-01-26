@@ -4,6 +4,6 @@
 		<fieldset class="fieldet">
 			<?php echo $this -> element('campos-generales-reporte');?>
 		</fieldset>
-		<input type="submit" value="Mostrar Reporte" />
+		<?php echo $this-> Form -> submit("Mostrar Informe");?>
 	</form>
 </div>

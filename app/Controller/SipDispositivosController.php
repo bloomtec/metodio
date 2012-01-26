@@ -6,7 +6,10 @@ App::uses('AppController', 'Controller');
  * @property SipDispositivo $SipDispositivo
  */
 class SipDispositivosController extends AppController {
-
+	
+	public function beforeRender(){
+		$this -> set('title_for_layout','Extensiones');
+	}
 	/**
 	 * index method
 	 *

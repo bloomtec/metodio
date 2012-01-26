@@ -16,6 +16,6 @@
 		echo $this -> Form -> input('cost_center_id', array('label' => 'Centro De Costo', 'empty' => __('Seleccione...', true)));
 		?>
 	</fieldset>
-	<?php echo $this -> Html -> link(__('Cancelar'), array('action' => 'index'), array('class' => 'cancelar'));?>
 	<?php echo $this -> Form -> end(__('Guardar'));?>
+	<?php echo $this -> Html -> link(__('Cancelar'), array('action' => 'index'), array('class' => 'cancelar'));?>
 </div>

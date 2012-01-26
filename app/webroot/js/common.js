@@ -1,8 +1,17 @@
 $(function() {
+	$.tools.dateinput.localize("es",  {
+		   months:        'enero,febrero,marzo,abril,mayo,junio,julio,agosto,' +
+		                   	'septiembre,octubre,noviembre,diciembre',
+		   shortMonths:   'ene,feb,mar,abr,may,jun,jul,ago,sep,oct,nov,dic',
+		   days:          'domingo,lunes,martes,miercoles,jueves,viernes,sabado',
+		   shortDays:     'dom,lun,mar,mie,jue,vie,sab'
+		});
 	$(":date").dateinput({
 		// this is displayed to the user
 		format : 'yyyy-mm-dd',
-		offset : [-35, 330]
+		offset : [-35, 330],
+		lang: 'es',
+		firstDay: 1
 	});
 	$(".index .search-generic").click(function() {
 		search();

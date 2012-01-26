@@ -4,8 +4,8 @@
 		<?php
 			$fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition';
 			$headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Duración,Estado';
-			echo $this -> Html -> link('Exportar ésta página a CSV', array('action' => 'CSVExport', 'type'=>'page', 'fields'=>$fields, 'headers'=>$headers));
-			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'type'=>'full', 'fields'=>$fields, 'headers'=>$headers));
+			//echo $this -> Html -> link('Exportar ésta página a CSV', array('action' => 'CSVExport', 'type'=>'page', 'fields'=>$fields, 'headers'=>$headers));
+			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'type'=>'full', 'fields'=>$fields, 'headers'=>$headers),array('class'=>'csv'));
 		?>
 	</div>
 	<table cellpadding="0" cellspacing="0">
@@ -35,17 +35,19 @@
 		</tr>
 		<?php endforeach;?>
 	</table>
-	<div class="paging">
-		<!--<p>
-		<?php
-		echo $this->Paginator->counter(array(
-		'format' => __('Page {:page} of {:pages}, mostrando {:current} registro de {:count} totales, comenzando en el registro record {:start}, hasta el registro {:end}')
-		));
-		?>	</p>-->
-		<?php
-			echo $this -> Paginator -> prev('< ' . __('Anterior'), array(), null, array('class' => 'prev disabled'));
-			echo $this -> Paginator -> numbers(array('separator' => ''));
-			echo $this -> Paginator -> next(__('Siguiente') . ' >', array(), null, array('class' => 'next disabled'));
-		?>
+		<div class="paging">
+	<!--<p>
+	<?php
+	echo $this->Paginator->counter(array(
+	'format' => __('Page {:page} of {:pages}, mostrando {:current} registro de {:count} totales, comenzando en el registro record {:start}, hasta el registro {:end}')
+	));
+	?>	</p>-->
+	<?php
+		echo $this->Paginator->first('<<  ', array(), null, array('class' => 'prev disabled'));
+		echo $this->Paginator->prev('< ' . __('Anterior'), array(), null, array('class' => 'prev disabled'));
+		echo $this->Paginator->numbers(array('separator' => ''));
+		echo $this->Paginator->next(__('Siguiente') . ' >', array(), null, array('class' => 'next disabled'));
+		echo $this->Paginator->last('>>  ', array(), null, array('class' => 'next disabled'));
+	?>
 	</div>
 </div>

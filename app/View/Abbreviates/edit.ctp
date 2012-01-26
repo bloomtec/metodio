@@ -9,6 +9,7 @@
 		echo $this -> Form -> input('phone', array('label' => 'Número'));
 		?>
 	</fieldset>
-	<?php echo $this -> Html -> link(__('Cancelar'), array('action' => 'index'), array('class' => 'cancelar'));?>
 	<?php echo $this -> Form -> end(__('Guardar'));?>
+	<?php echo $this -> Html -> link(__('Cancelar'), array('action' => 'index'), array('class' => 'cancelar'));?>
+	
 </div>

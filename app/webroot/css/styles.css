@@ -19,6 +19,9 @@
 	margin:0;
 	padding:0;
 }
+input{
+	padding:0;
+}
 
 /** General Style Info **/
 body {
@@ -311,7 +314,7 @@ ul .panel a{
 .actions li{
 	list-style: none;
 }
-.actions a, a.cancelar, .cdrs a{
+.actions a, a.cancelar, .cdrs a.csv{
 	background-color: #13498e;
 	color:#fff;
 	padding: 6px;
@@ -322,12 +325,12 @@ ul .panel a{
 	border-radius: 3px;
 	float: left;
 }
-.cdrs a{
+.cdrs a.csv{
 	margin-right: 1em;
 	margin-bottom: 15px;
 	padding: 10px 8px;
 }
-.cdrs th a:hover{
+.cdrs th a.csv:hover{
 	background: none;
 }
 div.actions a, a.cancelar{
@@ -750,6 +753,7 @@ form div.submit {
 	padding:0;
 	font-weight: normal;
 	text-shadow:none;
+	margin-right: 1em;
 }
 label {
 	display: block;
@@ -816,7 +820,7 @@ form .submit input[type=submit] {
 form .submit input[type=submit]:hover {
 	background: #1E72D8;
 }
-.cdrs a:hover{
+.cdrs a.csv:hover{
 	background: #1E72D8;
 }
 /* Form errors */

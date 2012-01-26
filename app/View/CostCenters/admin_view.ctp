@@ -10,10 +10,10 @@
 <div class="actions">
 	<ul>
 		<li>
-			<?php echo $this -> Html -> link(__('Volver'), array('action' => 'index'));?>
+			<?php echo $this -> Html -> link(__('Modificar Centro De Costo'), array('action' => 'edit', $costCenter['CostCenter']['id']));?>
 		</li>
 		<li>
-			<?php echo $this -> Html -> link(__('Modificar Centro De Costo'), array('action' => 'edit', $costCenter['CostCenter']['id']));?>
+			<?php echo $this -> Html -> link(__('Volver'), array('action' => 'index'));?>
 		</li>
 	</ul>
 </div>

@@ -6,7 +6,11 @@ App::uses('AppController', 'Controller');
  * @property Abbreviate $Abbreviate
  */
 class AbbreviatesController extends AppController {
-
+	
+	public function beforeRender(){
+		$this -> set('title_for_layout','Abreviados');
+	}
+	
 	public function admin_fillDB() {
 		$this -> autoRender = false;
 		if ($this -> Abbreviate -> fillDBFromFile()) {

@@ -19,7 +19,7 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Volver'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('Modificar Usuario'), array('action' => 'edit', $user['User']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Volver'), array('action' => 'index')); ?> </li>
 	</ul>
 </div>

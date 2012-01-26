@@ -12,6 +12,10 @@ class UsersController extends AppController {
 		$this -> Auth -> allow('initAcl', 'verificarAcceso', 'userRedirect');
 	}
 	
+	public function beforeRender(){
+		$this -> set('title_for_layout','Usuarios');
+	}
+	
 	public function userRedirect() {
 		/*
 		$role_id = $this -> Session -> read('Auth.User.role_id');
@@ -380,12 +384,12 @@ class UsersController extends AppController {
 		// Módulo informes
 		$this -> Acl -> allow($role, 'Cdrs/parseData');
 		$this -> Acl -> allow($role, 'Cdrs/reporte');
-		$this -> Acl -> allow($role, 'Cdrs/reporteGeneral');
-		$this -> Acl -> allow($role, 'Cdrs/reporteExtension');
-		$this -> Acl -> allow($role, 'Cdrs/reporteNumeroOrigen');
-		$this -> Acl -> allow($role, 'Cdrs/reporteNumeroDestino');
-		$this -> Acl -> allow($role, 'Cdrs/reporteDepartamento');
-		$this -> Acl -> allow($role, 'Cdrs/reporteCentroCosto');
+		$this -> Acl -> allow($role, 'Cdrs/informeGeneral');
+		$this -> Acl -> allow($role, 'Cdrs/informeExtension');
+		$this -> Acl -> allow($role, 'Cdrs/informeNumeroOrigen');
+		$this -> Acl -> allow($role, 'Cdrs/informeNumeroDestino');
+		$this -> Acl -> allow($role, 'Cdrs/informeDepartamento');
+		$this -> Acl -> allow($role, 'Cdrs/informeCentroCosto');
 		$this -> Acl -> allow($role, 'Cdrs/CSVExport');
 				
 		/**

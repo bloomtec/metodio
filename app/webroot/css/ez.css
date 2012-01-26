@@ -743,7 +743,7 @@ fieldset fieldset legend {
     background-image: url(/img/ez/ez_logo.png);
     background-position: 45px 38px;
     background-repeat: no-repeat;
-    height: 200px;
+    min-height: 200px;
 	padding: 10px; 	 
 }
 #ez.login-layout .input{

@@ -6,7 +6,10 @@ App::uses('AppController', 'Controller');
  * @property CostCenter $CostCenter
  */
 class CostCentersController extends AppController {
-
+	
+	public function beforeRender(){
+		$this -> set('title_for_layout','Centros de Costo');
+	}
 
 /**
  * index method
