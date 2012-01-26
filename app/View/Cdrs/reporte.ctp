@@ -16,7 +16,7 @@
 			<th><?php echo $this -> Paginator -> sort('dst', 'Destino');?></th>
 			<th><?php echo $this -> Paginator -> sort('channel', 'Canal Origen');?></th>
 			<th><?php echo $this -> Paginator -> sort('dstchannel', 'Canal Destino');?></th>
-			<th><?php echo $this -> Paginator -> sort('duration', 'Duración');?></th>
+			<th><?php echo $this -> Paginator -> sort('billsec', 'Duración');?></th>
 			<th><?php echo $this -> Paginator -> sort('disposition', 'Estado');?></th>
 		</tr>
 		<?php
@@ -30,7 +30,7 @@
 			<td><?php echo h($cdr['Cdr']['dst']);?>&nbsp;</td>
 			<td><?php echo h($cdr['Cdr']['channel']);?>&nbsp;</td>
 			<td><?php echo h($cdr['Cdr']['dstchannel']);?>&nbsp;</td>
-			<td><?php echo h($cdr['Cdr']['duration']);?>&nbsp;</td>
+			<td><?php echo h($cdr['Cdr']['billsec']);?>&nbsp;</td>
 			<td><?php echo h($cdr['Cdr']['disposition']);?>&nbsp;</td>
 		</tr>
 		<?php endforeach;?>

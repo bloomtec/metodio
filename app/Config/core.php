@@ -20,19 +20,6 @@
  */
 
 /**
- * Configuraciónes extras
- */
-// Nombre del sitio
-Configure::write('site_name', 'EZ');
-// Dominio del sitio
-Configure::write('site_domain', 'ez2.bloomweb.co');
-// TAMAÑO DE IMAGENES PERSONALIZADAS
-Configure::write('custom_width', 25);
-Configure::write('custom_height', 25);
-// Llave
-Configure::write('key', "Bl00MWebGr0up");
-
-/**
  * CakePHP Debug Level:
  *
  * Production Mode:
@@ -122,7 +109,7 @@ Configure::write('App.encoding', 'UTF-8');
  *	`manager_index()` and `/manager/controller/index`
  *
  */
-Configure::write('Routing.prefixes', array('admin'));
+//Configure::write('Routing.prefixes', array('admin'));
 
 /**
  * Turn off all caching application-wide.

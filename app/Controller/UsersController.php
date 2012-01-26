@@ -9,23 +9,10 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this -> Auth -> allow('initAcl', 'verificarAcceso', 'userRedirect');
 	}
-	
-	public function beforeRender(){
-		$this -> set('title_for_layout','Usuarios');
-	}
-	
-	public function userRedirect() {
-		/*
-		$role_id = $this -> Session -> read('Auth.User.role_id');
-		if($role_id == 1) {
-			$this -> redirect(array('controller' => 'SipDispositivos', 'action'=>'index', 'admin'=>true));
-		} else {
-			$this -> redirect(array('controller' => 'SipDispositivos', 'action'=>'index'));
-		}
-		 */
-		$this -> redirect(array('controller' => 'pages', 'action'=>'display', 'home'));
+
+	public function beforeRender() {
+		$this -> set('title_for_layout', 'Usuarios');
 	}
 
 	public function verificarAcceso() {
@@ -37,12 +24,12 @@ class UsersController extends AppController {
 		} else {
 			$role = 'anonimo';
 		}
-		
+
 		// Armar la ruta
 		$ruta = '';
-		for ($i=0; $i < count($this->params['ruta']); $i++) { 
-			$ruta .= $this->params['ruta'][$i];
-			if($i != count($this->params['ruta']) - 1) {
+		for ($i = 0; $i < count($this -> params['ruta']); $i++) {
+			$ruta .= $this -> params['ruta'][$i];
+			if ($i != count($this -> params['ruta']) - 1) {
 				$ruta .= '/';
 			}
 		}
@@ -55,9 +42,9 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function login() {
-		if($this->Session->read('Auth.User')) {
-			$this -> userRedirect();
-		}		
+		if($this -> Session -> read('Auth.User')) {
+			$this -> redirect(array('controller' => 'pages', 'action' => 'display', 'home'));
+		}
 		$this -> layout = "login";
 		if ($this -> request -> is('ajax')) {
 			if ($this -> Auth -> login()) {
@@ -89,7 +76,7 @@ class UsersController extends AppController {
 	public function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
-	
+
 	/**
 	 * index method
 	 *
@@ -101,11 +88,27 @@ class UsersController extends AppController {
 		if (isset($this -> params['named']['query']) && !empty($this -> params['named']['query'])) {
 			$conditions = $this -> searchFilter($this -> params['named']['query'], array('username', 'role_id'));
 		}
-		$this -> paginate = array(
-			'conditions' => $conditions,
-			'order' => array('User.username'=>'ASC')
-		);
+		$this -> paginate = array('conditions' => $conditions, 'order' => array('User.username' => 'ASC'));
 		$this -> set('users', $this -> paginate());
+	}
+
+	/**
+	 * add method
+	 *
+	 * @return void
+	 */
+	public function add() {
+		if ($this -> request -> is('post')) {
+			$this -> User -> create();
+			if ($this -> User -> save($this -> request -> data)) {
+				$this -> Session -> setFlash(__('Se ha creado el usuario.'));
+				$this -> redirect(array('action' => 'index'));
+			} else {
+				$this -> Session -> setFlash(__('No se puedo crear el usuario. Por favor, intente de nuevo.'));
+			}
+		}
+		$roles = $this -> User -> Role -> find('list');
+		$this -> set(compact('roles'));
 	}
 
 	/**
@@ -117,7 +120,7 @@ class UsersController extends AppController {
 	public function view($id = null) {
 		$this -> User -> id = $id;
 		if (!$this -> User -> exists()) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no válido.'));
 		}
 		$this -> set('user', $this -> User -> read(null, $id));
 	}
@@ -131,7 +134,7 @@ class UsersController extends AppController {
 	public function edit($id = null) {
 		$this -> User -> id = $id;
 		if (!$this -> User -> exists()) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no válido.'));
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> User -> save($this -> request -> data)) {
@@ -148,134 +151,12 @@ class UsersController extends AppController {
 	}
 
 	/**
-	 * admin_login method
-	 *
-	 * @return void
-	 */
-	public function admin_login() {
-		if($this->Session->read('Auth.User')) {
-			$this -> userRedirect();
-		}
-		$this -> layout = "ez/login";
-		if ($this -> request -> is('ajax')) {
-			if ($this -> Auth -> login()) {
-				$this -> User -> recursive = -1;
-				$user = $this -> User -> read(null, $this -> Auth -> user('id'));
-				$user['success'] = true;
-				echo json_encode($user);
-			} else {
-				$response['message'] = __('Username or password is incorrect', true);
-				$response['success'] = false;
-				$this -> capchaFuncionality();
-				echo json_encode($response);
-			}
-			$this -> autoRender = false;
-			exit(0);
-		} elseif ($this -> request -> is('post')) {
-			if ($this -> Auth -> login()) {
-				return $this -> redirect($this -> Auth -> redirect());
-			} else {
-				$this -> capchaFuncionality();
-				$this -> Session -> setFlash(__('Username or password is incorrect'), 'default', array(), 'auth');
-			}
-		}
-	}
-
-	/**
-	 * logout method
-	 *
-	 * @return void
-	 */
-	public function admin_logout() {
-		$this -> redirect($this -> Auth -> logout());
-	}
-
-	/**
-	 * admin_index method
-	 *
-	 * @return void
-	 */
-	public function admin_index() {
-		$this -> User -> recursive = 0;
-		$conditions = array();
-		if (isset($this -> params['named']['query']) && !empty($this -> params['named']['query'])) {
-			$conditions = $this -> searchFilter($this -> params['named']['query'], array('username', 'role_id'));
-		}
-		$this -> paginate = array(
-			'conditions' => $conditions,
-			'order' => array('User.username'=>'ASC')
-		);
-		$this -> set('users', $this -> paginate());
-	}
-
-	/**
-	 * admin_view method
+	 * delete method
 	 *
 	 * @param string $id
 	 * @return void
 	 */
-	public function admin_view($id = null) {
-		$this -> User -> id = $id;
-		if (!$this -> User -> exists()) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		$this -> set('user', $this -> User -> read(null, $id));
-	}
-
-	/**
-	 * admin_add method
-	 *
-	 * @return void
-	 */
-	public function admin_add() {
-		if ($this -> request -> is('post')) {
-			$this -> User -> create();
-			if ($this -> User -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('Se ha creado el usuario.'));
-				$this -> redirect(array('action' => 'index'));
-			} else {
-				$this -> Session -> setFlash(__('No se puedo crear el usuario. Por favor, intente de nuevo.'));
-			}
-		}
-		$roles = $this -> User -> Role -> find('list');
-		$this -> set(compact('roles'));
-	}
-
-	/**
-	 * admin_edit method
-	 *
-	 * @param string $id
-	 * @return void
-	 */
-	public function admin_edit($id = null) {
-		$this -> User -> id = $id;
-		if (!$this -> User -> exists()) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		if ($this -> request -> is('post') || $this -> request -> is('put')) {
-			if(isset($this -> request -> data['User']['new_password']) && !empty($this -> request -> data['User']['new_password'])) {
-				$this -> request -> data['User']['password'] = $this -> request -> data['User']['new_password'];
-			} 
-			if ($this -> User -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('Se modificó el usuario.'));
-				$this -> redirect(array('action' => 'index'));
-			} else {
-				$this -> Session -> setFlash(__('No se pudo modificar el usuario. Por favor, intente de nuevo.'));
-			}
-		} else {
-			$this -> request -> data = $this -> User -> read(null, $id);
-		}
-		$roles = $this -> User -> Role -> find('list');
-		$this -> set(compact('roles'));
-	}
-
-	/**
-	 * admin_delete method
-	 *
-	 * @param string $id
-	 * @return void
-	 */
-	public function admin_delete($id = null) {
+	public function delete($id = null) {
 		if (!$this -> request -> is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -291,7 +172,7 @@ class UsersController extends AppController {
 		$this -> redirect(array('action' => 'index'));
 	}
 
-	function initAcl() {
+	function inicializarAcl() {
 		$this -> autoRender = false;
 
 		/**
@@ -338,49 +219,39 @@ class UsersController extends AppController {
 		$this -> User -> save($user);
 
 		/**
-		 * Añadir un usuario
-		 */
-		$this -> User -> create();
-		$user = array();
-		$user['User']['username'] = 'user';
-		$user['User']['password'] = 'user';
-		$user['User']['role_id'] = 2;
-		$user['User']['is_active'] = true;
-		$this -> User -> save($user);
-
-		/**
 		 * Permisos
 		 */
 		$role = &$this -> User -> Role;
-		
+
 		// Permisos para administradores
 		$role -> id = 1;
-		
+
 		// Se permite acceso total
 		$this -> Acl -> allow($role, 'controllers');
-		
+
 		// Permisos para usuarios
 		$role -> id = 2;
-		
+
 		// Módulo usuarios
 		$this -> Acl -> deny($role, 'controllers');
 		$this -> Acl -> allow($role, 'Users/logout');
-		
+		$this -> Acl -> allow($role, 'Users/verificarAcceso');
+
 		// Módulo extensiones
 		$this -> Acl -> allow($role, 'SipDispositivos/index');
 		$this -> Acl -> allow($role, 'SipDispositivos/view');
-		
+
 		// Módulo centros de costos
 		$this -> Acl -> allow($role, 'CostCenters/index');
 		$this -> Acl -> allow($role, 'CostCenters/view');
-		
+
 		// Módulo departamentos
 		$this -> Acl -> allow($role, 'Departments/index');
 		$this -> Acl -> allow($role, 'Departments/view');
 		// Módulo abreviados
 		$this -> Acl -> allow($role, 'Abbreviates/index');
 		$this -> Acl -> allow($role, 'Abbreviates/view');
-		
+
 		// Módulo informes
 		$this -> Acl -> allow($role, 'Cdrs/parseData');
 		$this -> Acl -> allow($role, 'Cdrs/reporte');
@@ -391,11 +262,11 @@ class UsersController extends AppController {
 		$this -> Acl -> allow($role, 'Cdrs/informeDepartamento');
 		$this -> Acl -> allow($role, 'Cdrs/informeCentroCosto');
 		$this -> Acl -> allow($role, 'Cdrs/CSVExport');
-				
+
 		/**
 		 * Finished
 		 */
-		echo 'Permisos inicializados';
+		echo 'Usuario Administrativo Y Permisos Inicializados';
 		exit ;
 	}
 

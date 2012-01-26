@@ -1,69 +1,61 @@
-<?php
-	$route_prefix = "";
-	$method_prefix = ""; 
-	if($this->Session->read('Auth.User.role_id') == 1) {
-		$route_prefix = "/admin";
-		$method_prefix = "admin_";
-	}
-?>
 <div id="main-menu">
 	<a class="logo" href="/"><img src="/img/logo_menu.png" /></a>
 	<ul>
-		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', $method_prefix.'index')))) : ?>
+		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', 'index')))) : ?>
 		<li class="usuarios">
-			<a href="<?php echo $route_prefix; ?>/users">USUARIOS</a>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', $method_prefix.'add')))) : ?>
+			<a href="/users">USUARIOS</a>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Users', 'add')))) : ?>
 			<ul>
 				<li>
-					<a href="<?php echo $route_prefix; ?>/users/add">Agregar</a>
+					<a href="/users/add">Agregar</a>
 				</li>				
 			</ul>
 			<?php endif; ?>
 		</li>
 		<?php endif; ?>
-		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', $method_prefix.'index')))) : ?>
+		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'index')))) : ?>
 		<li class="departamentos">
-			<a href="<?php echo $route_prefix; ?>/departments">DEPARTAMENTOS</a>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', $method_prefix.'add')))) : ?>
+			<a href="/departments">DEPARTAMENTOS</a>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'add')))) : ?>
 			<ul>
 				<li>
-					<a href="<?php echo $route_prefix; ?>/departments/add">Agregar</a>
+					<a href="/departments/add">Agregar</a>
 				</li>
 			</ul>
 			<?php endif; ?>
 		</li>
 		<?php endif; ?>
-		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', $method_prefix.'index')))) : ?>
+		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'index')))) : ?>
 		<li class="centros">
-			<a href="<?php echo $route_prefix; ?>/cost_centers">CENTROS DE COSTO</a>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', $method_prefix.'add')))) : ?>
+			<a href="/cost_centers">CENTROS DE COSTO</a>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'add')))) : ?>
 			<ul>
 				<li>
-					<a href="<?php echo $route_prefix; ?>/cost_centers/add">Agregar</a>
+					<a href="/cost_centers/add">Agregar</a>
 				</li>
 			</ul>
 			<?php endif; ?>
 		</li>
 		<?php endif; ?>
-		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', $method_prefix.'index')))) : ?>
+		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'index')))) : ?>
 		<li class="extensiones">
-			<a href="<?php echo $route_prefix; ?>/sip_dispositivos">EXTENSIONES</a>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', $method_prefix.'add')))) : ?>
+			<a href="/sip_dispositivos">EXTENSIONES</a>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'SipDispositivos', 'add')))) : ?>
 			<ul>
 				<li>
-					<a href="<?php echo $route_prefix; ?>/sip_dispositivos/add">Agregar</a>
+					<a href="/sip_dispositivos/add">Agregar</a>
 				</li>
 			</ul>
 			<?php endif; ?>
 		</li>
 		<?php endif; ?>
-		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Abbreviates', $method_prefix.'index')))) : ?>
+		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Abbreviates', 'index')))) : ?>
 		<li class="abreviados">
-			<a href="<?php echo $route_prefix; ?>/abbreviates">ABREVIADOS</a>
-			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Abbreviates', $method_prefix.'add')))) : ?>
+			<a href="/abbreviates">ABREVIADOS</a>
+			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Abbreviates', 'add')))) : ?>
 			<ul>
 				<li>
-					<a href="<?php echo $route_prefix; ?>/abbreviates/add">Agregar</a>
+					<a href="/abbreviates/add">Agregar</a>
 				</li>
 			</ul>
 			<?php endif; ?>
@@ -93,7 +85,7 @@
 			</ul>
 		</li>
 		<li class="panel">
-			<a href="/panel">PANEL</a>
+			<a href="/pages/display/panel">PANEL</a>
 		</li>
 	</ul>
 </div>
