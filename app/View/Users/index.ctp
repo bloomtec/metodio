@@ -19,9 +19,9 @@
 	foreach ($users as $user): ?>
 	<tr>
 		<td>
-			<?php if($user['User']['updated']){ ?> 
+			<?php if($user['User']['is_active']) { ?> 
 				 <input type='checkbox' checked='checked' disabled='true' class='checkbox'/> 
-			 <?php }else{ ?> 
+			 <?php } else { ?> 
 				 <input type='checkbox' disabled='true' class='checkbox'/>
 			 <?php } ?>
 		</td>
