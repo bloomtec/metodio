@@ -155,7 +155,8 @@ p {
 	background-image: url(/img/informes.png);
 }
 .home_description .panel {
-	background-image: url(/img/telefono2.png);
+	background-image: url(/img/Phone.png);
+    background-size: 41px auto;
 }
 /** END HOME **/
 
@@ -338,11 +339,11 @@ div.actions a:hover, a.cancelar:hover {
 	background-color: #1E72D8;
 }
 #footer {
-	background-color: #000000;
+	/* background-color: #000000; */
 	bottom: 0;
 	clear: both;
 	left: 0;
-	padding: 6px 10px;
+	/* padding: 6px 10px; */
 	position: absolute;
 	text-align: center;
 	width: 100%;
@@ -441,7 +442,7 @@ div.actions a:hover, a.cancelar:hover {
 	width: 92%;
 }
 #footer h4 {
-	color: #FFFFFF;
+	/* color: #FFFFFF; */
 	font-size: 11px;
 	font-weight: bold;
 	padding-top: 5px;

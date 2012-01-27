@@ -61,29 +61,52 @@
 			<?php endif; ?>
 		</li>
 		<?php endif; ?>
+		<?php
+			if(
+				$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeGeneral'))) ||
+				$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeExtension'))) ||
+				$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeNumeroOrigen'))) ||
+				$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeNumeroDestino'))) ||
+				$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeDepartamento'))) ||
+				$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeCentroCosto')))
+			) :
+		?>
 		<li class="informes">
-			<a href="/cdrs/informeGeneral">INFORMES</a>
+			<a href="">INFORMES</a>
 			<ul>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeGeneral')))) : ?>
 				<li>
 					<a href="/cdrs/informeGeneral">General</a>
 				</li>
+				<?php endif; ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeExtension')))) : ?>
 				<li>
 					<a href="/cdrs/informeExtension">Por extensión</a>
 				</li>
+				<?php endif; ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeNumeroOrigen')))) : ?>
 				<li>
 					<a href="/cdrs/informeNumeroOrigen">Por número de origen</a>
 				</li>
+				<?php endif; ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeNumeroDestino')))) : ?>
 				<li>
 					<a href="/cdrs/informeNumeroDestino">Por número de destino</a>
 				</li>
+				<?php endif; ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeDepartamento')))) : ?>
 				<li>
 					<a href="/cdrs/informeDepartamento">Por departamento</a>
 				</li>
+				<?php endif; ?>
+				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeCentroCosto')))) : ?>
 				<li>
 					<a href="/cdrs/informeCentroCosto">Por centro de costo</a>
 				</li>
+				<?php endif; ?>
 			</ul>
 		</li>
+		<?php endif; ?>
 		<li class="panel">
 			<a href="/pages/display/panel">PANEL</a>
 		</li>

@@ -8,6 +8,7 @@ App::uses('AppController', 'Controller');
 class SipDispositivosController extends AppController {
 
 	public function beforeRender() {
+		parent::beforeRender();
 		$this -> set('title_for_layout', 'Extensiones');
 	}
 
@@ -89,7 +90,13 @@ class SipDispositivosController extends AppController {
 		}
 		$departments = $this -> SipDispositivo -> Department -> find('list');
 		$costCenters = $this -> SipDispositivo -> CostCenter -> find('list');
-		$this -> set(compact('departments', 'costCenters'));
+		$this -> loadModel('Privilege');
+		$privileges_tmp = $this -> Privilege -> find('list');
+		$privileges = array();
+		foreach ($privileges_tmp as $key => $value) {
+			$privileges[$value] = $value;
+		}
+		$this -> set(compact('departments', 'costCenters', 'privileges'));
 	}
 
 	/**

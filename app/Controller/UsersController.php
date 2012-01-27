@@ -12,7 +12,11 @@ class UsersController extends AppController {
 	}
 
 	public function beforeRender() {
+		parent::beforeRender();
 		$this -> set('title_for_layout', 'Usuarios');
+		if($this->action=='login') {
+			$this -> set('title_for_layout', 'Login');
+		}
 	}
 
 	public function verificarAcceso() {
@@ -101,10 +105,10 @@ class UsersController extends AppController {
 		if ($this -> request -> is('post')) {
 			$this -> User -> create();
 			if ($this -> User -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('Se ha creado el usuario.'));
+				$this -> Session -> setFlash(__('Se ha creado el usuario.'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('No se puedo crear el usuario. Por favor, intente de nuevo.'));
+				$this -> Session -> setFlash(__('No se puedo crear el usuario. Por favor, intente de nuevo.'), 'crud/error');
 			}
 		}
 		$roles = $this -> User -> Role -> find('list');
@@ -138,10 +142,10 @@ class UsersController extends AppController {
 		}
 		if ($this -> request -> is('post') || $this -> request -> is('put')) {
 			if ($this -> User -> save($this -> request -> data)) {
-				$this -> Session -> setFlash(__('The user has been saved'));
+				$this -> Session -> setFlash(__('The user has been saved'), 'crud/success');
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.'));
+				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.'), 'crud/error');
 			}
 		} else {
 			$this -> request -> data = $this -> User -> read(null, $id);
@@ -165,10 +169,10 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Usuario no válido.'));
 		}
 		if ($this -> User -> delete()) {
-			$this -> Session -> setFlash(__('Se eliminó el usuario'));
+			$this -> Session -> setFlash(__('Se eliminó el usuario'), 'crud/success');
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('No se pudo eliminar el usuario.'));
+		$this -> Session -> setFlash(__('No se pudo eliminar el usuario.'), 'crud/error');
 		$this -> redirect(array('action' => 'index'));
 	}
 

@@ -42,10 +42,14 @@ class AppController extends Controller {
 	public function beforeFilter() {
 		$this -> Auth -> authorize = array('Actions' => array('actionPath' => 'controllers'));
 		$this -> Auth -> authenticate = array('Form' => array('fields' => array('username' => 'username', 'password' => 'password')));
-		$this -> Auth -> scope = array('is_active' => true);
+		$this -> Auth -> scope = array('is_active' => 1);
 		$this -> Auth -> loginAction = array('controller' => 'users', 'action' => 'login');
 		$this -> Auth -> loginRedirect = array('controller' => 'pages', 'action' => 'display', 'home');
 		$this -> Auth -> logoutRedirect = array('controller' => 'users', 'action' => 'login');
+	}
+	
+	public function beforeRender() {
+		$this -> set('company_name', 'SipCom Metodio Barreto');
 	}
 
 	public function CSVExport() {
@@ -105,7 +109,18 @@ class AppController extends Controller {
 			// Caracter que encapsula el valor de la columna
 			$enclosure = '"';
 			// Nombre del archivo CSV
-			$filename = "$model.csv";
+			//$tipo = $this -> Session -> read('nombre_tipo_reporte');
+			$tipo = $this -> Session -> read('prefix_for_title');
+			$tipo = str_ireplace(' ', '_', $tipo);
+			$data = $this -> Session -> read('inner_name');
+			$hora = $this -> Session -> read('nombre_hora');
+			$filename = '';
+			if($data) {
+				$data = str_ireplace(' ', '_', $data);
+				$filename = $tipo . '_' . $data . '_' . $hora . '.csv';
+			} else {
+				$filename = $tipo . '_' . $hora . '.csv';
+			}
 			// Linea de datos para agregar al archivo
 			$line = array();
 			// Definir buffer de memoria

@@ -21,7 +21,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<?php echo $this -> Html -> charset();?>
-		<title><?php echo $title_for_layout;?></title>
+		<title>
+		<?php
+			if(isset($company_name)) echo $company_name . ' :: ';
+			if(isset($title_for_layout)) echo $title_for_layout;
+		?>
+		</title>
 		<?php
 			echo $this -> Html -> meta('icon');
 			echo $this -> Html -> css('styles');

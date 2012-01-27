@@ -6,7 +6,7 @@
 				<label for="CdrCentro">Centro De Costo</label>
 				<select id="CdrCentro" name="data[Cdr][centro]">
 					<?php foreach ($costCenters as $key => $value) : ?>
-					<option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+					<option value="<?php echo $value; ?>"><?php echo $value; ?></option>
 					<?php endforeach; ?>
 				</select>
 			</div>

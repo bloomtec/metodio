@@ -15,22 +15,26 @@ class CdrsController extends AppController {
 
 	public function informeGeneral() {
 		$this -> getDates();
-		$this -> set('title_for_layout', 'Informe general');
+		$this -> set('title_for_layout', 'Informe General');
+		$this -> Session -> write('prefix_for_title', 'Informe General');
 	}
 
 	public function informeExtension() {
 		$this -> getDates();
-		$this -> set('title_for_layout', 'Informe por extensión');
+		$this -> set('title_for_layout', 'Informe Por Extensión');
+		$this -> Session -> write('prefix_for_title', 'Informe Por Extensión');
 	}
 
 	public function informeNumeroOrigen() {
 		$this -> getDates();
-		$this -> set('title_for_layout', 'Informe por numero de origen');
+		$this -> set('title_for_layout', 'Informe Por Número De Origen');
+		$this -> Session -> write('prefix_for_title', 'Informe Por Número De Origen');
 	}
 
 	public function informeNumeroDestino() {
 		$this -> getDates();
-		$this -> set('title_for_layout', 'Informe por numero de destino');
+		$this -> set('title_for_layout', 'Informe Por Número De Destino');
+		$this -> Session -> write('prefix_for_title', 'Informe Por Número De Destino');
 	}
 
 	public function informeDepartamento() {
@@ -38,7 +42,8 @@ class CdrsController extends AppController {
 		$departments = $this -> Department -> find('list', array('order' => array('Department.name' => 'ASC')));
 		$this -> set(compact('departments'));
 		$this -> getDates();
-		$this -> set('title_for_layout', 'Informe por departamento');
+		$this -> set('title_for_layout', 'Informe Por Departamento');
+		$this -> Session -> write('prefix_for_title', 'Informe Por Departamento');
 	}
 
 	public function informeCentroCosto() {
@@ -46,7 +51,8 @@ class CdrsController extends AppController {
 		$costCenters = $this -> CostCenter -> find('list', array('order' => array('CostCenter.name' => 'ASC')));
 		$this -> set(compact('costCenters'));
 		$this -> getDates();
-		$this -> set('title_for_layout', 'Informe por centro de costo');
+		$this -> set('title_for_layout', 'Informe Por Centro De Costo');
+		$this -> Session -> write('prefix_for_title', 'Informe Por Centro De Costo');
 	}
 
 	public function parseData() {
@@ -137,27 +143,12 @@ class CdrsController extends AppController {
 
 				// Departamento
 				if (isset($data['departamento']) && !empty($data['departamento'])) {
-					$this -> loadModel('SipDispositivo');
-					$extensions = $this -> SipDispositivo -> find('list', array('conditions' => array('SipDispositivo.department_id' => $data['departamento']), 'fields' => array('SipDispositivo.name')));
-					//$conditions['Cdr.src'] = $extensions;
-					$tmp_extensions = "";
-					foreach ($extensions as $exten) {
-						$tmp_extensions .= "$exten;";
-					}
-					$redirect .= "/depCost:" . urlencode($tmp_extensions);
-
+					$redirect .= "/departamento:" . urlencode($data['departamento']);
 				}
 
 				// Centro De Costos
 				if (isset($data['centro']) && !empty($data['centro'])) {
-					$this -> loadModel('SipDispositivo');
-					$extensions = $this -> SipDispositivo -> find('list', array('conditions' => array('SipDispositivo.cost_center_id' => $data['centro']), 'fields' => array('SipDispositivo.name')));
-					//$conditions['Cdr.src'] = $extensions;
-					$tmp_extensions = "";
-					foreach ($extensions as $exten) {
-						$tmp_extensions .= "$exten;";
-					}
-					$redirect .= "/depCost:" . urlencode($tmp_extensions);
+					$redirect .= "/depCost:" . urlencode($data['centro']);
 				}
 			}
 			$this -> redirect($redirect);
@@ -167,6 +158,9 @@ class CdrsController extends AppController {
 	}
 
 	public function reporte() {
+		$tipo = $this -> Session -> read('prefix_for_title');
+		$title_for_layout = 'Reporte :: ' . $tipo;
+		$this -> set('title_for_layout', $title_for_layout);
 		$queries = null;
 		if (isset($this -> params['named']) && !empty($this -> params['named'])) { $queries = $this -> params['named'];
 		}
@@ -195,25 +189,48 @@ class CdrsController extends AppController {
 			if (isset($queries['dst'])) {
 				$conditions['Cdr.dst'] = urldecode($queries['dst']);
 			}
-			// Departamentos / Centros De Costos
+			// Departamentos
+			if (isset($queries['departamento'])) {
+				$conditions['Cdr.department'] = urldecode($queries['departamento']);
+			}
+			// Centros De Costos
 			if (isset($queries['depCost'])) {
-				$tmp_extensions = urldecode($queries['depCost']);
-				$tmp_extensions = explode(";", $tmp_extensions);
-				foreach ($tmp_extensions as $key => $val) {
-					if (empty($val)) {
-						unset($tmp_extensions[$key]);
-					}
-				}
-				$conditions['Cdr.src'] = $tmp_extensions;
+				$conditions['Cdr.cost_center'] = urldecode($queries['depCost']);
 			}
 		}
 		$this -> paginate = array('conditions' => $conditions, 'order' => array('Cdr.calldate' => 'ASC'));
 		$csv_data = $this -> Cdr -> find('all', array('conditions' => $conditions));
+		
+		$this -> Session -> delete('inner_name');
+		if(isset($conditions['OR']['Cdr.src']) && isset($conditions['OR']['Cdr.dst'])) {
+			$this -> Session -> write('inner_name', $conditions['OR']['Cdr.dst']);
+		} elseif(isset($conditions['Cdr.src'])) {
+			$this -> Session -> write('inner_name', $conditions['Cdr.src']);
+		} elseif(isset($conditions['Cdr.dst'])) {
+			$this -> Session -> write('inner_name', $conditions['Cdr.dst']);
+		} elseif(isset($conditions['Cdr.department'])) {
+			$this -> Session -> write('inner_name', $conditions['Cdr.department']);
+		} elseif(isset($conditions['Cdr.cost_center'])) {
+			$this -> Session -> write('inner_name', $conditions['Cdr.cost_center']);
+		}
+		
 		$cdrs = $this -> paginate();
-		$this -> set('cdrs', $cdrs);
-		$this -> set('csv_data', $csv_data);
+		
+		$this -> set(compact('cdrs', 'csv_data'));
+		
+		// Reporte completo
+		$this -> Session -> delete('CSVExport.full');
 		$this -> Session -> write('CSVExport.full', $csv_data);
-		$this -> Session -> write('CSVExport.page', $cdrs);
+		
+		// Registrar hora para el nombre
+		if(isset($conditions['Cdr.calldate BETWEEN ? AND ?'])) {
+			$file_name_hour = '(' . $conditions['Cdr.calldate BETWEEN ? AND ?'][0] . '_' . $conditions['Cdr.calldate BETWEEN ? AND ?'][1] . ')';
+			$file_name_hour = str_ireplace(' ', '_', $file_name_hour);
+			$file_name_hour = str_ireplace(':', '-', $file_name_hour);
+			$this -> Session -> delete('nombre_hora');
+			$this -> Session -> write('nombre_hora', $file_name_hour);
+		}
+		
 	}
 
 }

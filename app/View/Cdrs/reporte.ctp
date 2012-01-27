@@ -2,8 +2,8 @@
 	<h2><?php echo __('Informe');?></h2>
 	<div class="csv-export">
 		<?php
-			$fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition';
-			$headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Duración,Estado';
+			$fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition,department,cost_center';
+			$headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Duración,Estado,Departamento,Centro De Costo';
 			//echo $this -> Html -> link('Exportar ésta página a CSV', array('action' => 'CSVExport', 'type'=>'page', 'fields'=>$fields, 'headers'=>$headers));
 			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'type'=>'full', 'fields'=>$fields, 'headers'=>$headers),array('class'=>'csv'));
 		?>
@@ -16,8 +16,10 @@
 			<th><?php echo $this -> Paginator -> sort('dst', 'Destino');?></th>
 			<th><?php echo $this -> Paginator -> sort('channel', 'Canal Origen');?></th>
 			<th><?php echo $this -> Paginator -> sort('dstchannel', 'Canal Destino');?></th>
-			<th><?php echo $this -> Paginator -> sort('billsec', 'Duración');?></th>
+			<th><?php echo $this -> Paginator -> sort('billsec', 'Tiempo Facturado');?></th>
 			<th><?php echo $this -> Paginator -> sort('disposition', 'Estado');?></th>
+			<th><?php echo $this -> Paginator -> sort('department', 'Departamento');?></th>
+			<th><?php echo $this -> Paginator -> sort('cost_center', 'Centro De Costo');?></th>
 		</tr>
 		<?php
 			$i = 0;
@@ -32,6 +34,8 @@
 			<td><?php echo h($cdr['Cdr']['dstchannel']);?>&nbsp;</td>
 			<td><?php echo h($cdr['Cdr']['billsec']);?>&nbsp;</td>
 			<td><?php echo h($cdr['Cdr']['disposition']);?>&nbsp;</td>
+			<td><?php echo h($cdr['Cdr']['department']);?>&nbsp;</td>
+			<td><?php echo h($cdr['Cdr']['cost_center']);?>&nbsp;</td>
 		</tr>
 		<?php endforeach;?>
 	</table>

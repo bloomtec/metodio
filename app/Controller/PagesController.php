@@ -56,6 +56,10 @@ class PagesController extends AppController {
 		parent::beforeFilter();
 		$this -> Auth -> allow('display');
 	}
+	
+	public function beforeRender() {
+		parent::beforeRender();
+	}
 
 	/**
 	 * Displays a view
