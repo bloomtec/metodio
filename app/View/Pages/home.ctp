@@ -9,7 +9,8 @@
 		</p>
 	</a>
 	<?php endif; ?>
-	<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'index')))) : ?>
+	<?php //if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'index')))) : ?>
+	<!--
 	<a class="home_description" href="/departments">
 		<h2 class="departamentos">
 			DEPARTAMENTOS
@@ -18,7 +19,8 @@
 			Listado de los departamentos que han sido creados.
 		</p>
 	</a>
-	<?php endif; ?>
+	-->
+	<?php //endif; ?>
 	<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'index')))) : ?>
 	<a class="home_description" href="/cost_centers">
 		<h2 class="centros">
@@ -49,7 +51,31 @@
 		</p>
 	</a>
 	<?php endif; ?>
-	<a class="home_description" href="/cdrs/reporteGeneral">
+	<?php
+		if(
+			$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeGeneral'))) ||
+			$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeExtension'))) ||
+			$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeNumeroOrigen'))) ||
+			$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeNumeroDestino'))) ||
+			$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeDepartamento'))) ||
+			$this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeCentroCosto')))
+		) :
+		$reporte = '';
+		if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeGeneral')))) {
+			$reporte = 'informeGeneral';
+		} elseif($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeExtension')))) {
+			$reporte = 'informeExtension';
+		} elseif($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeNumeroOrigen')))) {
+			$reporte = 'informeNumeroOrigen';
+		} elseif($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeNumeroDestino')))) {
+			$reporte = 'informeNumeroDestino';
+		} elseif($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeDepartamento')))) {
+			$reporte = 'informeDepartamento';
+		} elseif($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeCentroCosto')))) {
+			$reporte = 'informeCentroCosto';
+		}
+	?>
+	<a class="home_description" href="/cdrs/<?php echo $reporte; ?>">
 		<h2 class="informes">
 			INFORMES
 		</h2>
@@ -57,6 +83,7 @@
 			Visualización de historial de llamadas registradas.
 		</p>
 	</a>
+	<?php endif; ?>
 	<a class="home_description" href="/pages/display/panel">
 		<h2 class="panel">
 			PANEL

@@ -260,11 +260,13 @@
 			<?php echo h($sipDispositivo['SipDispositivo']['priority']); ?>
 			&nbsp;
 		</h3>
-		<label><?php echo __('Departamento'); ?></label>
+		<!--
+		<label><?php //echo __('Departamento'); ?></label>
 		<h3>
-			<?php echo $this->Html->link($sipDispositivo['Department']['name'], array('controller' => 'departments', 'action' => 'view', $sipDispositivo['Department']['id'])); ?>
+			<?php //echo $this->Html->link($sipDispositivo['Department']['name'], array('controller' => 'departments', 'action' => 'view', $sipDispositivo['Department']['id'])); ?>
 			&nbsp;
 		</h3>
+	-->
 		<label><?php echo __('Centro De Costo'); ?></label>
 		<h3>
 			<?php echo $this->Html->link($sipDispositivo['CostCenter']['name'], array('controller' => 'cost_centers', 'action' => 'view', $sipDispositivo['CostCenter']['id'])); ?>

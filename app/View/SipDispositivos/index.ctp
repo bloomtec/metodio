@@ -11,8 +11,10 @@
 		<th><?php echo $this->Paginator->sort('host', 'Host');?></th>
 		<th><?php echo $this->Paginator->sort('nat', 'NAT');?></th>
 		<th><?php echo $this->Paginator->sort('callerid', 'CLI');?></th>
-		<th><?php echo $this->Paginator->sort('context', 'Contexto');?></th>		
-		<th><?php echo $this->Paginator->sort('department_id', 'Departamento');?></th>
+		<th><?php echo $this->Paginator->sort('context', 'Contexto');?></th>
+		<!--		
+		<th><?php //echo $this->Paginator->sort('department_id', 'Departamento');?></th>
+	-->
 		<th><?php echo $this->Paginator->sort('cost_center_id', 'Centro De Costo');?></th>
 		<th class="actions"><?php echo __('Opciones');?></th>
 	</tr>
@@ -25,9 +27,11 @@
 		<td><?php echo h($sipDispositivo['SipDispositivo']['nat']); ?>&nbsp;</td>
 		<td><?php echo h($sipDispositivo['SipDispositivo']['callerid']); ?>&nbsp;</td>
 		<td><?php echo h($sipDispositivo['SipDispositivo']['context']); ?>&nbsp;</td>
+		<!--
 		<td>
-			<?php echo $this->Html->link($sipDispositivo['Department']['name'], array('controller' => 'departments', 'action' => 'view', $sipDispositivo['Department']['id'])); ?>
+			<?php //echo $this->Html->link($sipDispositivo['Department']['name'], array('controller' => 'departments', 'action' => 'view', $sipDispositivo['Department']['id'])); ?>
 		</td>
+	-->
 		<td>
 			<?php echo $this->Html->link($sipDispositivo['CostCenter']['name'], array('controller' => 'cost_centers', 'action' => 'view', $sipDispositivo['CostCenter']['id'])); ?>
 		</td>

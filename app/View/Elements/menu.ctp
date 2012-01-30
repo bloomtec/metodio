@@ -13,7 +13,8 @@
 			<?php endif; ?>
 		</li>
 		<?php endif; ?>
-		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'index')))) : ?>
+		<?php //if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'index')))) : ?>
+		<!--
 		<li class="departamentos">
 			<a href="/departments">DEPARTAMENTOS</a>
 			<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Departments', 'add')))) : ?>
@@ -24,7 +25,8 @@
 			</ul>
 			<?php endif; ?>
 		</li>
-		<?php endif; ?>
+		-->
+		<?php //endif; ?>
 		<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'CostCenters', 'index')))) : ?>
 		<li class="centros">
 			<a href="/cost_centers">CENTROS DE COSTO</a>

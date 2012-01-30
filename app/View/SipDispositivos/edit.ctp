@@ -12,7 +12,7 @@
 		echo $this -> Form -> input('host', array('label' => 'Host'));
 		echo $this -> Form -> input('context', array('label' => 'Contexto', 'type' => 'select', 'options' => $privileges, 'selected' => $this -> data['SipDispositivo']['context']));
 		echo $this -> Form -> input('nat', array('label' => 'NAT', 'type' => 'select', 'options' => array('no' => 'no', 'yes' => 'yes')));
-		echo $this -> Form -> input('department_id', array('label' => 'Departamento', 'empty' => __('Seleccione...', true)));
+		//echo $this -> Form -> input('department_id', array('label' => 'Departamento', 'empty' => __('Seleccione...', true)));
 		echo $this -> Form -> input('cost_center_id', array('label' => 'Centro De Costo', 'empty' => __('Seleccione...', true)));
 		?>
 	</fieldset>
