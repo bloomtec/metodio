@@ -96,11 +96,13 @@
 					<a href="/cdrs/informeNumeroDestino">Por número de destino</a>
 				</li>
 				<?php endif; ?>
-				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeDepartamento')))) : ?>
+				<?php //if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeDepartamento')))) : ?>
+					<!--
 				<li>
 					<a href="/cdrs/informeDepartamento">Por departamento</a>
 				</li>
-				<?php endif; ?>
+				-->
+				<?php //endif; ?>
 				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeCentroCosto')))) : ?>
 				<li>
 					<a href="/cdrs/informeCentroCosto">Por centro de costo</a>
