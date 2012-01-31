@@ -179,15 +179,33 @@ class CdrsController extends AppController {
 			}
 			// Extensión
 			if (isset($queries['exten']) && !empty($queries['exten'])) {
-				$conditions['OR'] = array('Cdr.src' => urldecode($queries['exten']), 'Cdr.dst' => urldecode($queries['exten']));
+				$extentions = urldecode($queries['exten']);
+				$extentions = trim($extentions);
+				$extentions = explode(',', $extentions);
+				foreach ($extentions as $key => $value) {
+					$extentions[$key] = trim($value);
+				}
+				$conditions['OR'] = array('Cdr.src' => $extentions, 'Cdr.dst' => $extentions);
 			}
 			// Origen
 			if (isset($queries['src'])) {
-				$conditions['Cdr.src'] = urldecode($queries['src']);
+				$extentions = urldecode($queries['src']);
+				$extentions = trim($extentions);
+				$extentions = explode(',', $extentions);
+				foreach ($extentions as $key => $value) {
+					$extentions[$key] = trim($value);
+				}
+				$conditions['Cdr.src'] = $extentions;
 			}
 			// Destino
 			if (isset($queries['dst'])) {
-				$conditions['Cdr.dst'] = urldecode($queries['dst']);
+				$extentions = urldecode($queries['dst']);
+				$extentions = trim($extentions);
+				$extentions = explode(',', $extentions);
+				foreach ($extentions as $key => $value) {
+					$extentions[$key] = trim($value);
+				}
+				$conditions['Cdr.dst'] = $extentions;
 			}
 			// Departamentos
 			if (isset($queries['departamento'])) {
@@ -213,6 +231,8 @@ class CdrsController extends AppController {
 		} elseif(isset($conditions['Cdr.cost_center'])) {
 			$this -> Session -> write('inner_name', $conditions['Cdr.cost_center']);
 		}
+		
+		//debug($conditions);
 		
 		$cdrs = $this -> paginate();
 		

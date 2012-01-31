@@ -18,7 +18,9 @@
 			<th><?php echo $this -> Paginator -> sort('dstchannel', 'Canal Destino');?></th>
 			<th><?php echo $this -> Paginator -> sort('billsec', 'Tiempo Facturado');?></th>
 			<th><?php echo $this -> Paginator -> sort('disposition', 'Estado');?></th>
-			<th><?php echo $this -> Paginator -> sort('department', 'Departamento');?></th>
+			<!--
+			<th><?php //echo $this -> Paginator -> sort('department', 'Departamento');?></th>
+			-->
 			<th><?php echo $this -> Paginator -> sort('cost_center', 'Centro De Costo');?></th>
 		</tr>
 		<?php
@@ -34,7 +36,9 @@
 			<td><?php echo h($cdr['Cdr']['dstchannel']);?>&nbsp;</td>
 			<td><?php echo h($cdr['Cdr']['billsec']);?>&nbsp;</td>
 			<td><?php echo h($cdr['Cdr']['disposition']);?>&nbsp;</td>
-			<td><?php echo h($cdr['Cdr']['department']);?>&nbsp;</td>
+			<!--
+			<td><?php //echo h($cdr['Cdr']['department']);?>&nbsp;</td>
+			-->
 			<td><?php echo h($cdr['Cdr']['cost_center']);?>&nbsp;</td>
 		</tr>
 		<?php endforeach;?>
