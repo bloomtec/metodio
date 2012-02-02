@@ -192,7 +192,7 @@ class UsersController extends AppController {
 		$this -> User -> query('TRUNCATE TABLE aros;');
 		//$this -> User -> query('TRUNCATE TABLE acos;');
 		$this -> User -> query('TRUNCATE TABLE aros_acos;');
-		$this -> User -> query('TRUNCATE TABLE users;');
+		//$this -> User -> query('TRUNCATE TABLE users;');
 
 		/**
 		 * Agregar Aro's
@@ -263,9 +263,11 @@ class UsersController extends AppController {
 		$this -> Acl -> allow($role, 'Cdrs/informeExtension');
 		$this -> Acl -> allow($role, 'Cdrs/informeNumeroOrigen');
 		$this -> Acl -> allow($role, 'Cdrs/informeNumeroDestino');
-		$this -> Acl -> allow($role, 'Cdrs/informeDepartamento');
+		// $this -> Acl -> allow($role, 'Cdrs/informeDepartamento');
 		$this -> Acl -> allow($role, 'Cdrs/informeCentroCosto');
 		$this -> Acl -> allow($role, 'Cdrs/CSVExport');
+		$this -> Acl -> allow($role, 'Cdrs/getCallDateLastRowForExport');
+		$this -> Acl -> allow($role, 'Cdrs/resetCallDateLastRowForExport');
 
 		/**
 		 * Finished

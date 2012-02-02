@@ -15,42 +15,48 @@ class CdrsController extends AppController {
 
 	public function informeGeneral() {
 		$this -> getDates();
+		$this -> resetCallDateLastRowForExport();
 		$this -> set('title_for_layout', 'Informe General');
 		$this -> Session -> write('prefix_for_title', 'Informe General');
 	}
 
 	public function informeExtension() {
 		$this -> getDates();
+		$this -> resetCallDateLastRowForExport();
 		$this -> set('title_for_layout', 'Informe Por Extensión');
 		$this -> Session -> write('prefix_for_title', 'Informe Por Extensión');
 	}
 
 	public function informeNumeroOrigen() {
 		$this -> getDates();
+		$this -> resetCallDateLastRowForExport();
 		$this -> set('title_for_layout', 'Informe Por Número De Origen');
 		$this -> Session -> write('prefix_for_title', 'Informe Por Número De Origen');
 	}
 
 	public function informeNumeroDestino() {
 		$this -> getDates();
+		$this -> resetCallDateLastRowForExport();
 		$this -> set('title_for_layout', 'Informe Por Número De Destino');
 		$this -> Session -> write('prefix_for_title', 'Informe Por Número De Destino');
 	}
 
-	public function informeDepartamento() {
+	/* public function informeDepartamento() {
 		$this -> loadModel('Department');
 		$departments = $this -> Department -> find('list', array('order' => array('Department.name' => 'ASC')));
 		$this -> set(compact('departments'));
 		$this -> getDates();
+		$this -> resetCallDateLastRowForExport();
 		$this -> set('title_for_layout', 'Informe Por Departamento');
 		$this -> Session -> write('prefix_for_title', 'Informe Por Departamento');
-	}
+	} */
 
 	public function informeCentroCosto() {
 		$this -> loadModel('CostCenter');
 		$costCenters = $this -> CostCenter -> find('list', array('order' => array('CostCenter.name' => 'ASC')));
 		$this -> set(compact('costCenters'));
 		$this -> getDates();
+		$this -> resetCallDateLastRowForExport();
 		$this -> set('title_for_layout', 'Informe Por Centro De Costo');
 		$this -> Session -> write('prefix_for_title', 'Informe Por Centro De Costo');
 	}
@@ -77,7 +83,7 @@ class CdrsController extends AppController {
 				if (isset($data['fecha_final'])) {
 					$conditions['Cdr.calldate <='] = $data['fecha_final']['fecha'] . ' ' . $data['fecha_final']['hora'] . ':' . $data['fecha_final']['minuto'] . ':' . $data['fecha_final']['segundo'];
 				}
-				
+
 				if (isset($conditions['Cdr.calldate <=']) && !empty($conditions['Cdr.calldate <='])) {
 					$redirect .= "/ff:" . urlencode($conditions['Cdr.calldate <=']);
 				}
@@ -122,7 +128,8 @@ class CdrsController extends AppController {
 		$title_for_layout = 'Reporte :: ' . $tipo;
 		$this -> set('title_for_layout', $title_for_layout);
 		$queries = null;
-		if (isset($this -> params['named']) && !empty($this -> params['named'])) { $queries = $this -> params['named'];
+		if (isset($this -> params['named']) && !empty($this -> params['named'])) {
+			$queries = $this -> params['named'];
 		}
 		$conditions = array();
 		if ($queries) {
@@ -177,7 +184,7 @@ class CdrsController extends AppController {
 			}
 		}
 
-		$this -> paginate = array('conditions' => $conditions, 'order' => array('Cdr.calldate' => 'ASC'));
+		$this -> paginate = array('conditions' => $conditions, 'order' => array('Cdr.id' => 'ASC'));
 		//$csv_data = $this -> Cdr -> find('all', array('conditions' => $conditions));
 
 		$this -> Session -> delete('inner_name');
@@ -212,6 +219,21 @@ class CdrsController extends AppController {
 		}
 		$this -> set('fi', $queries['fi']);
 		$this -> set('ff', $queries['ff']);
+	}
+
+	public function resetCallDateLastRowForExport() {
+		$this -> Session -> delete('CSVExport.calldate_limit');
+	}
+
+	public function getCallDateLastRowForExport() {
+		$calldate_limit = $this -> Session -> read('CSVExport.calldate_limit');
+		if(empty($calldate_limit)) {
+			$conditions = $this -> Session -> read('CSVExport.conditions');
+			$calldate_limit = $this -> Cdr -> find('all', array('limit' => 300000, 'conditions' => $conditions, 'order' => array('Cdr.id' => 'ASC')));
+			$calldate_limit = $calldate_limit[count($calldate_limit) - 1]['Cdr']['calldate'];
+			$this -> Session -> write('CSVExport.calldate_limit', $calldate_limit);
+		}
+		return $calldate_limit;
 	}
 
 }

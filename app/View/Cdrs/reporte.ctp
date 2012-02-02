@@ -1,8 +1,11 @@
 <?php
+	$rows = $this->Paginator->request->params['paging']['Cdr']['count'];
+	/*
 	$php_memory_limit = ini_get('memory_limit');
 	$php_memory_limit = substr($php_memory_limit, 0, strlen($php_memory_limit) - 1);
 	debug($php_memory_limit . 'M PHP Memory Limit.');
 	debug(round(memory_get_peak_usage()/1000000, 0) . 'M memory used.');
+	*/
 ?>
 <div class="cdrs index">
 	<h2><?php echo __('Informe');?></h2>
@@ -14,13 +17,24 @@
 			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'fields'=>$fields, 'headers'=>$headers),array('class'=>'csv'));
 		?>
 	</div>
-	<!--
+	<?php if($rows > 300000) : ?>
 	<div class="cdrs-info">
 		<p>
-			Se están mostrando registros desde el <?php //echo urldecode($fi); ?> hasta el <?php //echo urldecode($ff); ?>. 
+			Este informe contiene <b><?php echo number_format($rows); ?></b> resultados.
 		</p>
+		<p>
+			Es posible que el servidor no pueda exportar esta cantidad de datos a CSV.
+		</p>
+		<p>
+			Por favor intente poniendo como fecha y horario final lo siguiente :: <?php //echo $this -> requestAction('/cdrs/getCallDateLastRowForExport'); ?> 
+		</p>
+		<p><i>
+			Esta información es el resultado de varias pruebas en máquinas con al menos 2GB de memoria RAM.
+			Superar esta cantidad de resultados conlleva a un periodo que supera el tiempo de ejecución normal
+			para el servidor e implica el uso de la mayoría de la memoria RAM del mismo.
+		</i></p>
 	</div>
--->
+	<?php endif; ?>
 	<table cellpadding="0" cellspacing="0">
 		<tr>
 			<th><?php echo $this -> Paginator -> sort('calldate', 'Fecha Y Hora');?></th>

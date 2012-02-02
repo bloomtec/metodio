@@ -51,7 +51,7 @@ class AppController extends Controller {
 		$this -> set('company_name', 'SipCom Metodio Barreto');
 	}
 	
-	private function setMemoryLimit() {
+	public function setMemoryLimit() {
 		exec('free', $info);
 		$info = $info[1];
 		$tmp_info = explode(' ', $info);
@@ -64,7 +64,7 @@ class AppController extends Controller {
 		$info = round($info[1] / 1024, 0);
 		$memory_limit = $info / 2 . 'M';
 		ini_set('memory_limit', $memory_limit);
-		ini_set('max_execution_time', 90);
+		ini_set('max_execution_time', -1);
 		return;
 	}
 
@@ -107,18 +107,7 @@ class AppController extends Controller {
 		$conditions = $this -> Session -> read('CSVExport.conditions');
 		
 		if($conditions) {
-			$export_data = $this -> $model -> find('all', array('conditions' => $conditions, 'limit' => 300000));
-			// 1000 = 10.59676M
-			// 3.307008
-			// 2000 = 13.903768M
-			// 2.580792
-			// 3000 = 16.84456M
-			// 3.13201
-			// 4000 = 19.976576M
-			// 3.127408
-			// 5000 = 23.103984M
-			// 
-			// 6000 = 26.221276M
+			$export_data = $this -> $model -> find('list', array('conditions' => $conditions, 'order'=>array("$model.id" => 'ASC'), 'fields' => array("$model.id")));
 		}
 		/**
 		 * Sección para procesar los datos e iniciar la descarga al usuario
@@ -154,7 +143,9 @@ class AppController extends Controller {
 			}
 
 			// Asignar los valores
-			foreach ($export_data as $key => $row) {
+			// foreach ($export_data as $key => $row) {
+			foreach ($export_data as $key => $id) {
+				$row = $this -> $model -> find('first', array('conditions' => array("$model.id" => $id)));
 				// $line --> $row en este caso
 				foreach ($model_fields as $model_field) {
 					$line[] = $row[$model][$model_field];
@@ -162,18 +153,19 @@ class AppController extends Controller {
 				fputcsv($buffer, $line, $delimiter, $enclosure);
 				$line = array();
 			}
-			/*
+			
 			header("Content-type:application/vnd.ms-excel");
 			header("Content-disposition:attachment;filename=" . $filename);
 			rewind($buffer);
 			$output = stream_get_contents($buffer);
 			fclose($buffer);
 			return $output;
-			 */
+			
 			$php_memory_limit = ini_get('memory_limit');
 			$php_memory_limit = substr($php_memory_limit, 0, strlen($php_memory_limit) - 1);
 			debug($php_memory_limit . 'M PHP Memory Limit.');
 			debug(memory_get_peak_usage()/1000000 . 'M memory used.');
+			
 		} else {
 			// No se puede exportar
 		}
