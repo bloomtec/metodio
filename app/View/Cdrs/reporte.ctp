@@ -11,29 +11,29 @@
 	<h2><?php echo __('Informe');?></h2>
 	<div class="csv-export">
 		<?php
-			$fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition,department,cost_center';
-			$headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Duración,Estado,Departamento,Centro De Costo';
-			//echo $this -> Html -> link('Exportar ésta página a CSV', array('action' => 'CSVExport', 'type'=>'page', 'fields'=>$fields, 'headers'=>$headers));
+			// $fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition,department,cost_center';
+			$fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition,cost_center';
+			// $headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Duración,Estado,Departamento,Centro De Costo';
+			$headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Duración,Estado,Centro De Costo';
+			// echo $this -> Html -> link('Exportar ésta página a CSV', array('action' => 'CSVExport', 'type'=>'page', 'fields'=>$fields, 'headers'=>$headers));
 			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'fields'=>$fields, 'headers'=>$headers),array('class'=>'csv'));
 		?>
 	</div>
 	<?php if($rows > 300000) : ?>
 	<div class="cdrs-info">
-		<p>
-			Este informe contiene <b><?php echo number_format($rows); ?></b> resultados.
-		</p>
-		<p>
-			Es posible que el servidor no pueda exportar esta cantidad de datos a CSV.
-		</p>
-		<p>
-			Por favor intente poniendo como fecha y horario final lo siguiente :: <?php //echo $this -> requestAction('/cdrs/getCallDateLastRowForExport'); ?> 
-		</p>
+		<p>Este informe contiene <b><?php echo number_format($rows); ?></b> resultados.</p>
 		<p><i>
-			Esta información es el resultado de varias pruebas en máquinas con al menos 2GB de memoria RAM.
-			Superar esta cantidad de resultados conlleva a un periodo que supera el tiempo de ejecución normal
-			para el servidor e implica el uso de la mayoría de la memoria RAM del mismo.
+			El limite de resultados para exportar a CSV es de <b>300,000</b> con el fin de tratar de garantizar
+			que el servidor no se sobrecargue tanto en recursos de memoria como en tiempo de ejecución.
 		</i></p>
+		<p>Reduzca el rango de tiempo del informe para evitar una sobrecarga del servidor.</p>
+		<p>El registro <b>300,000</b> corresponde a la fecha <b><?php echo $this -> requestAction('/cdrs/getCallDateLastRowForExport'); ?>.</b></p>
 	</div>
+	<style>
+		div.cdrs-info {
+			
+		}
+	</style>
 	<?php endif; ?>
 	<table cellpadding="0" cellspacing="0">
 		<tr>

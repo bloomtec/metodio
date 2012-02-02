@@ -107,7 +107,8 @@ class AppController extends Controller {
 		$conditions = $this -> Session -> read('CSVExport.conditions');
 		
 		if($conditions) {
-			$export_data = $this -> $model -> find('list', array('conditions' => $conditions, 'order'=>array("$model.id" => 'ASC'), 'fields' => array("$model.id")));
+			// $export_data = $this -> $model -> find('list', array('conditions' => $conditions, 'order'=>array("$model.id" => 'ASC'), 'fields' => array("$model.id")));
+			$export_data = $this -> $model -> find('all', array('conditions' => $conditions, 'order'=>array("$model.id" => 'ASC'), 'limit' => 300000));
 		}
 		/**
 		 * Sección para procesar los datos e iniciar la descarga al usuario
@@ -143,9 +144,9 @@ class AppController extends Controller {
 			}
 
 			// Asignar los valores
-			// foreach ($export_data as $key => $row) {
-			foreach ($export_data as $key => $id) {
-				$row = $this -> $model -> find('first', array('conditions' => array("$model.id" => $id)));
+			foreach ($export_data as $key => $row) {
+			//foreach ($export_data as $key => $id) {
+				// $row = $this -> $model -> find('first', array('conditions' => array("$model.id" => $id)));
 				// $line --> $row en este caso
 				foreach ($model_fields as $model_field) {
 					$line[] = $row[$model][$model_field];
@@ -161,10 +162,12 @@ class AppController extends Controller {
 			fclose($buffer);
 			return $output;
 			
+			/*
 			$php_memory_limit = ini_get('memory_limit');
 			$php_memory_limit = substr($php_memory_limit, 0, strlen($php_memory_limit) - 1);
 			debug($php_memory_limit . 'M PHP Memory Limit.');
 			debug(memory_get_peak_usage()/1000000 . 'M memory used.');
+			*/
 			
 		} else {
 			// No se puede exportar

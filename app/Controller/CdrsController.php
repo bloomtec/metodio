@@ -229,8 +229,8 @@ class CdrsController extends AppController {
 		$calldate_limit = $this -> Session -> read('CSVExport.calldate_limit');
 		if(empty($calldate_limit)) {
 			$conditions = $this -> Session -> read('CSVExport.conditions');
-			$calldate_limit = $this -> Cdr -> find('all', array('limit' => 300000, 'conditions' => $conditions, 'order' => array('Cdr.id' => 'ASC')));
-			$calldate_limit = $calldate_limit[count($calldate_limit) - 1]['Cdr']['calldate'];
+			$calldate_limit = $this -> Cdr -> find('all', array('conditions' => $conditions, 'limit' => 300000, 'fields' => array('Cdr.calldate'), 'order' => array('Cdr.id' => 'ASC')));
+			$calldate_limit = $calldate_limit[299999]['Cdr']['calldate'];
 			$this -> Session -> write('CSVExport.calldate_limit', $calldate_limit);
 		}
 		return $calldate_limit;
