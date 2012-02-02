@@ -65,60 +65,19 @@ class CdrsController extends AppController {
 				$data = $this -> data['Cdr'];
 
 				// Fecha inicial
-				if (!empty($data['fecha_inicial']['fecha'])) {
-					$conditions['Cdr.calldate >='] = $data['fecha_inicial']['fecha'];
+				if (isset($data['fecha_inicial'])) {
+					$conditions['Cdr.calldate >='] = $data['fecha_inicial']['fecha'] . ' ' . $data['fecha_inicial']['hora'] . ':' . $data['fecha_inicial']['minuto'] . ':' . $data['fecha_inicial']['segundo'];
 				}
 
-				// Hora inicial
-				$hora_inicial = array('hora' => '0', 'minuto' => '00', 'segundo' => '00', 'usar' => false);
-				if (isset($data['hora_inicial']['hora']['hour']) && !empty($data['hora_inicial']['hora'])) {
-					$hora_inicial['hora'] = $data['hora_inicial']['hora'];
-					$hora_inicial['usar'] = true;
-				}
-				if (isset($data['hora_inicial']['minuto']['min']) && !empty($data['hora_inicial']['minuto'])) {
-					$hora_inicial['minuto'] = $data['hora_inicial']['minuto'];
-					$hora_inicial['usar'] = true;
-				}
-				if (isset($data['hora_inicial']['segundo']['min']) && !empty($data['hora_inicial']['segundo'])) {
-					$hora_inicial['segundo'] = $data['hora_inicial']['segundo'];
-					$hora_inicial['usar'] = true;
-				}
-				if (isset($conditions['Cdr.calldate >='])) {
-					if ($hora_inicial['usar']) {
-						$conditions['Cdr.calldate >='] .= ' ' . $hora_inicial['hora'] . ':' . $hora_inicial['minuto'] . ':' . $hora_inicial['segundo'];
-					} else {
-						$conditions['Cdr.calldate >='] .= ' 00:00:00';
-					}
-				}
 				if (isset($conditions['Cdr.calldate >=']) && !empty($conditions['Cdr.calldate >='])) {
 					$redirect .= "/fi:" . urlencode($conditions['Cdr.calldate >=']);
 				}
 
 				// Fecha final
-				if (!empty($data['fecha_final']['fecha'])) {
-					$conditions['Cdr.calldate <='] = $data['fecha_final']['fecha'];
+				if (isset($data['fecha_final'])) {
+					$conditions['Cdr.calldate <='] = $data['fecha_final']['fecha'] . ' ' . $data['fecha_final']['hora'] . ':' . $data['fecha_final']['minuto'] . ':' . $data['fecha_final']['segundo'];
 				}
-				// Hora final
-				$hora_final = array('hora' => '0', 'minuto' => '00', 'segundo' => '00', 'usar' => false);
-				if (isset($data['hora_final']['hora']['hour']) && !empty($data['hora_final']['hora']['hour'])) {
-					$hora_final['hora'] = $data['hora_final']['hora']['hour'];
-					$hora_final['usar'] = true;
-				}
-				if (isset($data['hora_final']['minuto']['min']) && !empty($data['hora_final']['minuto']['min'])) {
-					$hora_final['minuto'] = $data['hora_final']['minuto']['min'];
-					$hora_final['usar'] = true;
-				}
-				if (isset($data['hora_final']['segundo']['min']) && !empty($data['hora_final']['segundo']['min'])) {
-					$hora_final['segundo'] = $data['hora_final']['segundo']['min'];
-					$hora_final['usar'] = true;
-				}
-				if (isset($conditions['Cdr.calldate <='])) {
-					if ($hora_final['usar']) {
-						$conditions['Cdr.calldate <='] .= ' ' . $hora_final['hora'] . ':' . $hora_final['minuto'] . ':' . $hora_final['segundo'];
-					} else {
-						$conditions['Cdr.calldate <='] .= ' 23:59:59';
-					}
-				}
+				
 				if (isset($conditions['Cdr.calldate <=']) && !empty($conditions['Cdr.calldate <='])) {
 					$redirect .= "/ff:" . urlencode($conditions['Cdr.calldate <=']);
 				}
@@ -158,6 +117,7 @@ class CdrsController extends AppController {
 	}
 
 	public function reporte() {
+		$this -> setMemoryLimit();
 		$tipo = $this -> Session -> read('prefix_for_title');
 		$title_for_layout = 'Reporte :: ' . $tipo;
 		$this -> set('title_for_layout', $title_for_layout);
@@ -216,41 +176,42 @@ class CdrsController extends AppController {
 				$conditions['Cdr.cost_center'] = urldecode($queries['depCost']);
 			}
 		}
+
 		$this -> paginate = array('conditions' => $conditions, 'order' => array('Cdr.calldate' => 'ASC'));
-		$csv_data = $this -> Cdr -> find('all', array('conditions' => $conditions));
-		
+		//$csv_data = $this -> Cdr -> find('all', array('conditions' => $conditions));
+
 		$this -> Session -> delete('inner_name');
-		if(isset($conditions['OR']['Cdr.src']) && isset($conditions['OR']['Cdr.dst'])) {
+		if (isset($conditions['OR']['Cdr.src']) && isset($conditions['OR']['Cdr.dst'])) {
 			$this -> Session -> write('inner_name', $conditions['OR']['Cdr.dst']);
-		} elseif(isset($conditions['Cdr.src'])) {
+		} elseif (isset($conditions['Cdr.src'])) {
 			$this -> Session -> write('inner_name', $conditions['Cdr.src']);
-		} elseif(isset($conditions['Cdr.dst'])) {
+		} elseif (isset($conditions['Cdr.dst'])) {
 			$this -> Session -> write('inner_name', $conditions['Cdr.dst']);
-		} elseif(isset($conditions['Cdr.department'])) {
+		} elseif (isset($conditions['Cdr.department'])) {
 			$this -> Session -> write('inner_name', $conditions['Cdr.department']);
-		} elseif(isset($conditions['Cdr.cost_center'])) {
+		} elseif (isset($conditions['Cdr.cost_center'])) {
 			$this -> Session -> write('inner_name', $conditions['Cdr.cost_center']);
 		}
-		
-		//debug($conditions);
-		
+
 		$cdrs = $this -> paginate();
-		
-		$this -> set(compact('cdrs', 'csv_data'));
-		
-		// Reporte completo
-		$this -> Session -> delete('CSVExport.full');
-		$this -> Session -> write('CSVExport.full', $csv_data);
-		
+
+		$this -> set(compact('cdrs'));
+		//$this -> set(compact('cdrs', 'csv_data'));
+
+		// Guardar las condiciones del informe
+		$this -> Session -> delete('CSVExport.conditions');
+		$this -> Session -> write('CSVExport.conditions', $conditions);
+
 		// Registrar hora para el nombre
-		if(isset($conditions['Cdr.calldate BETWEEN ? AND ?'])) {
+		if (isset($conditions['Cdr.calldate BETWEEN ? AND ?'])) {
 			$file_name_hour = '(' . $conditions['Cdr.calldate BETWEEN ? AND ?'][0] . '_' . $conditions['Cdr.calldate BETWEEN ? AND ?'][1] . ')';
 			$file_name_hour = str_ireplace(' ', '_', $file_name_hour);
 			$file_name_hour = str_ireplace(':', '-', $file_name_hour);
 			$this -> Session -> delete('nombre_hora');
 			$this -> Session -> write('nombre_hora', $file_name_hour);
 		}
-		
+		$this -> set('fi', $queries['fi']);
+		$this -> set('ff', $queries['ff']);
 	}
 
 }

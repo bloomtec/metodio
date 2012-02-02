@@ -1,3 +1,9 @@
+<?php
+	$php_memory_limit = ini_get('memory_limit');
+	$php_memory_limit = substr($php_memory_limit, 0, strlen($php_memory_limit) - 1);
+	debug($php_memory_limit . 'M PHP Memory Limit.');
+	debug(round(memory_get_peak_usage()/1000000, 0) . 'M memory used.');
+?>
 <div class="cdrs index">
 	<h2><?php echo __('Informe');?></h2>
 	<div class="csv-export">
@@ -5,9 +11,16 @@
 			$fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition,department,cost_center';
 			$headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Duración,Estado,Departamento,Centro De Costo';
 			//echo $this -> Html -> link('Exportar ésta página a CSV', array('action' => 'CSVExport', 'type'=>'page', 'fields'=>$fields, 'headers'=>$headers));
-			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'type'=>'full', 'fields'=>$fields, 'headers'=>$headers),array('class'=>'csv'));
+			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'fields'=>$fields, 'headers'=>$headers),array('class'=>'csv'));
 		?>
 	</div>
+	<!--
+	<div class="cdrs-info">
+		<p>
+			Se están mostrando registros desde el <?php //echo urldecode($fi); ?> hasta el <?php //echo urldecode($ff); ?>. 
+		</p>
+	</div>
+-->
 	<table cellpadding="0" cellspacing="0">
 		<tr>
 			<th><?php echo $this -> Paginator -> sort('calldate', 'Fecha Y Hora');?></th>
