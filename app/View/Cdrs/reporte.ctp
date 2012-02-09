@@ -8,8 +8,9 @@
 	*/
 ?>
 <div class="cdrs index">
+	<?php Configure::write('debug',0);?>
 	<h2><?php echo __('Informe');?></h2>
-	<div class="csv-export">
+	<div class="csv-export <?php if($rows > 300000)  echo 'inactive' ?>">
 		<?php
 			// $fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition,department,cost_center';
 			$fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition,cost_center';
@@ -21,19 +22,10 @@
 	</div>
 	<?php if($rows > 300000) : ?>
 	<div class="cdrs-info">
-		<p>Este informe contiene <b><?php echo number_format($rows); ?></b> resultados.</p>
-		<p><i>
-			El limite de resultados para exportar a CSV es de <b>300,000</b> con el fin de tratar de garantizar
-			que el servidor no se sobrecargue tanto en recursos de memoria como en tiempo de ejecución.
-		</i></p>
-		<p>Reduzca el rango de tiempo del informe para evitar una sobrecarga del servidor.</p>
-		<p>El registro <b>300,000</b> corresponde a la fecha <b><?php echo $this -> requestAction('/cdrs/getCallDateLastRowForExport'); ?>.</b></p>
+		<p>Este informe contiene <b><?php echo number_format($rows); ?></b> resultados.
+			si desea exportar este reporte deberá limitarlo hasta la fecha <?php echo $this -> requestAction('/cdrs/getCallDateLastRowForExport'); ?>
+		</p>
 	</div>
-	<style>
-		div.cdrs-info {
-			
-		}
-	</style>
 	<?php endif; ?>
 	<table cellpadding="0" cellspacing="0">
 		<tr>

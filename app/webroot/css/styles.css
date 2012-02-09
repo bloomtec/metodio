@@ -338,6 +338,29 @@ div.actions a, a.cancelar {
 div.actions a:hover, a.cancelar:hover {
 	background-color: #1E72D8;
 }
+
+.cdrs .inactive a.csv, .cdrs .inactive a.csv:hover{
+	background: gray;
+}
+.cdrs-info{
+	position:relative;
+	margin-left:0;
+	width:350px;
+	float:left;
+	background-color: #C15007;
+	background-position: left center;
+	background-repeat: no-repeat;
+	color: white;
+	font-size: 11px;
+	font-weight: bold;
+	margin-top: 0px;
+	padding: 5px 5px 5px 5px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius:4px;
+	-moz-box-shadow: 0 0 6px #ddd;
+	-webkit-box-shadow: 0 0 6px #ddd;
+}
 #footer {
 	/* background-color: #000000; */
 	bottom: 0;

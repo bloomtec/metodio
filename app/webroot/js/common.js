@@ -65,5 +65,8 @@ $(function() {
 		'[required]'	: 'Campo obligatorio'
 	});
 	$('form').validator({lang:'es',messageClass:'error-form'});
-
+	
+	$('.inactive a').click(function(e){
+		e.preventDefault();
+	})
 });
