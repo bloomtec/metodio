@@ -12,10 +12,10 @@
 	<h2><?php echo __('Informe');?></h2>
 	<div class="csv-export <?php if($rows > 300000)  echo 'inactive' ?>">
 		<?php
-			// $fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition,department,cost_center';
-			$fields = 'calldate,clid,src,dst,channel,dstchannel,duration,disposition,cost_center';
+			// $fields = 'calldate,clid,src,dst,channel,dstchannel,billsec,disposition,department,cost_center';
+			$fields = 'calldate,clid,src,dst,channel,dstchannel,billsec,disposition,cost_center';
 			// $headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Duración,Estado,Departamento,Centro De Costo';
-			$headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Duración,Estado,Centro De Costo';
+			$headers = 'Fecha Y Hora,Usuario,Origen,Destino,Canal Origen,Canal Destino,Tiempo Facturado,Estado,Centro De Costo';
 			// echo $this -> Html -> link('Exportar ésta página a CSV', array('action' => 'CSVExport', 'type'=>'page', 'fields'=>$fields, 'headers'=>$headers));
 			echo $this -> Html -> link('Exportar el resultado a CSV', array('action' => 'CSVExport', 'fields'=>$fields, 'headers'=>$headers),array('class'=>'csv'));
 		?>
