@@ -74,7 +74,7 @@
 			) :
 		?>
 		<li class="informes">
-			<a href="">INFORMES</a>
+			<a href="/cdrs/informeGeneral">INFORMES</a>
 			<ul>
 				<?php if($this -> requestAction('/users/verificarAcceso/' , array('ruta'=>array('controllers', 'Cdrs', 'informeGeneral')))) : ?>
 				<li>
@@ -112,7 +112,7 @@
 		</li>
 		<?php endif; ?>
 		<li class="panel">
-			<a href="/pages/display/panel">PANEL</a>
+			<a href="/pages/display/panel">ESTADO DE EXTENSIONES</a>
 		</li>
 	</ul>
 </div>
