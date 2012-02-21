@@ -6,7 +6,7 @@
 		echo $this -> Form -> input('role_id', array('label'=>'Rol', 'empty' => 'Seleccione...'));
 		echo $this -> Form -> input('username', array('label'=>'Usuario'));
 		echo $this -> Form -> input('password', array('label'=>'Contraseña'));
-		echo $this -> Form -> input('is_active', array('label'=>'Activo'));
+		echo $this -> Form -> input('is_active', array('label'=>'Activo', 'checked' => 'checked'));
 		?>
 	</fieldset>
 	<?php echo $this -> Form -> end(__('Guardar'));?>

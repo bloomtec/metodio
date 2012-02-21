@@ -9,7 +9,7 @@ class CdrsController extends AppController {
 
 	public function getDates() {
 		$ayer = explode('.', date('Y.m.d', strtotime('yesterday')));
-		$hoy = explode('.', date('Y.m.d.h.i.s'));
+		$hoy = explode('.', date('Y.m.d.H.i.s'));
 		$this -> set(compact('ayer', 'hoy'));
 	}
 

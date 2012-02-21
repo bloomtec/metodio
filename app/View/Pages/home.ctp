@@ -86,7 +86,7 @@
 	<?php endif; ?>
 	<a class="home_description" href="/pages/display/panel">
 		<h2 class="panel">
-			PANEL
+			ESTADO DE EXTENSIONES
 		</h2>
 		<p>
 			Visualización de las extensiones registradas (a este panel).

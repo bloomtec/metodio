@@ -9,6 +9,7 @@ class UsersController extends AppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
+		$this -> Auth -> allow('inicializarAcl');
 	}
 
 	public function beforeRender() {
@@ -190,9 +191,15 @@ class UsersController extends AppController {
 		 * Empty tables
 		 */
 		$this -> User -> query('TRUNCATE TABLE aros;');
-		//$this -> User -> query('TRUNCATE TABLE acos;');
+		$this -> User -> query('TRUNCATE TABLE acos;');
 		$this -> User -> query('TRUNCATE TABLE aros_acos;');
 		//$this -> User -> query('TRUNCATE TABLE users;');
+		
+		// Agregar Aco's
+		$ruta = '/home/usuario/Escritorio/httdocs/metodio';
+		exec("$ruta/app/Console/cake -app $ruta/app/ AclExtras.AclExtras aco_sync");
+		$ruta = '/var/www/metodio';
+		exec("$ruta/app/Console/cake -app $ruta/app/ AclExtras.AclExtras aco_sync");
 
 		/**
 		 * Agregar Aro's
