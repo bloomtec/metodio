@@ -68,5 +68,6 @@ $(function() {
 	
 	$('.inactive a').click(function(e){
 		e.preventDefault();
-	})
+	});
+	
 });
