@@ -4,9 +4,9 @@
 		<h2><?php echo __('Modificar Extensión');?></h2>
 		<?php
 		echo $this -> Form -> input('id');
-		echo $this -> Form -> input('name', array('label' => 'Nombre'));
-		echo $this -> Form -> input('username', array('label' => 'Usuario'));
-		echo $this -> Form -> input('secret', array('label' => 'Contraseña'));
+		echo $this -> Form -> input('name', array('label' => 'Nombre','autocomplete'=>'off'));
+		//echo $this -> Form -> input('username', array('label' => 'Usuario','autocomplete'=>'off'));
+		echo $this -> Form -> input('secret', array('label' => 'Contraseña','autocomplete'=>'off'));
 		echo $this -> Form -> input('callerid', array('label' => 'CLI'));
 		echo $this -> Form -> input('mailbox', array('label' => 'Buzón'));
 		echo $this -> Form -> input('host', array('label' => 'Host'));
