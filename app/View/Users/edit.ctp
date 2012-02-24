@@ -5,8 +5,8 @@
 		<?php
 		echo $this -> Form -> input('id');
 		echo $this -> Form -> input('role_id', array('label'=>'Rol'));
-		echo $this -> Form -> input('username', array('label'=>'Usuario'));
-		echo $this -> Form -> input('new_password', array('label'=>'Nueva Contraseña', 'type'=>'password'));
+		echo $this -> Form -> input('username', array('label'=>'Usuario','autocomplete'=>'off'));
+		echo $this -> Form -> input('new_password', array('label'=>'Nueva Contraseña', 'type'=>'password','autocomplete'=>'off'));
 		echo $this -> Form -> input('is_active', array('label'=>'Activo'));
 		?>
 	</fieldset>

@@ -4,8 +4,8 @@
 		<h2><?php echo __('Agregar Usuario');?></h2>
 		<?php
 		echo $this -> Form -> input('role_id', array('label'=>'Rol', 'empty' => 'Seleccione...'));
-		echo $this -> Form -> input('username', array('label'=>'Usuario'));
-		echo $this -> Form -> input('password', array('label'=>'Contraseña'));
+		echo $this -> Form -> input('username', array('label'=>'Usuario','autocomplete'=>'off'));
+		echo $this -> Form -> input('password', array('label'=>'Contraseña','autocomplete'=>'off'));
 		echo $this -> Form -> input('is_active', array('label'=>'Activo', 'checked' => 'checked'));
 		?>
 	</fieldset>
