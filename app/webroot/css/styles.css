@@ -22,6 +22,10 @@
 input {
 	padding: 0;
 }
+/** Para que no capitalice las descripciones en el home **/
+div.home a.home_description p {
+	text-transform: none;
+}
 /** General Style Info **/
 body {
 	background: #fff;

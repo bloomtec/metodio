@@ -5,7 +5,7 @@
 			USUARIOS
 		</h2>
 		<p>
-			Listado de los usuarios que tienen acceso a esta aplicación.
+			Administración de los usuarios del portal
 		</p>
 	</a>
 	<?php endif; ?>
@@ -27,7 +27,7 @@
 			CENTROS DE COSTO
 		</h2>
 		<p>
-			Listado de los centros de costo disponibles.
+			Administración de los centros de costos
 		</p>
 	</a>
 	<?php endif; ?>
@@ -37,7 +37,7 @@
 			EXTENSIONES
 		</h2>
 		<p>
-			Extensiones creadas para los usuarios de linea telefónica.
+			Administración de extensiones y sus características
 		</p>
 	</a>
 	<?php endif; ?>
@@ -47,7 +47,7 @@
 			ABREVIADOS
 		</h2>
 		<p>
-			Combinaciones especiales asignadas a números telefónicos especificos para poder así realizar llamadas a estos.
+			Administración de códigos cortos para marcación abreviada
 		</p>
 	</a>
 	<?php endif; ?>
@@ -80,7 +80,7 @@
 			INFORMES
 		</h2>
 		<p>
-			Visualización de historial de llamadas registradas.
+			Herramientas de reportería para registro de llamadas
 		</p>
 	</a>
 	<?php endif; ?>
@@ -89,7 +89,7 @@
 			ESTADO DE EXTENSIONES
 		</h2>
 		<p>
-			Visualización de las extensiones registradas (a este panel).
+			Visualización del estado de las extensiones creadas en el sistema
 		</p>
 	</a>
 </div>
