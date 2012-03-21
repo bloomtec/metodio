@@ -32,7 +32,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-Configure::write('debug', 1);
+Configure::write('debug', 0);
 
 /**
  * Customize parameters
@@ -171,7 +171,7 @@ define('LOG_ERROR', 2);
  * the cake shell command: cake schema create Sessions
  *
  */
-Configure::write('Session', array('defaults' => 'php'));
+Configure::write('Session', array('defaults' => 'php', 'cookie' => 'SipComMB', 'timeout' => 60, 'cookieTimeout' => 60));
 
 /**
  * The level of CakePHP security.
