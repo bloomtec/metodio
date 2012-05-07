@@ -181,6 +181,7 @@ class CdrsController extends AppController {
 			// Centros De Costos
 			if (isset($queries['depCost'])) {
 				$conditions['Cdr.cost_center'] = urldecode($queries['depCost']);
+				$this -> cdrCostCenterTriggerFailFix();
 			}
 		}
 
@@ -219,6 +220,23 @@ class CdrsController extends AppController {
 		}
 		$this -> set('fi', $queries['fi']);
 		$this -> set('ff', $queries['ff']);
+	}
+	
+	private function cdrCostCenterTriggerFailFix() {
+		$this -> loadModel('SipDispositivo');
+		$cdrs = $this -> Cdr -> find('all', array('conditions' => array('Cdr.cost_center' => null)));
+		foreach($cdrs as $key => $cdr) {
+			$cdrName = $cdr['Cdr']['src'];
+			$src = $this -> SipDispositivo -> find('first', array('conditions' => array('SipDispositivo.name' => $cdrName)));
+			if(isset($src['CostCenter']['name']) && !empty($src['CostCenter']['name'])) {
+				$cdr['Cdr']['cost_center'] = $src['CostCenter']['name'];
+				if($this -> Cdr -> save($cdr)) {
+					// TODO : por si toca hacer algo al guardar exitosamente
+				} else {
+					// TODO : por si toca hacer algo si falla el guardar
+				}
+			}
+		}
 	}
 
 	public function resetCallDateLastRowForExport() {
